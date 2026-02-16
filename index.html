@@ -1,0 +1,1083 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coding Arena 2026 | Ultimate Student Challenge</title>
+    <meta name="description" content="Join CodeSprint & Pair Programming 2026. Showcase your coding skills and win championship titles.">
+    <link rel="icon" type="image/png" href="./logo.png">
+    <link rel="apple-touch-icon" href="./logo.png">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Sora:wght@600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        body: ['Inter', 'sans-serif'],
+                        headline: ['Sora', 'sans-serif'],
+                    },
+                    colors: {
+                        background: '#050506',
+                        card: '#0a0a0c',
+                        primary: '#dc2626',
+                        accent: '#f97316',
+                        azure: '#00bfff',
+                        lime: '#84cc16',
+                        magenta: '#ff00ff',
+                        muted: '#71717a',
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="font-body antialiased bg-background text-white">
+    
+    <!-- Desktop Navbar -->
+    <nav id="navbar" class="fixed top-0 left-0 right-0 h-20 z-[60] transition-all duration-500 hidden lg:flex items-center px-6 xl:px-12">
+        <div class="scroll-progress" style="width: 0%"></div>
+        <a href="#" class="font-headline text-2xl font-black tracking-tighter text-white uppercase italic focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary">
+            ARENA<span class="text-primary">2026</span>
+        </a>
+        <div class="flex-1 flex justify-center gap-8 xl:gap-12">
+            <a href="#arena" class="group relative flex items-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary">
+                <i data-lucide="shield" class="w-4 h-4 text-white group-hover:text-primary transition-all"></i>
+                <span class="text-[10px] font-black tracking-[0.3em] text-white/80 group-hover:text-primary transition-all uppercase">ARENA</span>
+                <div class="absolute -bottom-2 left-0 w-0 h-[2px] bg-primary group-hover:w-full transition-all duration-500"></div>
+            </a>
+            <a href="#schedule" class="group relative flex items-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary">
+                <i data-lucide="activity" class="w-4 h-4 text-white group-hover:text-primary transition-all"></i>
+                <span class="text-[10px] font-black tracking-[0.3em] text-white/80 group-hover:text-primary transition-all uppercase">EXECUTION</span>
+                <div class="absolute -bottom-2 left-0 w-0 h-[2px] bg-primary group-hover:w-full transition-all duration-500"></div>
+            </a>
+            <a href="#faq" class="group relative flex items-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary">
+                <i data-lucide="target" class="w-4 h-4 text-white group-hover:text-primary transition-all"></i>
+                <span class="text-[10px] font-black tracking-[0.3em] text-white/80 group-hover:text-primary transition-all uppercase">FAQ</span>
+                <div class="absolute -bottom-2 left-0 w-0 h-[2px] bg-primary group-hover:w-full transition-all duration-500"></div>
+            </a>
+        </div>
+        <div class="flex items-center gap-8">
+            <a href="#register" class="text-[10px] font-black tracking-[0.4em] text-primary hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary transition-all uppercase group flex items-center gap-2">
+                <div class="h-2 w-2 rounded-full bg-primary animate-pulse"></div>
+                [ INITIALIZE_ACCESS ]
+            </a>
+            <div class="h-10 w-px bg-white/10"></div>
+            <div class="text-[8px] font-black text-white/40 tracking-[0.3em] uppercase flex flex-col items-end">
+                <span>SYS_v3.1.0</span>
+                <span class="text-[6px] text-lime">SYNC_OK</span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Navbar -->
+    <nav class="lg:hidden fixed top-0 left-0 right-0 bg-black/95 backdrop-blur-xl border-b border-white/10 z-[60] px-4 py-3 flex items-center justify-between">
+        <a href="#" class="font-headline text-xl font-black tracking-tighter text-primary flex items-center">
+            ARENA<span class="text-white italic">2026</span>
+        </a>
+        <button id="mobileMenuToggle" class="p-2 bg-primary/10 border border-primary/20 text-primary transition-colors">
+            <i data-lucide="menu" class="menu-icon w-6 h-6"></i>
+            <i data-lucide="x" class="close-icon w-6 h-6" style="display:none;"></i>
+        </button>
+    </nav>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="p-6 flex justify-between items-center border-b border-white/10">
+            <span class="text-[10px] font-black tracking-[0.4em] uppercase text-primary">NAVIGATION_MENU</span>
+            <button id="mobileMenuClose" class="p-2 text-white/60 hover:text-white">
+                <i data-lucide="x" class="w-6 h-6"></i>
+            </button>
+        </div>
+        <div class="flex-1 flex flex-col justify-center px-6 space-y-6">
+            <a href="#arena" class="group flex items-center gap-6" data-close-menu>
+                <div class="flex flex-col">
+                    <span class="text-[9px] font-black text-primary mb-1 tracking-widest opacity-60">SECTOR_01</span>
+                    <span class="text-2xl sm:text-3xl font-black text-white group-hover:text-primary transition-all tracking-tighter uppercase">ARENA</span>
+                </div>
+                <i data-lucide="shield" class="w-6 h-6 text-white/20 group-hover:text-primary transition-all ml-auto"></i>
+            </a>
+            <a href="#schedule" class="group flex items-center gap-6" data-close-menu>
+                <div class="flex flex-col">
+                    <span class="text-[9px] font-black text-primary mb-1 tracking-widest opacity-60">SECTOR_02</span>
+                    <span class="text-2xl sm:text-3xl font-black text-white group-hover:text-primary transition-all tracking-tighter uppercase">EXECUTION</span>
+                </div>
+                <i data-lucide="activity" class="w-6 h-6 text-white/20 group-hover:text-primary transition-all ml-auto"></i>
+            </a>
+            <a href="#faq" class="group flex items-center gap-6" data-close-menu>
+                <div class="flex flex-col">
+                    <span class="text-[9px] font-black text-primary mb-1 tracking-widest opacity-60">SECTOR_03</span>
+                    <span class="text-2xl sm:text-3xl font-black text-white group-hover:text-primary transition-all tracking-tighter uppercase">FAQ</span>
+                </div>
+                <i data-lucide="target" class="w-6 h-6 text-white/20 group-hover:text-primary transition-all ml-auto"></i>
+            </a>
+            <div class="pt-8 border-t border-white/10">
+                <a href="#register" data-close-menu class="block h-12 w-full text-base bg-primary text-white font-black uppercase tracking-tighter shadow-[0_0_20px_rgba(220,38,38,0.3)] flex items-center justify-center">
+                    REGISTER_NOW
+                </a>
+            </div>
+        </div>
+        <div class="p-8 border-t border-white/10 flex justify-between items-center opacity-40">
+            <div class="flex items-center gap-2">
+                <i data-lucide="cpu" class="w-3 h-3"></i>
+                <span class="text-[8px] font-black uppercase tracking-widest">SYSTEM_STABLE</span>
+            </div>
+            <span class="text-[8px] font-black uppercase tracking-widest">v3.1.0</span>
+        </div>
+    </div>
+
+    <main class="min-h-screen">
+        
+        <!-- Hero Section -->
+        <section id="hero" class="relative min-h-screen flex items-center overflow-hidden pt-20 pb-8 md:pb-12 hero-bg">
+            <div class="absolute inset-0 bg-primary/5 mix-blend-overlay pointer-events-none"></div>
+            <div class="scanline"></div>
+            
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 w-full grid lg:grid-cols-12 gap-6 lg:gap-12 items-center relative z-10">
+                
+                <!-- Left Content -->
+                <div class="lg:col-span-7 space-y-6 md:space-y-10">
+                    <div class="space-y-6">
+                        <div class="flex items-center gap-4 group cursor-default">
+                            <div class="h-[2px] w-8 md:w-12 bg-primary group-hover:w-20 transition-all duration-700 shadow-[0_0_10px_red]"></div>
+                            <span class="text-primary font-black tracking-[0.2em] md:tracking-[0.4em] text-[9px] md:text-[10px] uppercase flicker">
+                                CODECHEF_CLUB_MITAOE // ARENA_ACCESS_v3.0
+                            </span>
+                        </div>
+
+                        <div class="relative">
+                            <h1 class="text-[clamp(4.5rem,10vw,8rem)] font-black leading-[0.85] tracking-tight uppercase italic font-headline">
+                                CODE.<br>
+                                COMPETE.<br>
+                                CONQUER.<br>
+                                <span class="glitch-title not-italic" data-text="REPEAT.">REPEAT.</span>
+                            </h1>
+                        </div>
+                    </div>
+
+                    <div class="max-w-xl space-y-4 sm:space-y-6">
+                        <p class="text-sm sm:text-base lg:text-2xl text-white font-black uppercase leading-tight border-l-4 border-primary pl-3 md:pl-6 py-2 shadow-2xl">
+                            THE ULTIMATE ARENA FOR LOGIC. <br>
+                            <span class="text-azure opacity-95">BEGINNER FRIENDLY.</span> <br>
+                            <span class="text-lime opacity-95">PRO LEVEL REWARDS.</span>
+                        </p>
+                        
+                        <div class="flex flex-wrap gap-2 md:gap-3">
+                            <span class="px-2 md:px-3 py-1 border border-primary bg-primary/10 text-primary font-black tracking-widest text-[8px] md:text-[10px] uppercase">OFFLINE::MITAOE</span>
+                            <span class="px-2 md:px-3 py-1 border border-accent bg-accent/10 text-accent font-black tracking-widest text-[8px] md:text-[10px] uppercase shadow-[0_0_15px_rgba(255,165,0,0.3)]">POOL::₹35K+</span>
+                            <span class="px-2 md:px-3 py-1 border border-lime bg-lime/10 text-lime font-black tracking-widest text-[8px] md:text-[10px] uppercase">STATUS::OPEN</span>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col sm:flex-row gap-4 sm:gap-6 items-start sm:items-center pt-2 sm:pt-4">
+                        <a href="#register" class="h-12 md:h-14 w-full sm:w-auto px-6 md:px-10 bg-primary text-white brutalist-shadow hover:translate-x-1 hover:translate-y-1 hover:shadow-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/80 transition-all font-black text-sm md:text-lg uppercase tracking-tighter flex items-center justify-center gap-4">
+                            INITIALIZE ACCESS <i data-lucide="chevron-right" class="w-5 h-5 md:w-6 md:h-6"></i>
+                        </a>
+                        <div class="flex items-center gap-3 text-[9px] md:text-[11px] font-black tracking-[0.2em] md:tracking-[0.3em] text-white opacity-90 uppercase">
+                            <div class="relative h-2.5 w-2.5 shrink-0">
+                                <div class="absolute inset-0 bg-primary rounded-full animate-ping opacity-75"></div>
+                                <div class="absolute inset-0 bg-primary rounded-full"></div>
+                            </div>
+                            SYS_BOOT::ACTIVE
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Card (Desktop Only) -->
+                <div class="lg:col-span-5 hidden lg:block group">
+                    <div class="relative p-10 bg-black/90 backdrop-blur-3xl border-2 border-white/10 shadow-[0_0_50px_rgba(220,38,38,0.15)] overflow-hidden transition-all duration-500 hover:border-primary/40">
+                        <div class="tactical-border"></div>
+                        
+                        <div class="absolute top-0 right-0 p-6 opacity-40">
+                            <i data-lucide="crosshair" class="w-8 h-8 text-primary animate-pulse"></i>
+                        </div>
+
+                        <div class="flex items-center justify-between mb-10 border-b border-white/10 pb-8 relative z-10">
+                            <div class="flex items-center gap-4">
+                                <div class="h-3 w-3 rounded-full bg-primary animate-pulse shadow-[0_0_10px_red]"></div>
+                                <span class="text-[11px] font-black tracking-[0.5em] uppercase text-primary">ARENA_CORE_v3.0.4</span>
+                            </div>
+                            <div class="flex items-center gap-4">
+                                <div id="systemLog" class="text-[9px] font-mono text-lime font-black animate-pulse uppercase min-w-[120px] text-right">SYS_BOOT::ACTIVE</div>
+                                <i data-lucide="shield-alert" class="w-5 h-5 text-primary"></i>
+                            </div>
+                        </div>
+
+                        <div class="space-y-10 relative z-10">
+                            <!-- Countdown -->
+                            <div class="space-y-4">
+                                <div class="flex justify-between items-end px-1">
+                                    <span class="text-[10px] font-black tracking-[0.6em] text-white uppercase flex items-center gap-2">
+                                        <i data-lucide="activity" class="w-3 h-3 text-primary"></i>
+                                        DEPLOYMENT_TIMER
+                                    </span>
+                                    <span class="text-[9px] font-mono text-primary tracking-[0.2em] font-black opacity-90">SYNC::STABLE</span>
+                                </div>
+                                
+                                <div class="relative p-6 bg-primary/5 border border-primary/20 shadow-inner">
+                                    <div class="absolute top-0 left-0 w-1.5 h-full bg-primary"></div>
+                                    <div id="countdown" class="grid grid-cols-4 gap-4 w-full"></div>
+                                </div>
+                            </div>
+
+                            <!-- Tracks -->
+                            <div class="grid grid-cols-2 gap-6">
+                                <div class="p-5 bg-white/5 border border-white/10 hover:border-azure hover:bg-azure/5 hover:-translate-y-2 transition-all duration-300 group/stat cursor-crosshair relative overflow-hidden">
+                                    <div class="absolute top-0 left-0 w-full h-px bg-azure/40 animate-pulse"></div>
+                                    <i data-lucide="zap" class="w-6 h-6 text-azure mb-4 group-hover/stat:scale-125 transition-all duration-500 text-glow"></i>
+                                    <span class="text-sm font-black uppercase tracking-tight block transition-colors group-hover/stat:text-azure">CodeSprint</span>
+                                    <span class="text-[9px] font-black text-azure tracking-widest uppercase opacity-95">SOLO_MODS</span>
+                                    <div class="absolute bottom-0 left-0 h-0.5 w-0 bg-azure group-hover/stat:w-full transition-all duration-500"></div>
+                                </div>
+
+                                <div class="p-5 bg-white/5 border border-white/10 hover:border-magenta hover:bg-magenta/5 hover:-translate-y-2 transition-all duration-300 group/stat cursor-crosshair relative overflow-hidden">
+                                    <div class="absolute top-0 left-0 w-full h-px bg-magenta/40 animate-pulse"></div>
+                                    <i data-lucide="terminal" class="w-6 h-6 text-magenta mb-4 group-hover/stat:scale-125 transition-all duration-500 text-glow"></i>
+                                    <span class="text-xs md:text-sm font-black uppercase tracking-tight block transition-colors group-hover/stat:text-magenta">Pair_Programming</span>
+                                    <span class="text-[9px] font-black text-magenta tracking-widest uppercase opacity-95">DUO_MODS</span>
+                                    <div class="absolute bottom-0 left-0 h-0.5 w-0 bg-magenta group-hover/stat:w-full transition-all duration-500"></div>
+                                </div>
+                            </div>
+
+                            <!-- Enrollment -->
+                            <div class="pt-8 border-t border-white/10">
+                                <div class="flex justify-between items-center text-[10px] font-black tracking-[0.4em] mb-4">
+                                    <span class="text-white uppercase">ARENA_ENROLLMENT</span>
+                                    <div class="flex items-center gap-2">
+                                        <span id="activeNodes" class="text-white/40 font-mono text-[8px] tracking-normal">[142 ACTIVE_NODES]</span>
+                                        <span id="enrollmentPercent" class="text-primary font-black opacity-90">84.2%_CAPACITY</span>
+                                    </div>
+                                </div>
+                                <div class="h-2 w-full bg-white/10 overflow-hidden relative">
+                                    <div id="enrollmentFill" class="h-full bg-primary relative transition-all duration-1000 ease-out" style="width: 84.2%">
+                                        <div class="absolute inset-0 bg-white/30 animate-pulse"></div>
+                                    </div>
+                                </div>
+                                <div class="mt-4 flex justify-between items-center opacity-40">
+                                    <span class="text-[7px] font-mono text-white uppercase tracking-widest">LOG_STREAM::ACCESSING_DATAFRAME...</span>
+                                    <div class="flex gap-1">
+                                        <div class="h-1 w-1 bg-primary rounded-full bounce-dot" style="animation-delay: 0ms"></div>
+                                        <div class="h-1 w-1 bg-primary rounded-full bounce-dot" style="animation-delay: 200ms"></div>
+                                        <div class="h-1 w-1 bg-primary rounded-full bounce-dot" style="animation-delay: 400ms"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sponsors Section -->
+        <section id="sponsors" class="bg-black/40 border-y border-white/5 py-16 md:py-20 lg:pl-16 relative overflow-hidden reveal-sector">
+            <div class="blueprint-line absolute inset-0 opacity-5 pointer-events-none"></div>
+            
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 relative z-10 mb-8 md:mb-16">
+                <div class="flex flex-col items-center text-center">
+                    <div class="h-16 w-16 bg-primary/10 border border-primary/20 flex items-center justify-center mb-8 relative">
+                        <i data-lucide="handshake" class="w-8 h-8 text-primary animate-pulse"></i>
+                        <div class="absolute -top-1 -right-1">
+                            <i data-lucide="star" class="w-4 h-4 text-accent fill-current animate-bounce"></i>
+                        </div>
+                    </div>
+                    <p class="text-xs font-black tracking-[0.5em] text-primary uppercase mb-4 flicker">MISSION_PARTNERS_V2.0</p>
+                    <h2 class="text-3xl md:text-5xl lg:text-6xl font-black italic tracking-tighter uppercase mb-4 sm:mb-6 font-headline">
+                        MEET THE <span class="text-primary not-italic">SPONSORS.</span>
+                    </h2>
+                    <p class="text-white/60 max-w-2xl mx-auto text-xs sm:text-sm md:text-lg font-black uppercase tracking-tight leading-relaxed">
+                        SUPPORTING THE NEXT GENERATION OF LOGICAL ARCHITECTS. OUR PARTNERS ENSURE HIGH-TIER INFRASTRUCTURE AND ELITE OPPORTUNITIES.
+                    </p>
+                </div>
+            </div>
+
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 mb-10 md:mb-16">
+                <div class="flex justify-center">
+                    <div class="bg-card/60 backdrop-blur-xl p-8 md:p-10 border-2 border-primary/20 hover:border-primary/60 focus-within:ring-2 focus-within:ring-primary transition-all group flex flex-col items-center max-w-sm w-full shadow-[0_0_50px_rgba(220,38,38,0.1)]">
+                        <div class="relative h-24 w-full grayscale group-hover:grayscale-0 transition-all duration-700 mb-6 scale-90 group-hover:scale-100">
+                            <img src="data:image/jpeg;base64,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" alt="WorqHat" class="w-full h-full object-contain">
+                        </div>
+                        <div class="flex flex-col items-center gap-2">
+                            <span class="text-[10px] font-black text-primary tracking-[0.4em] uppercase">TITLE_PARTNER</span>
+                            <span class="text-xl font-black text-white uppercase tracking-tighter italic">WorqHat</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="relative pt-12 border-t border-white/5 overflow-hidden">
+                <div class="absolute inset-y-0 left-0 w-40 bg-gradient-to-r from-background to-transparent z-10 lg:ml-24"></div>
+                <div class="absolute inset-y-0 right-0 w-40 bg-gradient-to-l from-background to-transparent z-10"></div>
+                <div class="flex animate-ticker whitespace-nowrap">
+                    <span class="mx-12 md:mx-20 text-[10px] font-black text-white/20 tracking-[0.4em] uppercase">WORQHAT_OFFICIAL_PARTNER</span>
+                    <span class="mx-12 md:mx-20 text-[10px] font-black text-white/20 tracking-[0.4em] uppercase">WORQHAT_OFFICIAL_PARTNER</span>
+                    <span class="mx-12 md:mx-20 text-[10px] font-black text-white/20 tracking-[0.4em] uppercase">WORQHAT_OFFICIAL_PARTNER</span>
+                    <span class="mx-12 md:mx-20 text-[10px] font-black text-white/20 tracking-[0.4em] uppercase">WORQHAT_OFFICIAL_PARTNER</span>
+                    <span class="mx-12 md:mx-20 text-[10px] font-black text-white/20 tracking-[0.4em] uppercase">WORQHAT_OFFICIAL_PARTNER</span>
+                    <span class="mx-12 md:mx-20 text-[10px] font-black text-white/20 tracking-[0.4em] uppercase">WORQHAT_OFFICIAL_PARTNER</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Stats Section -->
+        <section id="stats" class="bg-card py-16 md:py-20 lg:pl-16 relative overflow-hidden border-y border-white/5 reveal-sector">
+            <div class="absolute inset-0 bg-primary/[0.02] pointer-events-none"></div>
+            <div class="absolute top-0 right-0 p-8 opacity-10 pointer-events-none">
+                <i data-lucide="file-text" class="w-64 h-64 text-white"></i>
+            </div>
+            
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
+                <div class="flex items-center gap-3 md:gap-4 mb-8 md:mb-16">
+                    <i data-lucide="shield-check" class="w-5 h-5 md:w-6 md:h-6 text-primary animate-pulse shrink-0"></i>
+                    <span class="text-[9px] sm:text-[10px] md:text-xs font-black tracking-[0.15em] sm:tracking-[0.2em] md:tracking-[0.5em] text-white uppercase whitespace-nowrap">
+                        SYSTEM_DIAGNOSTICS_REPORT
+                    </span>
+                    <div class="h-px flex-1 bg-white/10 hidden sm:block"></div>
+                </div>
+
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+                    <div class="flex flex-col items-center text-center group">
+                        <div class="relative mb-6 md:mb-10">
+                            <div class="absolute -inset-6 blur-3xl rounded-full opacity-0 group-hover:opacity-20 bg-azure transition-opacity"></div>
+                            <i data-lucide="users" class="w-8 h-8 md:w-10 md:h-10 text-azure group-hover:scale-125 transition-all duration-500 relative z-10"></i>
+                        </div>
+                        <div class="space-y-3">
+                            <div class="text-[11px] font-black text-white/80 tracking-[0.5em] uppercase mb-2">USR_SYNC</div>
+                            <div class="text-2xl md:text-4xl lg:text-5xl font-black text-white mb-2 tracking-tighter font-mono">200+</div>
+                            <div class="text-[10px] md:text-xs font-black uppercase tracking-[0.4em] px-4 py-1 inline-block border border-azure bg-black/40 text-azure">Competitors</div>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col items-center text-center group">
+                        <div class="relative mb-6 md:mb-10">
+                            <div class="absolute -inset-6 blur-3xl rounded-full opacity-0 group-hover:opacity-20 bg-accent transition-opacity"></div>
+                            <i data-lucide="trophy" class="w-8 h-8 md:w-10 md:h-10 text-accent group-hover:scale-125 transition-all duration-500 relative z-10"></i>
+                        </div>
+                        <div class="space-y-3">
+                            <div class="text-[11px] font-black text-white/80 tracking-[0.5em] uppercase mb-2">VAL_CAPT</div>
+                            <div class="text-2xl md:text-4xl lg:text-5xl font-black text-white mb-2 tracking-tighter font-mono">₹35K+</div>
+                            <div class="text-[10px] md:text-xs font-black uppercase tracking-[0.4em] px-4 py-1 inline-block border border-accent bg-black/40 text-accent">Prize Pool</div>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col items-center text-center group">
+                        <div class="relative mb-6 md:mb-10">
+                            <div class="absolute -inset-6 blur-3xl rounded-full opacity-0 group-hover:opacity-20 bg-lime transition-opacity"></div>
+                            <i data-lucide="zap" class="w-8 h-8 md:w-10 md:h-10 text-lime group-hover:scale-125 transition-all duration-500 relative z-10"></i>
+                        </div>
+                        <div class="space-y-3">
+                            <div class="text-[11px] font-black text-white/80 tracking-[0.5em] uppercase mb-2">CAREER_PATH</div>
+                            <div class="text-2xl md:text-4xl lg:text-5xl font-black text-white mb-2 tracking-tighter font-mono">A-Z KIT</div>
+                            <div class="text-[10px] md:text-xs font-black uppercase tracking-[0.4em] px-4 py-1 inline-block border border-lime bg-black/40 text-lime">Placements</div>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col items-center text-center group">
+                        <div class="relative mb-6 md:mb-10">
+                            <div class="absolute -inset-6 blur-3xl rounded-full opacity-0 group-hover:opacity-20 bg-magenta transition-opacity"></div>
+                            <i data-lucide="target" class="w-8 h-8 md:w-10 md:h-10 text-magenta group-hover:scale-125 transition-all duration-500 relative z-10"></i>
+                        </div>
+                        <div class="space-y-3">
+                            <div class="text-[11px] font-black text-white/80 tracking-[0.5em] uppercase mb-2">OBJ_LOAD</div>
+                            <div class="text-2xl md:text-4xl lg:text-5xl font-black text-white mb-2 tracking-tighter font-mono">₹25K+</div>
+                            <div class="text-[10px] md:text-xs font-black uppercase tracking-[0.4em] px-4 py-1 inline-block border border-magenta bg-black/40 text-magenta">Internships</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Value Proposition Section -->
+        <section id="value" class="bg-background lg:pl-16 py-12 md:py-20 reveal-sector">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6">
+                <div class="text-center mb-8 md:mb-16">
+                    <h2 class="text-sm font-bold tracking-[0.5em] text-primary uppercase mb-4 flicker">ARENA_ADVANTAGE_V3</h2>
+                    <h3 class="text-3xl md:text-5xl lg:text-6xl font-black italic tracking-tighter uppercase leading-tight font-headline">
+                        WHY STEP INTO <br> <span class="text-primary not-italic">THE ARENA?</span>
+                    </h3>
+                    <p class="text-white/70 max-w-2xl mx-auto text-sm sm:text-base md:text-lg mt-4 sm:mt-6 font-black uppercase tracking-tight">
+                        CODING ARENA 2026 IS THE ULTIMATE LAUNCHPAD. ELITE REWARDS, PLACEMENTS, AND RECOGNITION AWAIT THE BRAVE.
+                    </p>
+                </div>
+                
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+                    <div class="p-6 md:p-8 bg-card border-2 border-white/5 hover:border-primary/40 focus-within:ring-2 focus-within:ring-primary transition-all group relative overflow-hidden">
+                        <div class="absolute top-0 right-0 p-4 opacity-[0.03] group-hover:opacity-10 transition-opacity">
+                            <i data-lucide="trophy" class="w-24 h-24 text-azure"></i>
+                        </div>
+                        <div class="h-12 w-12 bg-primary/10 border border-primary/20 flex items-center justify-center mb-6 group-hover:bg-primary group-hover:text-white transition-all text-azure">
+                            <i data-lucide="trophy" class="w-6 h-6"></i>
+                        </div>
+                        <h4 class="text-lg sm:text-xl font-black uppercase tracking-tight mb-3 sm:mb-4 font-headline">Separate Prize Pools</h4>
+                        <p class="text-muted leading-relaxed font-black text-xs uppercase tracking-widest">
+                            Fair play protocols with dedicated rankings and rewards for both FY and Senior (SY/TY/BTech) categories.
+                        </p>
+                    </div>
+
+                    <div class="p-6 md:p-8 bg-card border-2 border-white/5 hover:border-primary/40 focus-within:ring-2 focus-within:ring-primary transition-all group relative overflow-hidden">
+                        <div class="absolute top-0 right-0 p-4 opacity-[0.03] group-hover:opacity-10 transition-opacity">
+                            <i data-lucide="briefcase" class="w-24 h-24 text-magenta"></i>
+                        </div>
+                        <div class="h-12 w-12 bg-primary/10 border border-primary/20 flex items-center justify-center mb-6 group-hover:bg-primary group-hover:text-white transition-all text-magenta">
+                            <i data-lucide="briefcase" class="w-6 h-6"></i>
+                        </div>
+                        <h4 class="text-lg sm:text-xl font-black uppercase tracking-tight mb-3 sm:mb-4 font-headline">₹25K+ Internships</h4>
+                        <p class="text-muted leading-relaxed font-black text-xs uppercase tracking-widest">
+                            Direct track to elite internship interviews with our partner companies for top-tier performers.
+                        </p>
+                    </div>
+
+                    <div class="p-6 md:p-8 bg-card border-2 border-white/5 hover:border-primary/40 focus-within:ring-2 focus-within:ring-primary transition-all group relative overflow-hidden">
+                        <div class="absolute top-0 right-0 p-4 opacity-[0.03] group-hover:opacity-10 transition-opacity">
+                            <i data-lucide="shield" class="w-24 h-24 text-lime"></i>
+                        </div>
+                        <div class="h-12 w-12 bg-primary/10 border border-primary/20 flex items-center justify-center mb-6 group-hover:bg-primary group-hover:text-white transition-all text-lime">
+                            <i data-lucide="shield" class="w-6 h-6"></i>
+                        </div>
+                        <h4 class="text-lg sm:text-xl font-black uppercase tracking-tight mb-3 sm:mb-4 font-headline">National Certs</h4>
+                        <p class="text-muted leading-relaxed font-black text-xs uppercase tracking-widest">
+                            Receive officially recognized national-level participation and excellence certificates for your portfolio.
+                        </p>
+                    </div>
+
+                    <div class="p-6 md:p-8 bg-card border-2 border-white/5 hover:border-primary/40 focus-within:ring-2 focus-within:ring-primary transition-all group relative overflow-hidden">
+                        <div class="absolute top-0 right-0 p-4 opacity-[0.03] group-hover:opacity-10 transition-opacity">
+                            <i data-lucide="gift" class="w-24 h-24 text-accent"></i>
+                        </div>
+                        <div class="h-12 w-12 bg-primary/10 border border-primary/20 flex items-center justify-center mb-6 group-hover:bg-primary group-hover:text-white transition-all text-accent">
+                            <i data-lucide="gift" class="w-6 h-6"></i>
+                        </div>
+                        <h4 class="text-lg sm:text-xl font-black uppercase tracking-tight mb-3 sm:mb-4 font-headline">A to Z Placement Kit</h4>
+                        <p class="text-muted leading-relaxed font-black text-xs uppercase tracking-widest">
+                            The ultimate resource bundle including resume guides, technical prep, and roadmap logs for your career.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Arena Options Section -->
+        <section id="arena" class="bg-black border-y-4 border-white/5 relative overflow-hidden py-12 md:py-20 reveal-sector">
+            <div class="blueprint-line absolute inset-0 opacity-10"></div>
+            
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
+                <div class="mb-6 md:mb-14">
+                    <div class="flex items-center gap-4 md:gap-6 mb-4 md:mb-8">
+                        <i data-lucide="cpu" class="w-5 h-5 md:w-6 md:h-6 text-primary animate-pulse"></i>
+                        <span class="text-primary font-black tracking-[0.3em] md:tracking-[0.6em] text-[9px] md:text-[11px] block uppercase flicker">MISSION_SECTORS_V3.0</span>
+                    </div>
+                    <h2 class="text-2xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black italic uppercase tracking-tighter leading-[0.9] font-headline">
+                        CHOOSE YOUR <br>
+                        <span class="text-primary not-italic text-glow">OBJECTIVE.</span>
+                    </h2>
+                </div>
+
+                <div class="grid lg:grid-cols-2 gap-4 md:gap-8 items-stretch">
+                    <!-- CodeSprint -->
+                    <div class="relative bg-card p-6 md:p-8 group hover:bg-azure/5 focus-within:ring-2 focus-within:ring-azure/60 transition-all duration-700 overflow-hidden border-2 border-white/10 flex flex-col h-full">
+                        <div class="tactical-border"></div>
+                        <div class="absolute -bottom-10 -right-10 opacity-10 group-hover:opacity-20 group-hover:scale-110 transition-all duration-1000 text-azure">
+                            <i data-lucide="shield" class="w-48 h-48 md:w-96 md:h-96"></i>
+                        </div>
+
+                        <div class="flex-1 flex flex-col relative z-10">
+                            <div class="flex items-start justify-between mb-8 md:mb-12 relative z-10">
+                                <div class="p-4 md:p-6 bg-white/5 border-2 border-azure/40 group-hover:bg-white group-hover:text-primary transition-all duration-700 shadow-xl">
+                                    <i data-lucide="shield" class="w-6 h-6 md:w-8 md:h-8"></i>
+                                </div>
+                                <div class="text-right">
+                                    <span class="text-[8px] md:text-[10px] font-black tracking-[0.3em] md:tracking-[0.5em] uppercase block mb-1 md:mb-2 text-azure">PROTOCOL_01</span>
+                                    <span class="text-[10px] md:text-[12px] font-black text-white tracking-[0.1em] md:tracking-[0.2em] uppercase opacity-90">STATUS::READY</span>
+                                </div>
+                            </div>
+
+                            <div class="mb-6 md:mb-12 relative z-10 flex-1">
+                                <h3 class="text-2xl md:text-4xl lg:text-5xl font-black mb-3 md:mb-4 uppercase tracking-tighter group-hover:text-primary transition-colors duration-500 leading-tight font-headline">CodeSprint</h3>
+                                <p class="font-black text-[9px] md:text-[11px] tracking-[0.3em] md:tracking-[0.4em] mb-4 md:mb-10 border-b-2 border-azure/30 pb-3 md:pb-4 w-fit text-azure">INDIVIDUAL_EXCELLENCE</p>
+                                <p class="text-white text-sm sm:text-base md:text-xl lg:text-2xl leading-snug max-w-lg font-black opacity-100">
+                                    The algorithmic heart. Solve complex DSA puzzles with difficulty levels tailored for FY and SY/TY/BTech groups. Separate rankings and prize pools for each cohort.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="relative z-10 mt-auto">
+                            <div class="grid grid-cols-3 gap-2 md:gap-4 mb-6 md:mb-12">
+                                <div class="border border-white/20 p-2 md:p-4 bg-black/60 group-hover:border-white/40 transition-all">
+                                    <span class="text-[7px] md:text-[9px] font-black tracking-[0.1em] md:tracking-[0.3em] text-white opacity-80 uppercase block mb-1">DURATION</span>
+                                    <span class="text-[8px] md:text-[11px] font-black tracking-normal md:tracking-[0.1em] text-white uppercase">120 MINS</span>
+                                </div>
+                                <div class="border border-white/20 p-2 md:p-4 bg-black/60 group-hover:border-white/40 transition-all">
+                                    <span class="text-[7px] md:text-[9px] font-black tracking-[0.1em] md:tracking-[0.3em] text-white opacity-80 uppercase block mb-1">LEVELS</span>
+                                    <span class="text-[8px] md:text-[11px] font-black tracking-normal md:tracking-[0.1em] text-white uppercase">2 GROUPS</span>
+                                </div>
+                                <div class="border border-white/20 p-2 md:p-4 bg-black/60 group-hover:border-white/40 transition-all">
+                                    <span class="text-[7px] md:text-[9px] font-black tracking-[0.1em] md:tracking-[0.3em] text-white opacity-80 uppercase block mb-1">MODE</span>
+                                    <span class="text-[8px] md:text-[11px] font-black tracking-normal md:tracking-[0.1em] text-white uppercase">OFFLINE</span>
+                                </div>
+                            </div>
+                            <a href="#register" class="w-full h-12 md:h-14 bg-white/5 border-2 border-white/20 hover:bg-white hover:text-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary transition-all duration-700 font-black uppercase text-[10px] sm:text-xs md:text-base tracking-[0.05em] sm:tracking-[0.1em] md:tracking-[0.3em] relative z-10 group/btn overflow-hidden flex items-center justify-between px-3 md:px-8">
+                                <span class="truncate">INITIALIZE_TRACK</span>
+                                <i data-lucide="arrow-right" class="w-4 h-4 md:w-6 md:h-6 group-hover/btn:translate-x-2 transition-transform shrink-0 ml-2"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Pair Programming -->
+                    <div class="relative bg-card p-6 md:p-8 group hover:bg-magenta/5 focus-within:ring-2 focus-within:ring-magenta/60 transition-all duration-700 overflow-hidden border-2 border-white/10 flex flex-col h-full">
+                        <div class="tactical-border"></div>
+                        <div class="absolute -bottom-10 -right-10 opacity-10 group-hover:opacity-20 group-hover:scale-110 transition-all duration-1000 text-magenta">
+                            <i data-lucide="users" class="w-48 h-48 md:w-96 md:h-96"></i>
+                        </div>
+
+                        <div class="flex-1 flex flex-col relative z-10">
+                            <div class="flex items-start justify-between mb-8 md:mb-12 relative z-10">
+                                <div class="p-4 md:p-6 bg-white/5 border-2 border-magenta/40 group-hover:bg-white group-hover:text-primary transition-all duration-700 shadow-xl">
+                                    <i data-lucide="users" class="w-6 h-6 md:w-8 md:h-8"></i>
+                                </div>
+                                <div class="text-right">
+                                    <span class="text-[8px] md:text-[10px] font-black tracking-[0.3em] md:tracking-[0.5em] uppercase block mb-1 md:mb-2 text-magenta">PROTOCOL_02</span>
+                                    <span class="text-[10px] md:text-[12px] font-black text-white tracking-[0.1em] md:tracking-[0.2em] uppercase opacity-90">STATUS::STANDBY</span>
+                                </div>
+                            </div>
+
+                            <div class="mb-6 md:mb-12 relative z-10 flex-1">
+                                <h3 class="text-2xl md:text-4xl lg:text-5xl font-black mb-3 md:mb-4 uppercase tracking-tighter group-hover:text-primary transition-colors duration-500 leading-tight font-headline">Pair Programming</h3>
+                                <p class="font-black text-[9px] md:text-[11px] tracking-[0.3em] md:tracking-[0.4em] mb-4 md:mb-10 border-b-2 border-magenta/30 pb-3 md:pb-4 w-fit text-magenta">TEAM_COLLABORATION</p>
+                                <p class="text-white text-sm sm:text-base md:text-xl lg:text-2xl leading-snug max-w-lg font-black opacity-100">
+                                    Synchronized execution based on DSA. 2 groups (FY vs SY/TY/BTech). Exclusive access to ₹25K+ internship opportunities and placement kits.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="relative z-10 mt-auto">
+                            <div class="grid grid-cols-3 gap-2 md:gap-4 mb-6 md:mb-12">
+                                <div class="border border-white/20 p-2 md:p-4 bg-black/60 group-hover:border-white/40 transition-all">
+                                    <span class="text-[7px] md:text-[9px] font-black tracking-[0.1em] md:tracking-[0.3em] text-white opacity-80 uppercase block mb-1">DURATION</span>
+                                    <span class="text-[8px] md:text-[11px] font-black tracking-normal md:tracking-[0.1em] text-white uppercase">180 MINS</span>
+                                </div>
+                                <div class="border border-white/20 p-2 md:p-4 bg-black/60 group-hover:border-white/40 transition-all">
+                                    <span class="text-[7px] md:text-[9px] font-black tracking-[0.1em] md:tracking-[0.3em] text-white opacity-80 uppercase block mb-1">LEVELS</span>
+                                    <span class="text-[8px] md:text-[11px] font-black tracking-normal md:tracking-[0.1em] text-white uppercase">2 GROUPS</span>
+                                </div>
+                                <div class="border border-white/20 p-2 md:p-4 bg-black/60 group-hover:border-white/40 transition-all">
+                                    <span class="text-[7px] md:text-[9px] font-black tracking-[0.1em] md:tracking-[0.3em] text-white opacity-80 uppercase block mb-1">MODE</span>
+                                    <span class="text-[8px] md:text-[11px] font-black tracking-normal md:tracking-[0.1em] text-white uppercase">OFFLINE</span>
+                                </div>
+                            </div>
+                            <a href="#register" class="w-full h-12 md:h-14 bg-white/5 border-2 border-white/20 hover:bg-white hover:text-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary transition-all duration-700 font-black uppercase text-[10px] sm:text-xs md:text-base tracking-[0.05em] sm:tracking-[0.1em] md:tracking-[0.3em] relative z-10 group/btn overflow-hidden flex items-center justify-between px-3 md:px-8">
+                                <span class="truncate">INITIALIZE_TRACK</span>
+                                <i data-lucide="arrow-right" class="w-4 h-4 md:w-6 md:h-6 group-hover/btn:translate-x-2 transition-transform shrink-0 ml-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Notice -->
+                <div class="mt-8 md:mt-20 flex flex-col md:flex-row items-center md:items-start lg:items-center gap-4 md:gap-10 p-4 sm:p-6 md:p-10 relative bg-black border-2 border-primary/40 shadow-2xl">
+                    <div class="tactical-border"></div>
+                    <div class="h-16 w-16 md:h-20 md:w-20 bg-primary/10 flex items-center justify-center shrink-0 border-2 border-primary shadow-[0_0_40px_rgba(220,38,38,0.2)] relative z-10">
+                        <i data-lucide="database" class="w-8 h-8 md:w-10 md:h-10 text-primary animate-pulse"></i>
+                    </div>
+                    <div class="flex-1 relative z-10 text-center md:text-left w-full">
+                        <p class="text-[10px] md:text-[14px] font-black tracking-[0.3em] md:tracking-[0.5em] text-primary uppercase mb-3 md:mb-4">SYSTEM_PARTICIPATION_NOTICE</p>
+                        <p class="text-[11px] sm:text-xs md:text-sm font-black tracking-[0.05em] md:tracking-[0.1em] text-white uppercase leading-relaxed max-w-4xl mx-auto md:mx-0">
+                            OPEN TO ALL BRANCHES. TWO SEPARATE COMPETITION GROUPS: FY VS SY/TY/BTech. 
+                            <span class="text-azure">SEPARATE PRIZE POOLS & RANKINGS.</span> MENTORSHIP SESSIONS INCLUDED POST-ENROLLMENT.
+                        </p>
+                    </div>
+                    <i data-lucide="layers" class="w-16 h-16 text-white/40 shrink-0 hidden lg:block relative z-10"></i>
+                </div>
+            </div>
+        </section>
+
+        <!-- Schedule Section -->
+        <section id="schedule" class="bg-card relative overflow-hidden py-12 md:py-20 reveal-sector">
+            <div class="absolute top-0 right-0 w-1/3 h-full blueprint-line opacity-10"></div>
+            <div class="absolute bottom-0 left-0 w-1/2 h-1/2 bg-primary/5 blur-[120px] rounded-full"></div>
+            
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
+                <div class="flex flex-col md:flex-row md:items-end justify-between mb-6 md:mb-16 gap-6 sm:gap-8">
+                    <div>
+                        <span class="text-primary font-black tracking-[0.4em] md:tracking-[0.6em] text-[10px] md:text-xs block mb-4 md:mb-6 uppercase flicker">MISSION_LOGS_V3.0</span>
+                        <h2 class="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-black uppercase tracking-tighter leading-[0.9] font-headline">
+                            EXECUTION <br> <span class="text-primary text-glow italic">TIMELINE.</span>
+                        </h2>
+                    </div>
+                    <div class="md:text-right border-t-4 border-primary pt-4 md:pt-6">
+                        <p class="text-[10px] md:text-[11px] font-black tracking-[0.4em] md:tracking-[0.6em] text-white uppercase opacity-95">v2026_SCHEDULE_FINAL</p>
+                        <div class="flex items-center gap-3 mt-2 md:mt-3 justify-start md:justify-end">
+                            <div class="h-2 w-2 bg-lime rounded-full animate-pulse shadow-[0_0_10px_lime]"></div>
+                            <span class="text-[9px] md:text-[10px] font-mono text-lime tracking-[0.2em] md:tracking-[0.3em] font-black opacity-95">SYNC_READY</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-4 md:gap-8 lg:gap-12">
+                    <!-- CodeSprint Day -->
+                    <div class="relative p-4 sm:p-8 md:p-12 bg-background border-2 border-azure/30 transition-all duration-700 hover:scale-[1.01] hover:bg-white/[0.02] group/card overflow-hidden">
+                        <div class="tactical-border"></div>
+                        
+                        <div class="flex justify-between items-start mb-6 md:mb-16 relative z-10 gap-4">
+                            <div class="flex-1 min-w-0">
+                                <h3 class="text-xl sm:text-3xl md:text-4xl lg:text-5xl font-black italic tracking-tighter uppercase transition-colors group-hover/card:text-white leading-tight text-azure font-headline">CodeSprint</h3>
+                                <p class="text-[10px] md:text-[12px] font-black tracking-[0.3em] md:tracking-[0.5em] text-white mt-2 md:mt-4 opacity-100">24 FEBRUARY 2026</p>
+                            </div>
+                            <div class="text-xl sm:text-2xl md:text-4xl font-black text-white/20 font-mono tracking-tighter transition-all group-hover/card:text-white/40 group-hover/card:scale-110 shrink-0">OP_01</div>
+                        </div>
+
+                        <div class="space-y-4 md:space-y-10 relative z-10">
+                            <div class="flex items-center gap-3 sm:gap-6 group">
+                                <div class="text-[10px] sm:text-sm font-black border-b-2 border-azure/30 text-azure transition-all px-2 font-mono whitespace-nowrap group-hover:bg-white group-hover:text-black group-hover:border-white">0900</div>
+                                <div class="h-[1px] flex-1 bg-white/10 group-hover:bg-white/40 transition-all"></div>
+                                <div class="text-[10px] sm:text-xs md:text-sm lg:text-base font-black uppercase tracking-tight text-white/95 group-hover:text-white group-hover:translate-x-2 transition-all duration-500 text-right">Base Entry & Hardware Sync</div>
+                            </div>
+                            <div class="flex items-center gap-3 sm:gap-6 group">
+                                <div class="text-[10px] sm:text-sm font-black border-b-2 border-azure/30 text-azure transition-all px-2 font-mono whitespace-nowrap group-hover:bg-white group-hover:text-black group-hover:border-white">1000</div>
+                                <div class="h-[1px] flex-1 bg-white/10 group-hover:bg-white/40 transition-all"></div>
+                                <div class="text-[10px] sm:text-xs md:text-sm lg:text-base font-black uppercase tracking-tight text-white/95 group-hover:text-white group-hover:translate-x-2 transition-all duration-500 text-right">DSA & Problem Solving (2hrs)</div>
+                            </div>
+                            <div class="flex items-center gap-3 sm:gap-6 group">
+                                <div class="text-[10px] sm:text-sm font-black border-b-2 border-azure/30 text-azure transition-all px-2 font-mono whitespace-nowrap group-hover:bg-white group-hover:text-black group-hover:border-white">1100</div>
+                                <div class="h-[1px] flex-1 bg-white/10 group-hover:bg-white/40 transition-all"></div>
+                                <div class="text-[10px] sm:text-xs md:text-sm lg:text-base font-black uppercase tracking-tight text-white/95 group-hover:text-white group-hover:translate-x-2 transition-all duration-500 text-right">Session Termination</div>
+                            </div>
+                            <div class="flex items-center gap-3 sm:gap-6 group">
+                                <div class="text-[10px] sm:text-sm font-black border-b-2 border-azure/30 text-azure transition-all px-2 font-mono whitespace-nowrap group-hover:bg-white group-hover:text-black group-hover:border-white">1400</div>
+                                <div class="h-[1px] flex-1 bg-white/10 group-hover:bg-white/40 transition-all"></div>
+                                <div class="text-[10px] sm:text-xs md:text-sm lg:text-base font-black uppercase tracking-tight text-white/95 group-hover:text-white group-hover:translate-x-2 transition-all duration-500 text-right">Prize Distribution & Closing</div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-8 md:mt-16 pt-4 md:pt-8 border-t border-white/10 flex justify-between items-center">
+                            <span class="text-[8px] md:text-[10px] font-mono tracking-[0.3em] md:tracking-[0.5em] text-white/80 font-black uppercase">LOG_SECTOR_01</span>
+                            <span class="text-[8px] md:text-[10px] font-mono text-white/80 font-black tracking-widest uppercase">STABLE_SEQ</span>
+                        </div>
+                    </div>
+
+                    <!-- Pair Programming Day -->
+                    <div class="relative p-4 sm:p-8 md:p-12 bg-background border-2 border-magenta/30 transition-all duration-700 hover:scale-[1.01] hover:bg-white/[0.02] group/card overflow-hidden">
+                        <div class="tactical-border"></div>
+                        
+                        <div class="flex justify-between items-start mb-6 md:mb-16 relative z-10 gap-4">
+                            <div class="flex-1 min-w-0">
+                                <h3 class="text-xl sm:text-3xl md:text-4xl lg:text-5xl font-black italic tracking-tighter uppercase transition-colors group-hover/card:text-white leading-tight text-magenta font-headline">Pair Programming</h3>
+                                <p class="text-[10px] md:text-[12px] font-black tracking-[0.3em] md:tracking-[0.5em] text-white mt-2 md:mt-4 opacity-100">26 FEBRUARY 2026</p>
+                            </div>
+                            <div class="text-xl sm:text-2xl md:text-4xl font-black text-white/20 font-mono tracking-tighter transition-all group-hover/card:text-white/40 group-hover/card:scale-110 shrink-0">OP_02</div>
+                        </div>
+
+                        <div class="space-y-4 md:space-y-10 relative z-10">
+                            <div class="flex items-center gap-3 sm:gap-6 group">
+                                <div class="text-[10px] sm:text-sm font-black border-b-2 border-magenta/30 text-magenta transition-all px-2 font-mono whitespace-nowrap group-hover:bg-white group-hover:text-black group-hover:border-white">0900</div>
+                                <div class="h-[1px] flex-1 bg-white/10 group-hover:bg-white/40 transition-all"></div>
+                                <div class="text-[10px] sm:text-xs md:text-sm lg:text-base font-black uppercase tracking-tight text-white/95 group-hover:text-white group-hover:translate-x-2 transition-all duration-500 text-right">Duo Sync & Logic Setup</div>
+                            </div>
+                            <div class="flex items-center gap-3 sm:gap-6 group">
+                                <div class="text-[10px] sm:text-sm font-black border-b-2 border-magenta/30 text-magenta transition-all px-2 font-mono whitespace-nowrap group-hover:bg-white group-hover:text-black group-hover:border-white">1000</div>
+                                <div class="h-[1px] flex-1 bg-white/10 group-hover:bg-white/40 transition-all"></div>
+                                <div class="text-[10px] sm:text-xs md:text-sm lg:text-base font-black uppercase tracking-tight text-white/95 group-hover:text-white group-hover:translate-x-2 transition-all duration-500 text-right">Collaborative DSA (3hrs)</div>
+                            </div>
+                            <div class="flex items-center gap-3 sm:gap-6 group">
+                                <div class="text-[10px] sm:text-sm font-black border-b-2 border-magenta/30 text-magenta transition-all px-2 font-mono whitespace-nowrap group-hover:bg-white group-hover:text-black group-hover:border-white">1200</div>
+                                <div class="h-[1px] flex-1 bg-white/10 group-hover:bg-white/40 transition-all"></div>
+                                <div class="text-[10px] sm:text-xs md:text-sm lg:text-base font-black uppercase tracking-tight text-white/95 group-hover:text-white group-hover:translate-x-2 transition-all duration-500 text-right">Closing Protocols</div>
+                            </div>
+                            <div class="flex items-center gap-3 sm:gap-6 group">
+                                <div class="text-[10px] sm:text-sm font-black border-b-2 border-magenta/30 text-magenta transition-all px-2 font-mono whitespace-nowrap group-hover:bg-white group-hover:text-black group-hover:border-white">1400</div>
+                                <div class="h-[1px] flex-1 bg-white/10 group-hover:bg-white/40 transition-all"></div>
+                                <div class="text-[10px] sm:text-xs md:text-sm lg:text-base font-black uppercase tracking-tight text-white/95 group-hover:text-white group-hover:translate-x-2 transition-all duration-500 text-right">Prize Distribution & Closing</div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-8 md:mt-16 pt-4 md:pt-8 border-t border-white/10 flex justify-between items-center">
+                            <span class="text-[8px] md:text-[10px] font-mono tracking-[0.3em] md:tracking-[0.5em] text-white/80 font-black uppercase">LOG_SECTOR_02</span>
+                            <span class="text-[8px] md:text-[10px] font-mono text-white/80 font-black tracking-widest uppercase">STABLE_SEQ</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-6 md:mt-16 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 md:gap-8">
+                    <div class="flex items-center gap-4 sm:gap-6 border-2 border-azure/20 p-5 sm:p-8 bg-black hover:bg-white/[0.03] transition-all group hover:border-white/40">
+                        <i data-lucide="map-pin" class="w-6 h-6 sm:w-8 sm:h-8 shrink-0 group-hover:scale-125 transition-transform duration-500 text-azure"></i>
+                        <div>
+                            <p class="text-[8px] sm:text-[10px] font-black text-white tracking-[0.3em] sm:tracking-[0.5em] mb-1 sm:mb-2 opacity-95">HQ_LOCATION</p>
+                            <p class="text-xs sm:text-sm md:text-base font-black uppercase text-white">H-wing, 3rd Floor, MITAOE</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-4 sm:gap-6 border-2 border-accent/20 p-5 sm:p-8 bg-black hover:bg-white/[0.03] transition-all group hover:border-white/40">
+                        <i data-lucide="zap" class="w-6 h-6 sm:w-8 sm:h-8 shrink-0 group-hover:scale-125 transition-transform duration-500 text-accent"></i>
+                        <div>
+                            <p class="text-[8px] sm:text-[10px] font-black text-white tracking-[0.3em] sm:tracking-[0.5em] mb-1 sm:mb-2 opacity-95">ACCESS_TYPE</p>
+                            <p class="text-xs sm:text-sm md:text-base font-black uppercase text-white">Strictly Offline Only</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-4 sm:gap-6 border-2 border-lime/20 p-5 sm:p-8 bg-black hover:bg-white/[0.03] transition-all group hover:border-white/40">
+                        <i data-lucide="info" class="w-6 h-6 sm:w-8 sm:h-8 shrink-0 group-hover:scale-125 transition-transform duration-500 text-lime"></i>
+                        <div>
+                            <p class="text-[8px] sm:text-[10px] font-black text-white tracking-[0.3em] sm:tracking-[0.5em] mb-1 sm:mb-2 opacity-95">REQUIREMENTS</p>
+                            <p class="text-xs sm:text-sm md:text-base font-black uppercase text-white">System Hardware Provided</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Registration Section -->
+        <section id="register" class="bg-background py-12 md:py-20 relative overflow-hidden lg:pl-16 reveal-sector">
+            <div class="blueprint-line absolute inset-0 opacity-10 pointer-events-none"></div>
+            <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent"></div>
+
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 text-center relative z-10">
+                <div class="mb-8 md:mb-12">
+                    <p class="text-[10px] md:text-sm font-black tracking-[0.4em] md:tracking-[0.6em] text-primary uppercase mb-4 md:mb-6 flicker">REGISTRATION_OFFICE</p>
+                    <h2 class="text-2xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black uppercase tracking-tighter mb-4 sm:mb-6 md:mb-8 leading-[1] font-headline">
+                        SECURE YOUR <br>
+                        <span class="text-primary italic text-glow">ENTRY_POINT.</span>
+                    </h2>
+                    <p class="text-white text-xs sm:text-base md:text-2xl max-w-3xl mx-auto font-black leading-relaxed opacity-100">
+                        REGISTRATIONS ARE OPEN. JOIN 200+ STUDENTS IN THE CAMPUS ARENA. 
+                        <span class="text-lime"> ALL LEVELS VALIDATED.</span>
+                    </p>
+                </div>
+
+                <div class="relative bg-card/80 backdrop-blur-3xl border-2 border-white/10 p-4 sm:p-6 md:p-10 shadow-2xl overflow-hidden group">
+                    <div class="tactical-border"></div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8 mb-8 md:mb-12 text-left relative z-10">
+                        <div class="border-b-2 md:border-b-0 md:border-r-2 border-white/10 pb-8 md:pb-0 md:pr-10 relative flex flex-col h-full">
+                            <i data-lucide="database" class="absolute -top-4 -right-4 w-12 h-12 text-azure opacity-20"></i>
+                            <div>
+                                <h4 class="text-lg md:text-2xl font-black mb-3 md:mb-6 text-azure uppercase tracking-widest flex items-center gap-3 font-headline">
+                                    <i data-lucide="user-check" class="w-5 h-5"></i>
+                                    CodeSprint
+                                </h4>
+                                <p class="text-white text-[10px] md:text-[12px] uppercase tracking-wider leading-relaxed md:leading-loose mb-6 md:mb-8 font-black opacity-95">
+                                    INDIVIDUAL LOGICAL SPRINT. <br>
+                                    BEST FOR SOLO ARCHITECTS.
+                                </p>
+                            </div>
+                            <div class="mt-auto">
+                                <div class="flex items-center gap-3 md:gap-4 bg-azure/10 p-4 border border-azure/20">
+                                    <div class="h-2.5 w-2.5 md:h-3 md:w-3 bg-azure rounded-full animate-pulse shadow-[0_0_10px_#00c3ff]"></div>
+                                    <span class="font-mono text-lg md:text-xl font-black text-white">FEE::₹40</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="border-b-2 md:border-b-0 md:border-r-2 border-white/10 pb-8 md:pb-0 md:pr-10 relative flex flex-col h-full">
+                            <i data-lucide="users" class="absolute -top-4 -right-4 w-12 h-12 text-magenta opacity-20"></i>
+                            <div>
+                                <h4 class="text-lg md:text-2xl font-black mb-3 md:mb-6 text-magenta uppercase tracking-widest flex items-center gap-3 font-headline">
+                                    <i data-lucide="users" class="w-5 h-5"></i>
+                                    Pair Programming
+                                </h4>
+                                <p class="text-white text-[10px] md:text-[12px] uppercase tracking-wider leading-relaxed md:leading-loose mb-6 md:mb-8 font-black opacity-95">
+                                    TEAM-OF-TWO SYNC. <br>
+                                    LEARN & CONQUER TOGETHER.
+                                </p>
+                            </div>
+                            <div class="mt-auto">
+                                <div class="flex items-center gap-3 md:gap-4 bg-magenta/10 p-4 border border-magenta/20">
+                                    <div class="h-2.5 w-2.5 md:h-3 md:w-3 bg-magenta rounded-full animate-pulse shadow-[0_0_10px_#ff00ff]"></div>
+                                    <span class="font-mono text-lg md:text-xl font-black text-white">FEE::₹70</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flex flex-col justify-center bg-white/5 p-6 border border-white/10">
+                            <h4 class="text-[9px] md:text-[11px] font-black mb-3 md:mb-4 text-white uppercase tracking-[0.3em] md:tracking-[0.5em] opacity-95 flex items-center gap-2">
+                                <div class="h-1.5 w-1.5 rounded-full bg-primary"></div>
+                                DEADLINE_DATA
+                            </h4>
+                            <p class="text-white text-[11px] md:text-[13px] font-black uppercase tracking-[0.1em] md:tracking-[0.2em] leading-relaxed md:leading-loose">
+                                TERMINATION: <span class="font-mono text-primary">FEB 22, 2026</span>. <br>
+                                <span class="text-primary font-bold">NO EXTENSIONS PERMITTED.</span> <br>
+                                ENTRY KEYS VIA ENCRYPTED LOGS.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="relative group/cta w-full">
+                        <div class="absolute -inset-2 bg-primary/40 blur-2xl opacity-0 group-hover/cta:opacity-100 transition-opacity duration-1000"></div>
+                        <a href="https://forms.gle/YOUR_GOOGLE_FORM_LINK" target="_blank" class="h-12 sm:h-14 md:h-16 w-full px-4 sm:px-8 bg-primary text-white brutalist-shadow hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all font-black text-[10px] sm:text-sm md:text-xl uppercase tracking-[0.1em] sm:tracking-[0.2em] md:tracking-[0.4em] relative z-10 whitespace-normal text-center overflow-hidden flex items-center justify-center gap-3 md:gap-6">
+                            <span>INITIALIZE_ENTRY_PROTOCOL</span>
+                            <i data-lucide="external-link" class="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 shrink-0"></i>
+                        </a>
+                    </div>
+
+                    <div class="mt-8 md:mt-12 flex items-center justify-center gap-3 md:gap-4 text-white font-black text-[8px] md:text-[10px] tracking-[0.2em] md:tracking-[0.4em] uppercase opacity-95">
+                        <i data-lucide="shield-check" class="w-3 h-3 md:w-4 md:h-4 text-primary"></i>
+                        SECURE_REGISTRATION_GATEWAY
+                    </div>
+
+                    <div class="absolute bottom-0 right-0 opacity-[0.05] pointer-events-none translate-x-1/4 translate-y-1/4 select-none hidden md:block text-[20rem] font-black italic font-headline">ARENA</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section id="faq" class="bg-[#0a0a0c] py-12 md:py-20 lg:pl-16 relative overflow-hidden reveal-sector">
+            <div class="blueprint-line absolute inset-0 opacity-5 pointer-events-none"></div>
+            
+            <div class="max-w-4xl mx-auto px-4 md:px-6 relative z-10">
+                <div class="text-center mb-6 md:mb-14">
+                    <div class="flex justify-center mb-8">
+                        <div class="h-16 w-16 bg-primary/10 border border-primary/20 flex items-center justify-center relative">
+                            <i data-lucide="help-circle" class="w-8 h-8 text-primary animate-pulse"></i>
+                            <div class="absolute inset-0 border border-primary/40 scale-125 opacity-20"></div>
+                        </div>
+                    </div>
+                    <p class="text-[10px] md:text-xs font-black tracking-[0.6em] text-primary uppercase mb-6 flicker">SYSTEM_PROTOCOL_FAQ_v3.0</p>
+                    <h2 class="text-3xl md:text-5xl lg:text-6xl font-black italic tracking-tighter leading-tight uppercase glitch-title font-headline" data-text="COMMON_QUERIES.">
+                        COMMON <br> <span class="text-primary not-italic text-glow">QUERIES.</span>
+                    </h2>
+                    <div class="h-1 w-16 sm:w-24 bg-primary mx-auto mt-6 sm:mt-8 shadow-[0_0_15px_red]"></div>
+                </div>
+
+                <div class="w-full space-y-3">
+                    <div class="faq-item relative border-2 border-white/5 bg-card/40 backdrop-blur-sm px-6 md:px-10 overflow-hidden transition-all duration-500 hover:border-primary/40 hover:bg-white/[0.02]">
+                        <div class="absolute top-6 left-2 hidden md:flex flex-col items-center gap-1 opacity-20">
+                            <span class="text-[8px] font-black text-primary">SEC</span>
+                            <span class="text-[12px] font-black text-white">01</span>
+                        </div>
+                        <div class="faq-item-indicator absolute top-0 left-0 w-1 h-0 bg-primary transition-all duration-700 ease-out shadow-[0_0_15px_red]"></div>
+                        <button class="faq-question text-sm sm:text-base md:text-lg font-black uppercase tracking-tight hover:no-underline hover:text-primary transition-all py-5 text-left flex items-center gap-3 w-full">
+                            <i data-lucide="terminal" class="w-4 h-4 md:w-5 md:h-5 shrink-0 opacity-40"></i>
+                            <span class="flex-1">How are the participants grouped?</span>
+                            <i data-lucide="chevron-down" class="faq-chevron w-5 h-5 transition-transform shrink-0"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <div class="flex gap-3 items-start pt-1 pb-6">
+                                <i data-lucide="arrow-down-right" class="w-4 h-4 text-primary shrink-0 mt-1 opacity-60"></i>
+                                <p class="max-w-2xl text-white/80 text-xs sm:text-sm md:text-base leading-relaxed font-bold">To ensure fair competition, there are two separate competition tracks: Group 1 for FY (First Year) students and Group 2 for SY, TY, and BTech students. Each group has its own leaderboard and prize pool.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="faq-item relative border-2 border-white/5 bg-card/40 backdrop-blur-sm px-6 md:px-10 overflow-hidden transition-all duration-500 hover:border-primary/40 hover:bg-white/[0.02]">
+                        <div class="absolute top-6 left-2 hidden md:flex flex-col items-center gap-1 opacity-20">
+                            <span class="text-[8px] font-black text-primary">SEC</span>
+                            <span class="text-[12px] font-black text-white">02</span>
+                        </div>
+                        <div class="faq-item-indicator absolute top-0 left-0 w-1 h-0 bg-primary transition-all duration-700 ease-out shadow-[0_0_15px_red]"></div>
+                        <button class="faq-question text-sm sm:text-base md:text-lg font-black uppercase tracking-tight hover:no-underline hover:text-primary transition-all py-5 text-left flex items-center gap-3 w-full">
+                            <i data-lucide="terminal" class="w-4 h-4 md:w-5 md:h-5 shrink-0 opacity-40"></i>
+                            <span class="flex-1">What is the duration of each track?</span>
+                            <i data-lucide="chevron-down" class="faq-chevron w-5 h-5 transition-transform shrink-0"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <div class="flex gap-3 items-start pt-1 pb-6">
+                                <i data-lucide="arrow-down-right" class="w-4 h-4 text-primary shrink-0 mt-1 opacity-60"></i>
+                                <p class="max-w-2xl text-white/80 text-xs sm:text-sm md:text-base leading-relaxed font-bold">CodeSprint (Solo) is a 2-hour high-intensity challenge. Pair Programming (Duo) is a collaborative 3-hour session. Both tracks focus strictly on DSA and Problem Solving.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="faq-item relative border-2 border-white/5 bg-card/40 backdrop-blur-sm px-6 md:px-10 overflow-hidden transition-all duration-500 hover:border-primary/40 hover:bg-white/[0.02]">
+                        <div class="absolute top-6 left-2 hidden md:flex flex-col items-center gap-1 opacity-20">
+                            <span class="text-[8px] font-black text-primary">SEC</span>
+                            <span class="text-[12px] font-black text-white">03</span>
+                        </div>
+                        <div class="faq-item-indicator absolute top-0 left-0 w-1 h-0 bg-primary transition-all duration-700 ease-out shadow-[0_0_15px_red]"></div>
+                        <button class="faq-question text-sm sm:text-base md:text-lg font-black uppercase tracking-tight hover:no-underline hover:text-primary transition-all py-5 text-left flex items-center gap-3 w-full">
+                            <i data-lucide="terminal" class="w-4 h-4 md:w-5 md:h-5 shrink-0 opacity-40"></i>
+                            <span class="flex-1">Who is eligible to participate?</span>
+                            <i data-lucide="chevron-down" class="faq-chevron w-5 h-5 transition-transform shrink-0"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <div class="flex gap-3 items-start pt-1 pb-6">
+                                <i data-lucide="arrow-down-right" class="w-4 h-4 text-primary shrink-0 mt-1 opacity-60"></i>
+                                <p class="max-w-2xl text-white/80 text-xs sm:text-sm md:text-base leading-relaxed font-bold">The competition is open to all MITAOE students across all academic years and branches. We encourage everyone interested in problem-solving to step in.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="faq-item relative border-2 border-white/5 bg-card/40 backdrop-blur-sm px-6 md:px-10 overflow-hidden transition-all duration-500 hover:border-primary/40 hover:bg-white/[0.02]">
+                        <div class="absolute top-6 left-2 hidden md:flex flex-col items-center gap-1 opacity-20">
+                            <span class="text-[8px] font-black text-primary">SEC</span>
+                            <span class="text-[12px] font-black text-white">04</span>
+                        </div>
+                        <div class="faq-item-indicator absolute top-0 left-0 w-1 h-0 bg-primary transition-all duration-700 ease-out shadow-[0_0_15px_red]"></div>
+                        <button class="faq-question text-sm sm:text-base md:text-lg font-black uppercase tracking-tight hover:no-underline hover:text-primary transition-all py-5 text-left flex items-center gap-3 w-full">
+                            <i data-lucide="terminal" class="w-4 h-4 md:w-5 md:h-5 shrink-0 opacity-40"></i>
+                            <span class="flex-1">Is the competition online or offline?</span>
+                            <i data-lucide="chevron-down" class="faq-chevron w-5 h-5 transition-transform shrink-0"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <div class="flex gap-3 items-start pt-1 pb-6">
+                                <i data-lucide="arrow-down-right" class="w-4 h-4 text-primary shrink-0 mt-1 opacity-60"></i>
+                                <p class="max-w-2xl text-white/80 text-xs sm:text-sm md:text-base leading-relaxed font-bold">This is a strictly OFFLINE championship hosted at the MITAOE Campus. We believe the energy of an in-person arena is unmatched for learning and networking.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="faq-item relative border-2 border-white/5 bg-card/40 backdrop-blur-sm px-6 md:px-10 overflow-hidden transition-all duration-500 hover:border-primary/40 hover:bg-white/[0.02]">
+                        <div class="absolute top-6 left-2 hidden md:flex flex-col items-center gap-1 opacity-20">
+                            <span class="text-[8px] font-black text-primary">SEC</span>
+                            <span class="text-[12px] font-black text-white">05</span>
+                        </div>
+                        <div class="faq-item-indicator absolute top-0 left-0 w-1 h-0 bg-primary transition-all duration-700 ease-out shadow-[0_0_15px_red]"></div>
+                        <button class="faq-question text-sm sm:text-base md:text-lg font-black uppercase tracking-tight hover:no-underline hover:text-primary transition-all py-5 text-left flex items-center gap-3 w-full">
+                            <i data-lucide="terminal" class="w-4 h-4 md:w-5 md:h-5 shrink-0 opacity-40"></i>
+                            <span class="flex-1">What rewards are offered?</span>
+                            <i data-lucide="chevron-down" class="faq-chevron w-5 h-5 transition-transform shrink-0"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <div class="flex gap-3 items-start pt-1 pb-6">
+                                <i data-lucide="arrow-down-right" class="w-4 h-4 text-primary shrink-0 mt-1 opacity-60"></i>
+                                <p class="max-w-2xl text-white/80 text-xs sm:text-sm md:text-base leading-relaxed font-bold">The prize pool is ₹35K+. Both FY and Senior groups have dedicated cash prizes. Shortlisted participants from the Pair Programming track also get exclusive opportunities for internship interviews (₹25K+) and placement kits.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="faq-item relative border-2 border-white/5 bg-card/40 backdrop-blur-sm px-6 md:px-10 overflow-hidden transition-all duration-500 hover:border-primary/40 hover:bg-white/[0.02]">
+                        <div class="absolute top-6 left-2 hidden md:flex flex-col items-center gap-1 opacity-20">
+                            <span class="text-[8px] font-black text-primary">SEC</span>
+                            <span class="text-[12px] font-black text-white">06</span>
+                        </div>
+                        <div class="faq-item-indicator absolute top-0 left-0 w-1 h-0 bg-primary transition-all duration-700 ease-out shadow-[0_0_15px_red]"></div>
+                        <button class="faq-question text-sm sm:text-base md:text-lg font-black uppercase tracking-tight hover:no-underline hover:text-primary transition-all py-5 text-left flex items-center gap-3 w-full">
+                            <i data-lucide="terminal" class="w-4 h-4 md:w-5 md:h-5 shrink-0 opacity-40"></i>
+                            <span class="flex-1">Can I register for both tracks?</span>
+                            <i data-lucide="chevron-down" class="faq-chevron w-5 h-5 transition-transform shrink-0"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <div class="flex gap-3 items-start pt-1 pb-6">
+                                <i data-lucide="arrow-down-right" class="w-4 h-4 text-primary shrink-0 mt-1 opacity-60"></i>
+                                <p class="max-w-2xl text-white/80 text-xs sm:text-sm md:text-base leading-relaxed font-bold">Yes! You can test your solo skills in CodeSprint and team up for Pair Programming. Separate registrations are required for each track.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="faq-item relative border-2 border-white/5 bg-card/40 backdrop-blur-sm px-6 md:px-10 overflow-hidden transition-all duration-500 hover:border-primary/40 hover:bg-white/[0.02]">
+                        <div class="absolute top-6 left-2 hidden md:flex flex-col items-center gap-1 opacity-20">
+                            <span class="text-[8px] font-black text-primary">SEC</span>
+                            <span class="text-[12px] font-black text-white">07</span>
+                        </div>
+                        <div class="faq-item-indicator absolute top-0 left-0 w-1 h-0 bg-primary transition-all duration-700 ease-out shadow-[0_0_15px_red]"></div>
+                        <button class="faq-question text-sm sm:text-base md:text-lg font-black uppercase tracking-tight hover:no-underline hover:text-primary transition-all py-5 text-left flex items-center gap-3 w-full">
+                            <i data-lucide="terminal" class="w-4 h-4 md:w-5 md:h-5 shrink-0 opacity-40"></i>
+                            <span class="flex-1">Will I get a certificate?</span>
+                            <i data-lucide="chevron-down" class="faq-chevron w-5 h-5 transition-transform shrink-0"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <div class="flex gap-3 items-start pt-1 pb-6">
+                                <i data-lucide="arrow-down-right" class="w-4 h-4 text-primary shrink-0 mt-1 opacity-60"></i>
+                                <p class="max-w-2xl text-white/80 text-xs sm:text-sm md:text-base leading-relaxed font-bold">Yes, all participants who compete in the arena will receive an official certificate of participation from CodeChef Club MITAOE.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-12 md:mt-20 text-center">
+                    <p class="text-[10px] font-black tracking-[0.4em] text-white/40 uppercase mb-4">MISSING_DATA_POINT?</p>
+                    <a href="mailto:codechef@mitaoe.ac.in" class="text-xs md:text-sm font-black text-primary hover:text-white transition-colors border-b-2 border-primary pb-1 tracking-widest uppercase">
+                        PING_SUPPORT_SYSTEM
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="bg-[#050506] border-t-4 border-white/10 relative overflow-hidden py-12 md:py-20 lg:pl-16">
+            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none opacity-[0.02] text-white">
+                <i data-lucide="terminal" class="w-[600px] h-[600px]"></i>
+            </div>
+
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
+                <div class="grid md:grid-cols-3 gap-8 md:gap-16 mb-10 md:mb-16">
+                    <div class="md:col-span-2">
+                        <a href="#" class="text-2xl md:text-3xl font-black tracking-tighter font-headline inline-block mb-8 pb-4 border-b-2 border-primary">
+                            ARENA<span class="text-primary">2026</span>
+                        </a>
+                        <p class="text-white/60 text-sm md:text-base max-w-md mb-8 leading-relaxed font-bold">
+                            High-intensity offline competitive programming. Organized by CodeChef Club MITAOE. All rights reserved by the system.
+                        </p>
+                        
+                        <div class="flex flex-col gap-3 mb-10">
+                            <div class="flex items-center gap-3 text-white/50 text-xs md:text-sm font-bold">
+                                <i data-lucide="user" class="w-4 h-4 text-primary"></i>
+                                Faculty: Prof. Neha Hajare
+                            </div>
+                            <div class="flex items-center gap-3 text-white/50 text-xs md:text-sm font-bold">
+                                <i data-lucide="users" class="w-4 h-4 text-primary"></i>
+                                Leads: [DESIGNATED_SLOTS_OPEN]
+                            </div>
+                        </div>
+
+                        <div class="flex gap-3">
+                            <a href="https://www.instagram.com/codechef_mitaoe" target="_blank" class="w-9 h-9 md:w-11 md:h-11 border-2 border-white/20 bg-white/5 hover:bg-primary hover:border-primary flex items-center justify-center text-white/60 hover:text-white transition-all">
+                                <i data-lucide="instagram" class="w-4 h-4 md:w-5 md:h-5"></i>
+                            </a>
+                            <a href="https://www.linkedin.com/company/codechef-mitaoe-chapter/" target="_blank" class="w-9 h-9 md:w-11 md:h-11 border-2 border-white/20 bg-white/5 hover:bg-primary hover:border-primary flex items-center justify-center text-white/60 hover:text-white transition-all">
+                                <i data-lucide="linkedin" class="w-4 h-4 md:w-5 md:h-5"></i>
+                            </a>
+                            <a href="mailto:codechef@mitaoe.ac.in" class="w-9 h-9 md:w-11 md:h-11 border-2 border-white/20 bg-white/5 hover:bg-primary hover:border-primary flex items-center justify-center text-white/60 hover:text-white transition-all">
+                                <i data-lucide="mail" class="w-4 h-4 md:w-5 md:h-5"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="flex gap-8 md:gap-16">
+                        <div>
+                            <h5 class="text-[10px] md:text-xs font-black tracking-[0.4em] text-primary uppercase mb-6 md:mb-8">Directories</h5>
+                            <ul class="space-y-3 md:space-y-4">
+                                <li><a href="#arena" class="text-white/50 hover:text-primary text-xs md:text-sm font-bold uppercase tracking-widest transition-colors flex items-center gap-2"><span class="text-primary">&gt;</span> Arena</a></li>
+                                <li><a href="#schedule" class="text-white/50 hover:text-primary text-xs md:text-sm font-bold uppercase tracking-widest transition-colors flex items-center gap-2"><span class="text-primary">&gt;</span> Schedule</a></li>
+                                <li><a href="#faq" class="text-white/50 hover:text-primary text-xs md:text-sm font-bold uppercase tracking-widest transition-colors flex items-center gap-2"><span class="text-primary">&gt;</span> FAQ</a></li>
+                                <li><a href="#register" class="text-white/50 hover:text-primary text-xs md:text-sm font-bold uppercase tracking-widest transition-colors flex items-center gap-2"><span class="text-primary">&gt;</span> Register</a></li>
+                            </ul>
+                        </div>
+
+                        <div>
+                            <h5 class="text-[10px] md:text-xs font-black tracking-[0.4em] text-primary uppercase mb-6 md:mb-8">Status</h5>
+                            <div class="space-y-3 md:space-y-4">
+                                <div class="flex items-center gap-3 text-white/60 text-xs md:text-sm font-bold">
+                                    <div class="w-2 h-2 rounded-full bg-lime shadow-[0_0_10px_#84cc16] animate-pulse"></div>
+                                    <span>Registrations Open</span>
+                                </div>
+                                <div class="flex items-center gap-3 text-white/30 text-xs md:text-sm font-bold">
+                                    <div class="w-2 h-2 rounded-full bg-white/30"></div>
+                                    <span>Leaderboard (Live Feb 24)</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pt-8 md:pt-12 border-t-2 border-white/10 flex flex-col md:flex-row justify-between items-center gap-4">
+                    <p class="text-white/30 text-[10px] md:text-xs font-black tracking-[0.2em] uppercase">
+                        © 2026 CODECHEF CLUB MITAOE // BUILT_FOR_THE_ARENA
+                    </p>
+                    <div class="flex items-center gap-6 text-white/30 text-[10px] md:text-xs font-bold tracking-widest uppercase">
+                        <span>v3.1.0-stable</span>
+                        <a href="privacy.html" class="hover:text-primary transition-colors">Privacy_Policy</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </main>
+
+    <!-- Scroll to Top Button -->
+    <button id="scrollToTop" class="scroll-to-top fixed bottom-8 right-8 w-14 h-14 bg-primary border-2 border-primary text-white flex items-center justify-center z-50 opacity-0 invisible translate-y-4 transition-all duration-300 hover:bg-white hover:text-primary">
+        <i data-lucide="chevron-up" class="w-6 h-6"></i>
+    </button>
+
+    <script src="script.js"></script>
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+    </script>
+</body>
+</html>

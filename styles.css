@@ -1,0 +1,205 @@
+/* Base Styles */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+    background: #050506;
+    color: #fff;
+    font-family: 'Inter', sans-serif;
+    position: relative;
+}
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background-image: 
+        radial-gradient(circle at 50% 50%, rgba(220, 38, 38, 0.03) 0%, transparent 70%),
+        linear-gradient(to right, rgba(255, 255, 255, 0.01) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.01) 1px, transparent 1px);
+    background-size: 100% 100%, 40px 40px, 40px 40px;
+    z-index: -1;
+    pointer-events: none;
+}
+h1, h2, h3, h4, h5, h6 { font-family: 'Sora', sans-serif; }
+
+/* Reveal Animation */
+.reveal-sector {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal-sector.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Tactical Border */
+.tactical-border {
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+}
+.tactical-border::after {
+    content: '';
+    position: absolute;
+    top: -4px;
+    left: -4px;
+    width: 8px;
+    height: 8px;
+    background: #dc2626;
+    z-index: 10;
+    transition: all 0.7s cubic-bezier(0.19, 1, 0.22, 1);
+}
+.group:hover .tactical-border::after {
+    transform: rotate(450deg);
+    box-shadow: 0 0 15px #dc2626;
+}
+
+/* Scanline */
+.scanline {
+    width: 100%;
+    height: 100px;
+    z-index: 99;
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0) 0%, rgba(220, 38, 38, 0.05) 50%, rgba(0, 0, 0, 0) 100%);
+    opacity: 0.2;
+    position: absolute;
+    bottom: 100%;
+    animation: scanline 12s linear infinite;
+    pointer-events: none;
+}
+@keyframes scanline {
+    0% { bottom: 120%; }
+    100% { bottom: -200px; }
+}
+
+/* Flicker */
+.flicker { animation: flicker 6s linear infinite; }
+@keyframes flicker {
+    0%, 19%, 21%, 62%, 64%, 70%, 100% { opacity: 1; }
+    20%, 63% { opacity: 0.8; }
+}
+
+/* Glitch Title */
+.glitch-title {
+    position: relative;
+    display: inline-block;
+    color: #dc2626;
+    animation: glitch-color-cycle 4s infinite linear;
+}
+@keyframes glitch-color-cycle {
+    0%, 100% { color: #dc2626; text-shadow: 2px 0 rgba(0,191,255,0.7), -2px 0 rgba(255,0,255,0.7); }
+    33% { color: #00bfff; text-shadow: 2px 0 rgba(255,0,255,0.7), -2px 0 rgba(220,38,38,0.7); }
+    66% { color: #ff00ff; text-shadow: 2px 0 rgba(220,38,38,0.7), -2px 0 rgba(0,191,255,0.7); }
+}
+
+/* Text Glow */
+.text-glow { text-shadow: 0 0 10px rgba(220, 38, 38, 0.5); }
+
+/* Brutalist Shadow */
+.brutalist-shadow { box-shadow: 4px 4px 0px 0px rgba(220, 38, 38, 0.4); }
+
+/* Hero Background */
+.hero-bg {
+    background-image: 
+        linear-gradient(to bottom, rgba(0,0,0,0.85), rgba(0,0,0,0.98)),
+        url('https://picsum.photos/seed/arena-bg/1920/1080');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+/* Ticker Animation */
+@keyframes ticker {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+.animate-ticker { animation: ticker 30s linear infinite; }
+
+/* Blueprint Line Pattern */
+.blueprint-line {
+    background-image: repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(220, 38, 38, 0.02) 10px, rgba(220, 38, 38, 0.02) 11px);
+}
+
+/* Bounce Animation */
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-4px); }
+}
+.bounce-dot { animation: bounce 1s infinite; }
+
+/* Pulse */
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+/* Scroll Progress */
+.scroll-progress {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 2px;
+    background: #dc2626;
+    transition: width 0.3s ease-out;
+    z-index: 10;
+    box-shadow: 0 0 10px red;
+}
+
+/* FAQ Accordion */
+.faq-item .faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease-out;
+}
+.faq-item.open .faq-answer {
+    max-height: 500px;
+}
+.faq-item.open .faq-chevron {
+    transform: rotate(180deg);
+}
+.faq-item.open .faq-item-indicator {
+    height: 100%;
+}
+.faq-item.open {
+    border-color: #dc2626;
+    background: rgba(255,255,255,0.03);
+}
+
+/* Scroll to Top */
+.scroll-to-top {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    width: 48px;
+    height: 48px;
+    background: #dc2626;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s;
+    z-index: 100;
+}
+.scroll-to-top.visible {
+    opacity: 1;
+    visibility: visible;
+}
+.scroll-to-top:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 0 20px rgba(220, 38, 38, 0.5);
+}
+
+/* Mobile Menu */
+.mobile-menu {
+    position: fixed;
+    inset: 0;
+    background: #000;
+    z-index: 100;
+    display: none;
+    flex-direction: column;
+}
+.mobile-menu.open { display: flex; }
