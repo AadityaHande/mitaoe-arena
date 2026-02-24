@@ -68,8 +68,15 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // ===== COUNTDOWN =====
-    const targetDate = new Date('2026-02-24T10:00:00').getTime();
+    const targetDate = new Date('2026-02-27T10:00:00').getTime();
     const countdownEl = document.getElementById('countdown');
+    const countdownLoader = document.getElementById('countdownLoader');
+    
+    // Show countdown after brief loading delay
+    setTimeout(function() {
+        if (countdownLoader) countdownLoader.style.display = 'none';
+        if (countdownEl) countdownEl.style.display = 'grid';
+    }, 800);
     
     function updateCountdown() {
         const now = new Date().getTime();
@@ -226,4 +233,38 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
+
+    // ===== REGISTRATION MODAL =====
+    const registrationModal = document.getElementById('registrationModal');
+    const openModalBtn = document.getElementById('openRegistrationModal');
+    const closeModalBtn = document.getElementById('closeModal');
+    const cancelModalBtn = document.getElementById('cancelModal');
+    
+    if (openModalBtn) {
+        openModalBtn.addEventListener('click', function() {
+            if (registrationModal) {
+                registrationModal.classList.remove('hidden');
+                document.body.style.overflow = 'hidden'; // Prevent background scrolling
+            }
+        });
+    }
+    
+    function closeModal() {
+        if (registrationModal) {
+            registrationModal.classList.add('hidden');
+            document.body.style.overflow = ''; // Restore scrolling
+        }
+    }
+    
+    if (closeModalBtn) closeModalBtn.addEventListener('click', closeModal);
+    if (cancelModalBtn) cancelModalBtn.addEventListener('click', closeModal);
+    
+    // Close modal on backdrop click
+    if (registrationModal) {
+        registrationModal.addEventListener('click', function(e) {
+            if (e.target === registrationModal) {
+                closeModal();
+            }
+        });
+    }
 });
