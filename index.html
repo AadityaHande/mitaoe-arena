@@ -3,8 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Coding Arena 2026 | Ultimate Student Challenge</title>
-    <meta name="description" content="Join CodeSprint & Pair Programming 2026. Showcase your coding skills and win championship titles.">
+    <title>Coding Arena 2026 | CodeChef MITAOE Competitive Programming Event</title>
+    <meta name="description" content="Coding Arena 2026 by CodeChef MITAOE. Participate in CodeSprint (Solo) and Pair Programming (Duo). ₹35K+ prize pool, internships, certificates. Offline event on 27–28 February 2026.">
+    
+    <!-- Open Graph Meta Tags for Social Media -->
+    <meta property="og:title" content="Coding Arena 2026 | CodeChef MITAOE">
+    <meta property="og:description" content="Offline Competitive Programming Event | ₹35K+ Prize Pool">
+    <meta property="og:image" content="https://yourdomain.com/logo.png">
+    <meta property="og:type" content="website">
+    
     <link rel="icon" type="image/png" href="./logo.png">
     <link rel="apple-touch-icon" href="./logo.png">
     
@@ -43,6 +50,23 @@
     
     <!-- Custom Styles -->
     <link rel="stylesheet" href="styles.css">
+
+    <script type="application/ld+json">
+    {
+    "@context": "https://schema.org",
+    "@type": "Event",
+    "name": "Coding Arena 2026",
+    "startDate": "2026-02-27",
+    "endDate": "2026-02-28",
+    "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+    "eventStatus": "https://schema.org/EventScheduled",
+    "location": {
+        "@type": "Place",
+        "name": "MITAOE H-Wing",
+        "address": "MITAOE, Pune, India"
+    }
+    }
+    </script>
 </head>
 <body class="font-body antialiased bg-background text-white">
     
@@ -87,7 +111,7 @@
         <a href="#" class="font-headline text-xl font-black tracking-tighter text-primary flex items-center">
             ARENA<span class="text-white italic">2026</span>
         </a>
-        <button id="mobileMenuToggle" class="p-2 bg-primary/10 border border-primary/20 text-primary transition-colors">
+        <button id="mobileMenuToggle" class="p-2 bg-primary/10 border border-primary/20 text-primary transition-colors" aria-label="Open Mobile Menu">
             <i data-lucide="menu" class="menu-icon w-6 h-6"></i>
             <i data-lucide="x" class="close-icon w-6 h-6" style="display:none;"></i>
         </button>
@@ -141,7 +165,7 @@
     <main class="min-h-screen">
         
         <!-- Hero Section -->
-        <section id="hero" class="relative min-h-screen flex items-center overflow-hidden pt-20 pb-8 md:pb-12 hero-bg">
+        <section id="hero" class="relative min-h-screen flex items-center overflow-hidden pt-20 pb-8 md:pb-12 hero-bg" style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.98)), url('https://picsum.photos/seed/arena-bg/1920/1080'); background-size: cover; background-position: center; background-attachment: fixed;">
             <div class="absolute inset-0 bg-primary/5 mix-blend-overlay pointer-events-none"></div>
             <div class="scanline"></div>
             
@@ -169,21 +193,21 @@
 
                     <div class="max-w-xl space-y-4 sm:space-y-6">
                         <p class="text-sm sm:text-base lg:text-2xl text-white font-black uppercase leading-tight border-l-4 border-primary pl-3 md:pl-6 py-2 shadow-2xl">
-                            THE ULTIMATE ARENA FOR LOGIC. <br>
+                            THE ULTIMATE CAMPUS CODING BATTLEFIELD. <br>
                             <span class="text-azure opacity-95">BEGINNER FRIENDLY.</span> <br>
                             <span class="text-lime opacity-95">PRO LEVEL REWARDS.</span>
                         </p>
                         
                         <div class="flex flex-wrap gap-2 md:gap-3">
                             <span class="px-2 md:px-3 py-1 border border-primary bg-primary/10 text-primary font-black tracking-widest text-[8px] md:text-[10px] uppercase">OFFLINE::MITAOE</span>
-                            <span class="px-2 md:px-3 py-1 border border-accent bg-accent/10 text-accent font-black tracking-widest text-[8px] md:text-[10px] uppercase shadow-[0_0_15px_rgba(255,165,0,0.3)]">POOL::₹35K+</span>
+                            <span class="px-2 md:px-3 py-1 border border-accent bg-accent/10 text-accent font-black tracking-widest text-[8px] md:text-[10px] uppercase shadow-[0_0_15px_rgba(255,165,0,0.3)]">PRIZE_POOL::₹35,000+</span>
                             <span class="px-2 md:px-3 py-1 border border-lime bg-lime/10 text-lime font-black tracking-widest text-[8px] md:text-[10px] uppercase">STATUS::OPEN</span>
                         </div>
                     </div>
 
                     <div class="flex flex-col sm:flex-row gap-4 sm:gap-6 items-start sm:items-center pt-2 sm:pt-4">
                         <a href="#register" class="h-12 md:h-14 w-full sm:w-auto px-6 md:px-10 bg-primary text-white brutalist-shadow hover:translate-x-1 hover:translate-y-1 hover:shadow-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/80 transition-all font-black text-sm md:text-lg uppercase tracking-tighter flex items-center justify-center gap-4">
-                            INITIALIZE ACCESS <i data-lucide="chevron-right" class="w-5 h-5 md:w-6 md:h-6"></i>
+                            REGISTER NOW <i data-lucide="chevron-right" class="w-5 h-5 md:w-6 md:h-6"></i>
                         </a>
                         <div class="flex items-center gap-3 text-[9px] md:text-[11px] font-black tracking-[0.2em] md:tracking-[0.3em] text-white opacity-90 uppercase">
                             <div class="relative h-2.5 w-2.5 shrink-0">
@@ -193,6 +217,9 @@
                             SYS_BOOT::ACTIVE
                         </div>
                     </div>
+                    <p class="text-xs font-bold text-white/60 mt-4">
+                        Limited seats available. Registrations close on 25 February 2026.
+                    </p>
                 </div>
 
                 <!-- Right Card (Desktop Only) -->
@@ -228,7 +255,12 @@
                                 
                                 <div class="relative p-6 bg-primary/5 border border-primary/20 shadow-inner">
                                     <div class="absolute top-0 left-0 w-1.5 h-full bg-primary"></div>
-                                    <div id="countdown" class="grid grid-cols-4 gap-4 w-full"></div>
+                                    <!-- Loading Spinner -->
+                                    <div id="countdownLoader" class="flex items-center justify-center gap-3 text-primary font-black text-sm uppercase tracking-widest">
+                                        <div class="h-3 w-3 border-2 border-primary border-t-transparent rounded-full animate-spin"></div>
+                                        <span>SYNCING...</span>
+                                    </div>
+                                    <div id="countdown" class="grid grid-cols-4 gap-4 w-full" style="display: none;"></div>
                                 </div>
                             </div>
 
@@ -280,6 +312,105 @@
             </div>
         </section>
 
+        <!-- CodeChef MITAOE Club Section -->
+        <section class="bg-gradient-to-b from-black/60 to-background border-y border-white/5 py-12 md:py-16 lg:pl-16 relative overflow-hidden">
+            <div class="absolute inset-0 bg-primary/[0.02] pointer-events-none"></div>
+            
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 relative z-10">
+                <div class="flex flex-col lg:flex-row items-center gap-8 md:gap-12 lg:gap-16">
+                    <!-- Logo with Modern Geometric Frame -->
+                    <div class="shrink-0">
+                        <div class="codechef-badge-container relative group flex items-center justify-center" style="width: 380px; height: 380px;">
+                            
+                            <!-- Animated Orbital Rings -->
+                            <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-700">
+                                <div class="absolute w-72 h-72 rounded-full border border-primary/20 animate-spin-slow"></div>
+                                <div class="absolute w-80 h-80 rounded-full border border-azure/10 animate-spin-slower"></div>
+                            </div>
+                            
+                            <!-- Corner Brackets - Top Left -->
+                            <div class="badge-corner-tl absolute transition-all duration-500 group-hover:scale-110" style="top: 30px; left: 30px; width: 50px; height: 50px;">
+                                <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary to-transparent"></div>
+                                <div class="absolute top-0 left-0 w-1 h-full bg-gradient-to-b from-primary to-transparent"></div>
+                                <div class="absolute top-0 left-0 w-3 h-3 bg-primary rounded-full shadow-[0_0_12px_rgba(220,38,38,0.8)]"></div>
+                            </div>
+                            
+                            <!-- Corner Brackets - Top Right -->
+                            <div class="badge-corner-tr absolute transition-all duration-500 group-hover:scale-110" style="top: 30px; right: 30px; width: 50px; height: 50px;">
+                                <div class="absolute top-0 right-0 w-full h-1 bg-gradient-to-l from-azure to-transparent"></div>
+                                <div class="absolute top-0 right-0 w-1 h-full bg-gradient-to-b from-azure to-transparent"></div>
+                                <div class="absolute top-0 right-0 w-3 h-3 bg-azure rounded-full shadow-[0_0_12px_rgba(0,191,255,0.8)]"></div>
+                            </div>
+                            
+                            <!-- Corner Brackets - Bottom Left -->
+                            <div class="badge-corner-bl absolute transition-all duration-500 group-hover:scale-110" style="bottom: 30px; left: 30px; width: 50px; height: 50px;">
+                                <div class="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-azure to-transparent"></div>
+                                <div class="absolute bottom-0 left-0 w-1 h-full bg-gradient-to-t from-azure to-transparent"></div>
+                                <div class="absolute bottom-0 left-0 w-3 h-3 bg-azure rounded-full shadow-[0_0_12px_rgba(0,191,255,0.8)]"></div>
+                            </div>
+                            
+                            <!-- Corner Brackets - Bottom Right -->
+                            <div class="badge-corner-br absolute transition-all duration-500 group-hover:scale-110" style="bottom: 30px; right: 30px; width: 50px; height: 50px;">
+                                <div class="absolute bottom-0 right-0 w-full h-1 bg-gradient-to-l from-primary to-transparent"></div>
+                                <div class="absolute bottom-0 right-0 w-1 h-full bg-gradient-to-t from-primary to-transparent"></div>
+                                <div class="absolute bottom-0 right-0 w-3 h-3 bg-primary rounded-full shadow-[0_0_12px_rgba(220,38,38,0.8)]"></div>
+                            </div>
+                            
+                            <!-- Floating Accent Hexagons -->
+                            <div class="badge-hex-1 absolute transition-all duration-700 group-hover:-translate-y-2 group-hover:rotate-12" style="top: 15px; left: 50%; transform: translateX(-50%); width: 16px; height: 16px; background: linear-gradient(135deg, #dc2626, #ef4444); clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%); filter: drop-shadow(0 0 10px rgba(220,38,38,0.6));"></div>
+                            
+                            <div class="badge-hex-2 absolute transition-all duration-700 group-hover:translate-y-2 group-hover:-rotate-12" style="bottom: 15px; left: 50%; transform: translateX(-50%); width: 16px; height: 16px; background: linear-gradient(135deg, #dc2626, #ef4444); clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%); filter: drop-shadow(0 0 10px rgba(220,38,38,0.6));"></div>
+                            
+                            <div class="badge-hex-3 absolute transition-all duration-700 group-hover:-translate-x-2 group-hover:rotate-12" style="left: 15px; top: 50%; transform: translateY(-50%); width: 16px; height: 16px; background: linear-gradient(135deg, #00bfff, #38bdf8); clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%); filter: drop-shadow(0 0 10px rgba(0,191,255,0.6));"></div>
+                            
+                            <div class="badge-hex-4 absolute transition-all duration-700 group-hover:translate-x-2 group-hover:-rotate-12" style="right: 15px; top: 50%; transform: translateY(-50%); width: 16px; height: 16px; background: linear-gradient(135deg, #00bfff, #38bdf8); clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%); filter: drop-shadow(0 0 10px rgba(0,191,255,0.6));"></div>
+                            
+                            <!-- Diagonal Accent Lines -->
+                            <div class="absolute transition-all duration-700 group-hover:scale-110" style="top: 95px; left: 95px; width: 40px; height: 1px; background: linear-gradient(to right, transparent, #dc2626, transparent); transform: rotate(45deg);"></div>
+                            <div class="absolute transition-all duration-700 group-hover:scale-110" style="top: 95px; right: 95px; width: 40px; height: 1px; background: linear-gradient(to right, transparent, #00bfff, transparent); transform: rotate(-45deg);"></div>
+                            <div class="absolute transition-all duration-700 group-hover:scale-110" style="bottom: 95px; left: 95px; width: 40px; height: 1px; background: linear-gradient(to right, transparent, #00bfff, transparent); transform: rotate(-45deg);"></div>
+                            <div class="absolute transition-all duration-700 group-hover:scale-110" style="bottom: 95px; right: 95px; width: 40px; height: 1px; background: linear-gradient(to right, transparent, #dc2626, transparent); transform: rotate(45deg);"></div>
+                            
+                            <!-- Center Logo -->
+                            <div class="relative transition-all duration-700 group-hover:scale-110" style="width: 215px; height: 215px;">
+                                <div class="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-azure/10 rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700 animate-pulse"></div>
+                                <img src="./codechef-logo.png" alt="CodeChef MITAOE Chapter" class="relative w-full h-full object-contain" style="filter: drop-shadow(0 10px 30px rgba(0,0,0,0.3)) drop-shadow(0 0 20px rgba(220,38,38,0.1));">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Content -->
+                    <div class="flex-1 text-center lg:text-left">
+                        <div class="flex items-center gap-3 mb-4 justify-center lg:justify-start">
+                            <div class="h-px w-8 bg-primary/60"></div>
+                            <span class="text-[9px] md:text-[10px] font-black tracking-[0.4em] text-primary uppercase">ORGANIZED_BY</span>
+                            <div class="h-px w-8 bg-primary/60"></div>
+                        </div>
+                        
+                        <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black uppercase tracking-tighter mb-4 md:mb-6 leading-tight font-headline">
+                            <span class="text-white">CODECHEF</span> <span class="text-primary italic">&lt;MITAOE&gt;</span>
+                        </h2>
+                        
+                        <p class="text-white/80 text-sm sm:text-base md:text-lg leading-relaxed max-w-2xl mx-auto lg:mx-0 font-bold mb-6">
+                            Empowering students to sharpen problem-solving skills, compete in coding challenges, and grow through hands-on learning and collaboration.
+                        </p>
+
+                        <div class="flex flex-wrap gap-3 justify-center lg:justify-start">
+                            <div class="px-4 py-2 bg-primary/10 border border-primary/30 hover:bg-primary/20 transition-colors">
+                                <span class="text-[10px] font-black tracking-widest text-primary uppercase">Skill Building</span>
+                            </div>
+                            <div class="px-4 py-2 bg-azure/10 border border-azure/30 hover:bg-azure/20 transition-colors">
+                                <span class="text-[10px] font-black tracking-widest text-azure uppercase">Competitions</span>
+                            </div>
+                            <div class="px-4 py-2 bg-lime/10 border border-lime/30 hover:bg-lime/20 transition-colors">
+                                <span class="text-[10px] font-black tracking-widest text-lime uppercase">Community Learning</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- Sponsors Section -->
         <section id="sponsors" class="bg-black/40 border-y border-white/5 py-16 md:py-20 lg:pl-16 relative overflow-hidden reveal-sector">
             <div class="blueprint-line absolute inset-0 opacity-5 pointer-events-none"></div>
@@ -297,7 +428,7 @@
                         MEET THE <span class="text-primary not-italic">SPONSORS.</span>
                     </h2>
                     <p class="text-white/60 max-w-2xl mx-auto text-xs sm:text-sm md:text-lg font-black uppercase tracking-tight leading-relaxed">
-                        SUPPORTING THE NEXT GENERATION OF LOGICAL ARCHITECTS. OUR PARTNERS ENSURE HIGH-TIER INFRASTRUCTURE AND ELITE OPPORTUNITIES.
+                        SUPPORTING THE NEXT GENERATION OF PROBLEM SOLVERS. OUR PARTNERS PROVIDE THE BEST FACILITIES AND GREAT OPPORTUNITIES.
                     </p>
                 </div>
             </div>
@@ -378,8 +509,8 @@
                         </div>
                         <div class="space-y-3">
                             <div class="text-[11px] font-black text-white/80 tracking-[0.5em] uppercase mb-2">CAREER_PATH</div>
-                            <div class="text-2xl md:text-4xl lg:text-5xl font-black text-white mb-2 tracking-tighter font-mono">A-Z KIT</div>
-                            <div class="text-[10px] md:text-xs font-black uppercase tracking-[0.4em] px-4 py-1 inline-block border border-lime bg-black/40 text-lime">Placements</div>
+                            <div class="text-2xl md:text-4xl lg:text-5xl font-black text-white mb-2 tracking-tighter font-mono">PLACEMENT KIT</div>
+                            <div class="text-[10px] md:text-xs font-black uppercase tracking-[0.4em] px-4 py-1 inline-block border border-lime bg-black/40 text-lime">Career Support</div>
                         </div>
                     </div>
 
@@ -390,8 +521,8 @@
                         </div>
                         <div class="space-y-3">
                             <div class="text-[11px] font-black text-white/80 tracking-[0.5em] uppercase mb-2">OBJ_LOAD</div>
-                            <div class="text-2xl md:text-4xl lg:text-5xl font-black text-white mb-2 tracking-tighter font-mono">₹25K+</div>
-                            <div class="text-[10px] md:text-xs font-black uppercase tracking-[0.4em] px-4 py-1 inline-block border border-magenta bg-black/40 text-magenta">Internships</div>
+                            <div class="text-2xl md:text-4xl lg:text-5xl font-black text-white mb-2 tracking-tighter font-mono">₹25,000+</div>
+                            <div class="text-[10px] md:text-xs font-black uppercase tracking-[0.4em] px-4 py-1 inline-block border border-magenta bg-black/40 text-magenta">Internship Opportunities</div>
                         </div>
                     </div>
                 </div>
@@ -407,7 +538,7 @@
                         WHY STEP INTO <br> <span class="text-primary not-italic">THE ARENA?</span>
                     </h3>
                     <p class="text-white/70 max-w-2xl mx-auto text-sm sm:text-base md:text-lg mt-4 sm:mt-6 font-black uppercase tracking-tight">
-                        CODING ARENA 2026 IS THE ULTIMATE LAUNCHPAD. ELITE REWARDS, PLACEMENTS, AND RECOGNITION AWAIT THE BRAVE.
+                        CODING ARENA 2026 IS THE ULTIMATE STARTING POINT. GREAT REWARDS, PLACEMENTS, AND RECOGNITION AWAIT THE BRAVE.
                     </p>
                 </div>
                 
@@ -419,9 +550,9 @@
                         <div class="h-12 w-12 bg-primary/10 border border-primary/20 flex items-center justify-center mb-6 group-hover:bg-primary group-hover:text-white transition-all text-azure">
                             <i data-lucide="trophy" class="w-6 h-6"></i>
                         </div>
-                        <h4 class="text-lg sm:text-xl font-black uppercase tracking-tight mb-3 sm:mb-4 font-headline">Separate Prize Pools</h4>
+                        <h4 class="text-lg sm:text-xl font-black uppercase tracking-tight mb-3 sm:mb-4 font-headline">Separate Rankings & Prize Pools</h4>
                         <p class="text-muted leading-relaxed font-black text-xs uppercase tracking-widest">
-                            Fair play protocols with dedicated rankings and rewards for both FY and Senior (SY/TY/BTech) categories.
+                            Fair competition rules with separate rankings and rewards for both FY and Senior (SY/TY/BTech) categories.
                         </p>
                     </div>
 
@@ -434,7 +565,7 @@
                         </div>
                         <h4 class="text-lg sm:text-xl font-black uppercase tracking-tight mb-3 sm:mb-4 font-headline">₹25K+ Internships</h4>
                         <p class="text-muted leading-relaxed font-black text-xs uppercase tracking-widest">
-                            Direct track to elite internship interviews with our partner companies for top-tier performers.
+                            Direct path to top internship interviews with our partner companies for best performers.
                         </p>
                     </div>
 
@@ -445,7 +576,7 @@
                         <div class="h-12 w-12 bg-primary/10 border border-primary/20 flex items-center justify-center mb-6 group-hover:bg-primary group-hover:text-white transition-all text-lime">
                             <i data-lucide="shield" class="w-6 h-6"></i>
                         </div>
-                        <h4 class="text-lg sm:text-xl font-black uppercase tracking-tight mb-3 sm:mb-4 font-headline">National Certs</h4>
+                        <h4 class="text-lg sm:text-xl font-black uppercase tracking-tight mb-3 sm:mb-4 font-headline">Official Certificates</h4>
                         <p class="text-muted leading-relaxed font-black text-xs uppercase tracking-widest">
                             Receive officially recognized national-level participation and excellence certificates for your portfolio.
                         </p>
@@ -460,7 +591,7 @@
                         </div>
                         <h4 class="text-lg sm:text-xl font-black uppercase tracking-tight mb-3 sm:mb-4 font-headline">A to Z Placement Kit</h4>
                         <p class="text-muted leading-relaxed font-black text-xs uppercase tracking-widest">
-                            The ultimate resource bundle including resume guides, technical prep, and roadmap logs for your career.
+                            The complete resource package including resume guides, technical prep, and roadmap logs for your career.
                         </p>
                     </div>
                 </div>
@@ -506,7 +637,7 @@
                                 <h3 class="text-2xl md:text-4xl lg:text-5xl font-black mb-3 md:mb-4 uppercase tracking-tighter group-hover:text-primary transition-colors duration-500 leading-tight font-headline">CodeSprint</h3>
                                 <p class="font-black text-[9px] md:text-[11px] tracking-[0.3em] md:tracking-[0.4em] mb-4 md:mb-10 border-b-2 border-azure/30 pb-3 md:pb-4 w-fit text-azure">INDIVIDUAL_EXCELLENCE</p>
                                 <p class="text-white text-sm sm:text-base md:text-xl lg:text-2xl leading-snug max-w-lg font-black opacity-100">
-                                    The algorithmic heart. Solve complex DSA puzzles with difficulty levels tailored for FY and SY/TY/BTech groups. Separate rankings and prize pools for each cohort.
+                                    A high-intensity competitive programming sprint. Solve complex DSA puzzles with difficulty levels tailored for FY and SY/TY/BTech groups. Separate rankings and prize pools for each group.
                                 </p>
                             </div>
                         </div>
@@ -555,7 +686,7 @@
                                 <h3 class="text-2xl md:text-4xl lg:text-5xl font-black mb-3 md:mb-4 uppercase tracking-tighter group-hover:text-primary transition-colors duration-500 leading-tight font-headline">Pair Programming</h3>
                                 <p class="font-black text-[9px] md:text-[11px] tracking-[0.3em] md:tracking-[0.4em] mb-4 md:mb-10 border-b-2 border-magenta/30 pb-3 md:pb-4 w-fit text-magenta">TEAM_COLLABORATION</p>
                                 <p class="text-white text-sm sm:text-base md:text-xl lg:text-2xl leading-snug max-w-lg font-black opacity-100">
-                                    Synchronized execution based on DSA. 2 groups (FY vs SY/TY/BTech). Exclusive access to ₹25K+ internship opportunities and placement kits.
+                                    Collaborative competitive programming under time pressure. 2 groups (FY & SY/TY/BTech). Special access to ₹25K+ internship opportunities and placement kits.
                                 </p>
                             </div>
                         </div>
@@ -631,29 +762,29 @@
                         <div class="flex justify-between items-start mb-6 md:mb-16 relative z-10 gap-4">
                             <div class="flex-1 min-w-0">
                                 <h3 class="text-xl sm:text-3xl md:text-4xl lg:text-5xl font-black italic tracking-tighter uppercase transition-colors group-hover/card:text-white leading-tight text-azure font-headline">CodeSprint</h3>
-                                <p class="text-[10px] md:text-[12px] font-black tracking-[0.3em] md:tracking-[0.5em] text-white mt-2 md:mt-4 opacity-100">24 FEBRUARY 2026</p>
+                                <p class="text-[10px] md:text-[12px] font-black tracking-[0.3em] md:tracking-[0.5em] text-white mt-2 md:mt-4 opacity-100">27 FEBRUARY 2026</p>
                             </div>
                             <div class="text-xl sm:text-2xl md:text-4xl font-black text-white/20 font-mono tracking-tighter transition-all group-hover/card:text-white/40 group-hover/card:scale-110 shrink-0">OP_01</div>
                         </div>
 
                         <div class="space-y-4 md:space-y-10 relative z-10">
                             <div class="flex items-center gap-3 sm:gap-6 group">
-                                <div class="text-[10px] sm:text-sm font-black border-b-2 border-azure/30 text-azure transition-all px-2 font-mono whitespace-nowrap group-hover:bg-white group-hover:text-black group-hover:border-white">0900</div>
+                                <div class="text-[10px] sm:text-sm font-black border-b-2 border-azure/30 text-azure transition-all px-2 font-mono whitespace-nowrap group-hover:bg-white group-hover:text-black group-hover:border-white">09:00 AM</div>
                                 <div class="h-[1px] flex-1 bg-white/10 group-hover:bg-white/40 transition-all"></div>
                                 <div class="text-[10px] sm:text-xs md:text-sm lg:text-base font-black uppercase tracking-tight text-white/95 group-hover:text-white group-hover:translate-x-2 transition-all duration-500 text-right">Base Entry & Hardware Sync</div>
                             </div>
                             <div class="flex items-center gap-3 sm:gap-6 group">
-                                <div class="text-[10px] sm:text-sm font-black border-b-2 border-azure/30 text-azure transition-all px-2 font-mono whitespace-nowrap group-hover:bg-white group-hover:text-black group-hover:border-white">1000</div>
+                                <div class="text-[10px] sm:text-sm font-black border-b-2 border-azure/30 text-azure transition-all px-2 font-mono whitespace-nowrap group-hover:bg-white group-hover:text-black group-hover:border-white">10:00 AM</div>
                                 <div class="h-[1px] flex-1 bg-white/10 group-hover:bg-white/40 transition-all"></div>
                                 <div class="text-[10px] sm:text-xs md:text-sm lg:text-base font-black uppercase tracking-tight text-white/95 group-hover:text-white group-hover:translate-x-2 transition-all duration-500 text-right">DSA & Problem Solving (2hrs)</div>
                             </div>
                             <div class="flex items-center gap-3 sm:gap-6 group">
-                                <div class="text-[10px] sm:text-sm font-black border-b-2 border-azure/30 text-azure transition-all px-2 font-mono whitespace-nowrap group-hover:bg-white group-hover:text-black group-hover:border-white">1100</div>
+                                <div class="text-[10px] sm:text-sm font-black border-b-2 border-azure/30 text-azure transition-all px-2 font-mono whitespace-nowrap group-hover:bg-white group-hover:text-black group-hover:border-white">12:00 PM</div>
                                 <div class="h-[1px] flex-1 bg-white/10 group-hover:bg-white/40 transition-all"></div>
                                 <div class="text-[10px] sm:text-xs md:text-sm lg:text-base font-black uppercase tracking-tight text-white/95 group-hover:text-white group-hover:translate-x-2 transition-all duration-500 text-right">Session Termination</div>
                             </div>
                             <div class="flex items-center gap-3 sm:gap-6 group">
-                                <div class="text-[10px] sm:text-sm font-black border-b-2 border-azure/30 text-azure transition-all px-2 font-mono whitespace-nowrap group-hover:bg-white group-hover:text-black group-hover:border-white">1400</div>
+                                <div class="text-[10px] sm:text-sm font-black border-b-2 border-azure/30 text-azure transition-all px-2 font-mono whitespace-nowrap group-hover:bg-white group-hover:text-black group-hover:border-white">02:00 PM</div>
                                 <div class="h-[1px] flex-1 bg-white/10 group-hover:bg-white/40 transition-all"></div>
                                 <div class="text-[10px] sm:text-xs md:text-sm lg:text-base font-black uppercase tracking-tight text-white/95 group-hover:text-white group-hover:translate-x-2 transition-all duration-500 text-right">Prize Distribution & Closing</div>
                             </div>
@@ -672,29 +803,29 @@
                         <div class="flex justify-between items-start mb-6 md:mb-16 relative z-10 gap-4">
                             <div class="flex-1 min-w-0">
                                 <h3 class="text-xl sm:text-3xl md:text-4xl lg:text-5xl font-black italic tracking-tighter uppercase transition-colors group-hover/card:text-white leading-tight text-magenta font-headline">Pair Programming</h3>
-                                <p class="text-[10px] md:text-[12px] font-black tracking-[0.3em] md:tracking-[0.5em] text-white mt-2 md:mt-4 opacity-100">26 FEBRUARY 2026</p>
+                                <p class="text-[10px] md:text-[12px] font-black tracking-[0.3em] md:tracking-[0.5em] text-white mt-2 md:mt-4 opacity-100">28 FEBRUARY 2026</p>
                             </div>
                             <div class="text-xl sm:text-2xl md:text-4xl font-black text-white/20 font-mono tracking-tighter transition-all group-hover/card:text-white/40 group-hover/card:scale-110 shrink-0">OP_02</div>
                         </div>
 
                         <div class="space-y-4 md:space-y-10 relative z-10">
                             <div class="flex items-center gap-3 sm:gap-6 group">
-                                <div class="text-[10px] sm:text-sm font-black border-b-2 border-magenta/30 text-magenta transition-all px-2 font-mono whitespace-nowrap group-hover:bg-white group-hover:text-black group-hover:border-white">0900</div>
+                                <div class="text-[10px] sm:text-sm font-black border-b-2 border-magenta/30 text-magenta transition-all px-2 font-mono whitespace-nowrap group-hover:bg-white group-hover:text-black group-hover:border-white">09:00 AM</div>
                                 <div class="h-[1px] flex-1 bg-white/10 group-hover:bg-white/40 transition-all"></div>
                                 <div class="text-[10px] sm:text-xs md:text-sm lg:text-base font-black uppercase tracking-tight text-white/95 group-hover:text-white group-hover:translate-x-2 transition-all duration-500 text-right">Duo Sync & Logic Setup</div>
                             </div>
                             <div class="flex items-center gap-3 sm:gap-6 group">
-                                <div class="text-[10px] sm:text-sm font-black border-b-2 border-magenta/30 text-magenta transition-all px-2 font-mono whitespace-nowrap group-hover:bg-white group-hover:text-black group-hover:border-white">1000</div>
+                                <div class="text-[10px] sm:text-sm font-black border-b-2 border-magenta/30 text-magenta transition-all px-2 font-mono whitespace-nowrap group-hover:bg-white group-hover:text-black group-hover:border-white">10:00 AM</div>
                                 <div class="h-[1px] flex-1 bg-white/10 group-hover:bg-white/40 transition-all"></div>
                                 <div class="text-[10px] sm:text-xs md:text-sm lg:text-base font-black uppercase tracking-tight text-white/95 group-hover:text-white group-hover:translate-x-2 transition-all duration-500 text-right">Collaborative DSA (3hrs)</div>
                             </div>
                             <div class="flex items-center gap-3 sm:gap-6 group">
-                                <div class="text-[10px] sm:text-sm font-black border-b-2 border-magenta/30 text-magenta transition-all px-2 font-mono whitespace-nowrap group-hover:bg-white group-hover:text-black group-hover:border-white">1200</div>
+                                <div class="text-[10px] sm:text-sm font-black border-b-2 border-magenta/30 text-magenta transition-all px-2 font-mono whitespace-nowrap group-hover:bg-white group-hover:text-black group-hover:border-white">01:00 PM</div>
                                 <div class="h-[1px] flex-1 bg-white/10 group-hover:bg-white/40 transition-all"></div>
                                 <div class="text-[10px] sm:text-xs md:text-sm lg:text-base font-black uppercase tracking-tight text-white/95 group-hover:text-white group-hover:translate-x-2 transition-all duration-500 text-right">Closing Protocols</div>
                             </div>
                             <div class="flex items-center gap-3 sm:gap-6 group">
-                                <div class="text-[10px] sm:text-sm font-black border-b-2 border-magenta/30 text-magenta transition-all px-2 font-mono whitespace-nowrap group-hover:bg-white group-hover:text-black group-hover:border-white">1400</div>
+                                <div class="text-[10px] sm:text-sm font-black border-b-2 border-magenta/30 text-magenta transition-all px-2 font-mono whitespace-nowrap group-hover:bg-white group-hover:text-black group-hover:border-white">02:00 PM</div>
                                 <div class="h-[1px] flex-1 bg-white/10 group-hover:bg-white/40 transition-all"></div>
                                 <div class="text-[10px] sm:text-xs md:text-sm lg:text-base font-black uppercase tracking-tight text-white/95 group-hover:text-white group-hover:translate-x-2 transition-all duration-500 text-right">Prize Distribution & Closing</div>
                             </div>
@@ -746,8 +877,8 @@
                         <span class="text-primary italic text-glow">ENTRY_POINT.</span>
                     </h2>
                     <p class="text-white text-xs sm:text-base md:text-2xl max-w-3xl mx-auto font-black leading-relaxed opacity-100">
-                        REGISTRATIONS ARE OPEN. JOIN 200+ STUDENTS IN THE CAMPUS ARENA. 
-                        <span class="text-lime"> ALL LEVELS VALIDATED.</span>
+                        REGISTRATIONS ARE NOW LIVE. JOIN 200+ CAMPUS CODERS AND COMPETE FOR ₹35,000+ IN PRIZES.
+                        <span class="text-lime"> ALL LEVELS WELCOME.</span>
                     </p>
                 </div>
 
@@ -763,8 +894,8 @@
                                     CodeSprint
                                 </h4>
                                 <p class="text-white text-[10px] md:text-[12px] uppercase tracking-wider leading-relaxed md:leading-loose mb-6 md:mb-8 font-black opacity-95">
-                                    INDIVIDUAL LOGICAL SPRINT. <br>
-                                    BEST FOR SOLO ARCHITECTS.
+                                    INDIVIDUAL PROBLEM-SOLVING SPRINT. <br>
+                                    BEST FOR SOLO PROBLEM SOLVERS.
                                 </p>
                             </div>
                             <div class="mt-auto">
@@ -801,7 +932,7 @@
                                 DEADLINE_DATA
                             </h4>
                             <p class="text-white text-[11px] md:text-[13px] font-black uppercase tracking-[0.1em] md:tracking-[0.2em] leading-relaxed md:leading-loose">
-                                TERMINATION: <span class="font-mono text-primary">FEB 22, 2026</span>. <br>
+                                REGISTRATION DEADLINE: <span class="font-mono text-primary">25 FEBRUARY 2026</span>. <br>
                                 <span class="text-primary font-bold">NO EXTENSIONS PERMITTED.</span> <br>
                                 ENTRY KEYS VIA ENCRYPTED LOGS.
                             </p>
@@ -810,10 +941,10 @@
 
                     <div class="relative group/cta w-full">
                         <div class="absolute -inset-2 bg-primary/40 blur-2xl opacity-0 group-hover/cta:opacity-100 transition-opacity duration-1000"></div>
-                        <a href="https://forms.gle/YOUR_GOOGLE_FORM_LINK" target="_blank" class="h-12 sm:h-14 md:h-16 w-full px-4 sm:px-8 bg-primary text-white brutalist-shadow hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all font-black text-[10px] sm:text-sm md:text-xl uppercase tracking-[0.1em] sm:tracking-[0.2em] md:tracking-[0.4em] relative z-10 whitespace-normal text-center overflow-hidden flex items-center justify-center gap-3 md:gap-6">
-                            <span>INITIALIZE_ENTRY_PROTOCOL</span>
-                            <i data-lucide="external-link" class="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 shrink-0"></i>
-                        </a>
+                        <button id="registerBtn" class="h-12 sm:h-14 md:h-16 w-full px-4 sm:px-8 bg-primary text-white brutalist-shadow hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all font-black text-[10px] sm:text-sm md:text-xl uppercase tracking-[0.1em] sm:tracking-[0.2em] md:tracking-[0.4em] relative z-10 whitespace-normal text-center overflow-hidden flex items-center justify-center gap-3 md:gap-6">
+                            <span>REGISTER NOW</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 shrink-0"></i>
+                        </button>
                     </div>
 
                     <div class="mt-8 md:mt-12 flex items-center justify-center gap-3 md:gap-4 text-white font-black text-[8px] md:text-[10px] tracking-[0.2em] md:tracking-[0.4em] uppercase opacity-95">
@@ -879,7 +1010,7 @@
                         <div class="faq-answer">
                             <div class="flex gap-3 items-start pt-1 pb-6">
                                 <i data-lucide="arrow-down-right" class="w-4 h-4 text-primary shrink-0 mt-1 opacity-60"></i>
-                                <p class="max-w-2xl text-white/80 text-xs sm:text-sm md:text-base leading-relaxed font-bold">CodeSprint (Solo) is a 2-hour high-intensity challenge. Pair Programming (Duo) is a collaborative 3-hour session. Both tracks focus strictly on DSA and Problem Solving.</p>
+                                <p class="max-w-2xl text-white/80 text-xs sm:text-sm md:text-base leading-relaxed font-bold">CodeSprint (Solo) is a 2-hour intense challenge. Pair Programming (Duo) is a 3-hour teamwork session. Both tracks focus strictly on DSA and Problem Solving.</p>
                             </div>
                         </div>
                     </div>
@@ -917,7 +1048,7 @@
                         <div class="faq-answer">
                             <div class="flex gap-3 items-start pt-1 pb-6">
                                 <i data-lucide="arrow-down-right" class="w-4 h-4 text-primary shrink-0 mt-1 opacity-60"></i>
-                                <p class="max-w-2xl text-white/80 text-xs sm:text-sm md:text-base leading-relaxed font-bold">This is a strictly OFFLINE championship hosted at the MITAOE Campus. We believe the energy of an in-person arena is unmatched for learning and networking.</p>
+                                <p class="max-w-2xl text-white/80 text-xs sm:text-sm md:text-base leading-relaxed font-bold">This is a strictly offline competition hosted at the MITAOE Campus (H-Wing, 3rd Floor). We believe the energy of an in-person arena is unmatched for learning and networking.</p>
                             </div>
                         </div>
                     </div>
@@ -936,7 +1067,7 @@
                         <div class="faq-answer">
                             <div class="flex gap-3 items-start pt-1 pb-6">
                                 <i data-lucide="arrow-down-right" class="w-4 h-4 text-primary shrink-0 mt-1 opacity-60"></i>
-                                <p class="max-w-2xl text-white/80 text-xs sm:text-sm md:text-base leading-relaxed font-bold">The prize pool is ₹35K+. Both FY and Senior groups have dedicated cash prizes. Shortlisted participants from the Pair Programming track also get exclusive opportunities for internship interviews (₹25K+) and placement kits.</p>
+                                <p class="max-w-2xl text-white/80 text-xs sm:text-sm md:text-base leading-relaxed font-bold">The prize pool is ₹35K+. Both FY and Senior groups have separate cash prizes. Selected participants from the Pair Programming track also get special opportunities for internship interviews (₹25K+) and placement kits.</p>
                             </div>
                         </div>
                     </div>
@@ -990,7 +1121,8 @@
         </section>
 
         <!-- Footer -->
-        <footer class="bg-[#050506] border-t-4 border-white/10 relative overflow-hidden py-12 md:py-20 lg:pl-16">
+        <footer class="bg-[#050506] border-t-4 border-white/10 relative overflow-hidden py-12 md:py-20 lg:pl-16" style="background-image: url('https://images.unsplash.com/photo-1613295968128-3f8c7c6e4b21?w=1920&q=80'); background-size: cover; background-position: center;">
+            <div class="absolute inset-0 bg-[#050506]/90 pointer-events-none"></div>
             <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none opacity-[0.02] text-white">
                 <i data-lucide="terminal" class="w-[600px] h-[600px]"></i>
             </div>
@@ -1002,17 +1134,17 @@
                             ARENA<span class="text-primary">2026</span>
                         </a>
                         <p class="text-white/60 text-sm md:text-base max-w-md mb-8 leading-relaxed font-bold">
-                            High-intensity offline competitive programming. Organized by CodeChef Club MITAOE. All rights reserved by the system.
+                            Intense in-person competitive programming. Organized by CodeChef Club MITAOE. All rights reserved by CodeChef Club MITAOE.
                         </p>
                         
                         <div class="flex flex-col gap-3 mb-10">
                             <div class="flex items-center gap-3 text-white/50 text-xs md:text-sm font-bold">
                                 <i data-lucide="user" class="w-4 h-4 text-primary"></i>
-                                Faculty: Prof. Neha Hajare
+                                Faculty Coordinator: Prof. Neha Hajare
                             </div>
                             <div class="flex items-center gap-3 text-white/50 text-xs md:text-sm font-bold">
                                 <i data-lucide="users" class="w-4 h-4 text-primary"></i>
-                                Leads: [DESIGNATED_SLOTS_OPEN]
+                                Student Coordinator: Om Panchal, Uday Sapate
                             </div>
                         </div>
 
@@ -1049,7 +1181,7 @@
                                 </div>
                                 <div class="flex items-center gap-3 text-white/30 text-xs md:text-sm font-bold">
                                     <div class="w-2 h-2 rounded-full bg-white/30"></div>
-                                    <span>Leaderboard (Live Feb 24)</span>
+                                    <span>Leaderboard (Live Feb 28)</span>
                                 </div>
                             </div>
                         </div>
@@ -1070,9 +1202,43 @@
     </main>
 
     <!-- Scroll to Top Button -->
-    <button id="scrollToTop" class="scroll-to-top fixed bottom-8 right-8 w-14 h-14 bg-primary border-2 border-primary text-white flex items-center justify-center z-50 opacity-0 invisible translate-y-4 transition-all duration-300 hover:bg-white hover:text-primary">
+    <button id="scrollToTop" class="scroll-to-top fixed bottom-8 right-8 w-14 h-14 bg-primary border-2 border-primary text-white flex flex-col items-center justify-center z-50 opacity-0 invisible translate-y-4 transition-all duration-300 hover:bg-white hover:text-primary group" aria-label="Scroll to Top">
         <i data-lucide="chevron-up" class="w-6 h-6"></i>
+        <span class="scroll-text absolute -top-8 text-[9px] font-black tracking-widest uppercase text-primary opacity-0 transition-opacity duration-300 whitespace-nowrap">return()</span>
     </button>
+
+    <!-- Registration Modal -->
+    <div id="registrationModal" class="fixed inset-0 bg-black/90 backdrop-blur-sm z-[100] flex items-center justify-center p-4 opacity-0 invisible transition-all duration-300">
+        <div class="bg-card border-2 border-primary/40 max-w-md w-full p-6 md:p-8 relative transform scale-95 transition-transform duration-300" id="modalContent">
+            <div class="tactical-border"></div>
+            <button id="closeModal" class="absolute top-4 right-4 text-white/60 hover:text-white transition-colors" aria-label="Close Modal">
+                <i data-lucide="x" class="w-6 h-6"></i>
+            </button>
+            <div class="text-center space-y-6">
+                <div class="h-16 w-16 mx-auto bg-primary/10 border-2 border-primary flex items-center justify-center">
+                    <i data-lucide="check-circle" class="w-10 h-10 text-primary"></i>
+                </div>
+                <div>
+                    <h3 class="text-2xl md:text-3xl font-black uppercase tracking-tighter mb-3 font-headline">READY TO COMPETE?</h3>
+                    <p class="text-white/80 text-sm md:text-base font-bold">
+                        You'll be redirected to the registration form. Complete it to secure your spot in the arena.
+                    </p>
+                </div>
+                <div class="flex flex-col gap-3">
+                    <a href="https://forms.gle/YOUR_GOOGLE_FORM_LINK" target="_blank" class="h-12 w-full bg-primary text-white font-black uppercase tracking-wider flex items-center justify-center gap-2 hover:bg-primary/90 transition-colors">
+                        PROCEED TO FORM
+                        <i data-lucide="external-link" class="w-4 h-4"></i>
+                    </a>
+                    <button id="cancelModal" class="h-12 w-full bg-white/5 border border-white/20 text-white font-black uppercase tracking-wider hover:bg-white/10 transition-colors">
+                        CANCEL
+                    </button>
+                </div>
+                <p class="text-[10px] text-white/40 uppercase tracking-widest font-black">
+                    <i data-lucide="shield-check" class="w-3 h-3 inline"></i> SECURE CONNECTION
+                </p>
+            </div>
+        </div>
+    </div>
 
     <script src="script.js"></script>
     <script>
@@ -1080,5 +1246,4 @@
         lucide.createIcons();
     </script>
 </body>
-
 </html>
