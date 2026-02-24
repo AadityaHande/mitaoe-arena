@@ -108,6 +108,13 @@ h1, h2, h3, h4, h5, h6 { font-family: 'Sora', sans-serif; }
     background-attachment: fixed;
 }
 
+/* Mobile Performance Fix */
+@media (max-width: 768px) {
+    .hero-bg {
+        background-attachment: scroll;
+    }
+}
+
 /* Ticker Animation */
 @keyframes ticker {
     0% { transform: translateX(0); }
@@ -192,6 +199,22 @@ h1, h2, h3, h4, h5, h6 { font-family: 'Sora', sans-serif; }
     transform: translateY(-4px);
     box-shadow: 0 0 20px rgba(220, 38, 38, 0.5);
 }
+.scroll-text {
+    position: absolute;
+    bottom: -24px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 11px;
+    font-family: 'Courier New', monospace;
+    color: #dc2626;
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+.scroll-to-top:hover .scroll-text {
+    opacity: 1 !important;
+}
 
 /* Mobile Menu */
 .mobile-menu {
@@ -203,3 +226,48 @@ h1, h2, h3, h4, h5, h6 { font-family: 'Sora', sans-serif; }
     flex-direction: column;
 }
 .mobile-menu.open { display: flex; }
+/* CodeChef Badge Animations */
+@keyframes spin-slow {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+@keyframes spin-slower {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(-360deg); }
+}
+@keyframes pulse-glow {
+    0%, 100% { opacity: 0.6; filter: drop-shadow(0 0 10px currentColor); }
+    50% { opacity: 1; filter: drop-shadow(0 0 20px currentColor); }
+}
+@keyframes hex-float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+}
+
+.animate-spin-slow {
+    animation: spin-slow 20s linear infinite;
+}
+.animate-spin-slower {
+    animation: spin-slower 30s linear infinite;
+}
+
+.codechef-badge-container:hover .badge-corner-tl,
+.codechef-badge-container:hover .badge-corner-br {
+    animation: pulse-glow 2s ease-in-out infinite;
+    color: #dc2626;
+}
+.codechef-badge-container:hover .badge-corner-tr,
+.codechef-badge-container:hover .badge-corner-bl {
+    animation: pulse-glow 2s ease-in-out infinite 1s;
+    color: #00bfff;
+}
+.codechef-badge-container:hover .badge-hex-1,
+.codechef-badge-container:hover .badge-hex-2,
+.codechef-badge-container:hover .badge-hex-3,
+.codechef-badge-container:hover .badge-hex-4 {
+    animation: hex-float 2s ease-in-out infinite;
+}
+.codechef-badge-container:hover .badge-hex-2,
+.codechef-badge-container:hover .badge-hex-4 {
+    animation-delay: 0.5s;
+}
