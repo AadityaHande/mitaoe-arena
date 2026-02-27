@@ -207,12 +207,22 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // ===== SCROLL TO TOP =====
     const scrollToTopBtn = document.getElementById('scrollToTop');
+    const progressRingFill = document.getElementById('progressRingFill');
+    const ringCircumference = 208; // square perimeter: 52×4
     
     window.addEventListener('scroll', function() {
-        if (window.scrollY > 500) {
-            scrollToTopBtn.classList.add('visible');
+        const scrolled = window.scrollY;
+        const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const progress = totalHeight > 0 ? Math.min(scrolled / totalHeight, 1) : 0;
+
+        if (scrolled > 400) {
+            if (scrollToTopBtn) scrollToTopBtn.classList.add('visible');
         } else {
-            scrollToTopBtn.classList.remove('visible');
+            if (scrollToTopBtn) scrollToTopBtn.classList.remove('visible');
+        }
+
+        if (progressRingFill) {
+            progressRingFill.style.strokeDashoffset = ringCircumference - (progress * ringCircumference);
         }
     });
     
@@ -267,4 +277,185 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
+
+    // ===== BOOT SCREEN =====
+    var bootScreen = document.getElementById('bootScreen');
+    var bootProgressFill = document.getElementById('bootProgressFill');
+    var bootLines = document.getElementById('bootLines');
+    var bootPercent = document.getElementById('bootPercent');
+    if (bootScreen) {
+        var bootSeq = [
+            '[ INITIALIZING  ARENA_OS  v3.1.0 ]',
+            '[ LOADING  KERNEL  MODULES .............. OK ]',
+            '[ MOUNTING  THREAT  DATABASE ............. OK ]',
+            '[ CALIBRATING  JUDGE  ENGINE ............. OK ]',
+            '[ SYNCING  PARTICIPANT_NODES ............. OK ]',
+            '[ ENCRYPTING  SECURE  CHANNELS ........... OK ]',
+            '[ PRIMING  COMBAT  INTERFACE ............. OK ]',
+            '> ARENA_2026 :: ALL SYSTEMS NOMINAL  \u2713'
+        ];
+        var bProgress = 0, bLineIdx = 0;
+        var bInterval = setInterval(function() {
+            bProgress += 0.8;
+            if (bProgress > 100) bProgress = 100;
+            if (bootProgressFill) bootProgressFill.style.width = bProgress + '%';
+            if (bootPercent) bootPercent.textContent = Math.floor(bProgress) + '%';
+            var expectedLine = Math.floor(bProgress / (100 / bootSeq.length));
+            while (bLineIdx <= expectedLine && bLineIdx < bootSeq.length) {
+                var d = document.createElement('div');
+                d.textContent = bootSeq[bLineIdx];
+                d.style.cssText = 'opacity:0;transform:translateX(-6px);transition:opacity 0.2s,transform 0.2s;' +
+                    (bLineIdx === bootSeq.length - 1 ? 'color:#84cc16;' : '');
+                if (bootLines) bootLines.appendChild(d);
+                (function(el) {
+                    requestAnimationFrame(function() {
+                        requestAnimationFrame(function() {
+                            el.style.opacity = '1';
+                            el.style.transform = 'none';
+                        });
+                    });
+                })(d);
+                bLineIdx++;
+            }
+            if (bProgress >= 100) {
+                clearInterval(bInterval);
+                setTimeout(function() {
+                    bootScreen.classList.add('fade-out');
+                    setTimeout(function() { bootScreen.style.display = 'none'; }, 750);
+                }, 450);
+            }
+        }, 20);
+    }
+
+    // ===== CUSTOM CURSOR =====
+    var cursorDot  = document.getElementById('cursor-dot');
+    var cursorRing = document.getElementById('cursor-ring');
+    var dotX = 0, dotY = 0, ringX = 0, ringY = 0;
+    document.addEventListener('mousemove', function(e) {
+        dotX = e.clientX; dotY = e.clientY;
+        if (cursorDot) {
+            cursorDot.style.left = dotX + 'px';
+            cursorDot.style.top  = dotY + 'px';
+        }
+    });
+    (function animateRing() {
+        ringX += (dotX - ringX) * 0.12;
+        ringY += (dotY - ringY) * 0.12;
+        if (cursorRing) {
+            cursorRing.style.left = ringX + 'px';
+            cursorRing.style.top  = ringY + 'px';
+        }
+        requestAnimationFrame(animateRing);
+    })();
+    document.querySelectorAll('a, button, [role="button"]').forEach(function(el) {
+        el.addEventListener('mouseenter', function() { document.body.classList.add('cursor-link'); });
+        el.addEventListener('mouseleave', function() { document.body.classList.remove('cursor-link'); });
+    });
+
+    // ===== PARTICLE CANVAS =====
+    var canvas = document.getElementById('heroCanvas');
+    if (canvas) {
+        var ctx = canvas.getContext('2d');
+        var particles = [];
+        function resizeCanvas() {
+            canvas.width  = canvas.offsetWidth;
+            canvas.height = canvas.offsetHeight;
+        }
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+        for (var i = 0; i < 65; i++) {
+            particles.push({
+                x:  Math.random() * canvas.width,
+                y:  Math.random() * canvas.height,
+                vx: (Math.random() - 0.5) * 0.28,
+                vy: (Math.random() - 0.5) * 0.28,
+                r:  Math.random() * 1.4 + 0.4,
+                a:  Math.random() * 0.45 + 0.1
+            });
+        }
+        (function draw() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            for (var i = 0; i < particles.length; i++) {
+                for (var j = i + 1; j < particles.length; j++) {
+                    var dx = particles[i].x - particles[j].x;
+                    var dy = particles[i].y - particles[j].y;
+                    var dist = Math.sqrt(dx * dx + dy * dy);
+                    if (dist < 115) {
+                        ctx.beginPath();
+                        ctx.strokeStyle = 'rgba(220,38,38,' + (0.07 * (1 - dist / 115)) + ')';
+                        ctx.lineWidth = 0.5;
+                        ctx.moveTo(particles[i].x, particles[i].y);
+                        ctx.lineTo(particles[j].x, particles[j].y);
+                        ctx.stroke();
+                    }
+                }
+            }
+            particles.forEach(function(p) {
+                p.x += p.vx; p.y += p.vy;
+                if (p.x < 0) p.x = canvas.width;
+                if (p.x > canvas.width)  p.x = 0;
+                if (p.y < 0) p.y = canvas.height;
+                if (p.y > canvas.height) p.y = 0;
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+                ctx.fillStyle = 'rgba(220,38,38,' + p.a + ')';
+                ctx.fill();
+            });
+            requestAnimationFrame(draw);
+        })();
+    }
+
+    // ===== STAGGER CHILDREN OBSERVER =====
+    var staggerObserver = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('in-view');
+                staggerObserver.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.08 });
+    document.querySelectorAll('.stagger-children').forEach(function(el) {
+        staggerObserver.observe(el);
+    });
+
+    // ===== STATS COUNTER =====
+    var counterObserver = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+            if (entry.isIntersecting) {
+                var el       = entry.target;
+                var target   = parseInt(el.getAttribute('data-count'));
+                var prefix   = el.getAttribute('data-prefix') || '';
+                var suffix   = el.getAttribute('data-suffix') || '';
+                var duration = 1500;
+                var startTime = performance.now();
+                (function tick(now) {
+                    var elapsed  = now - startTime;
+                    var progress = Math.min(elapsed / duration, 1);
+                    var eased    = 1 - Math.pow(1 - progress, 3);
+                    var val      = Math.floor(eased * target);
+                    el.textContent = prefix + (target >= 1000 ? val.toLocaleString() : val) + suffix;
+                    if (progress < 1) requestAnimationFrame(tick);
+                })(startTime);
+                counterObserver.unobserve(el);
+            }
+        });
+    }, { threshold: 0.4 });
+    document.querySelectorAll('[data-count]').forEach(function(el) {
+        counterObserver.observe(el);
+    });
+
+    // ===== MAGNETIC BUTTONS =====
+    document.querySelectorAll('.magnetic').forEach(function(btn) {
+        btn.addEventListener('mousemove', function(e) {
+            var rect = btn.getBoundingClientRect();
+            var cx = rect.left + rect.width  / 2;
+            var cy = rect.top  + rect.height / 2;
+            var dx = (e.clientX - cx) * 0.22;
+            var dy = (e.clientY - cy) * 0.22;
+            btn.style.transform = 'translate(' + dx + 'px,' + dy + 'px)';
+        });
+        btn.addEventListener('mouseleave', function() {
+            btn.style.transform = '';
+        });
+    });
 });
