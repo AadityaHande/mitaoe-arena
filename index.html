@@ -162,12 +162,27 @@
         </div>
     </div>
 
+    <!-- Boot Screen -->
+    <div id="bootScreen">
+        <div style="font-family:'Courier New',monospace;color:#dc2626;text-align:center;padding:2rem;max-width:500px;width:100%;">
+            <div style="font-size:clamp(1.8rem,5vw,2.8rem);font-weight:900;letter-spacing:0.3em;margin-bottom:2.5rem;text-shadow:0 0 30px #dc2626,0 0 60px rgba(220,38,38,0.3);">
+                ARENA<span style="color:#fff;font-style:italic">2026</span>
+            </div>
+            <div id="bootLines" style="text-align:left;margin-bottom:2rem;min-height:10rem;font-size:clamp(0.55rem,1.8vw,0.7rem);letter-spacing:0.08em;line-height:2.1;"></div>
+            <div class="boot-progress-bar" style="margin:0 auto;">
+                <div class="boot-progress-fill" id="bootProgressFill"></div>
+            </div>
+            <div id="bootPercent" style="font-size:0.6rem;letter-spacing:0.3em;color:rgba(220,38,38,0.45);margin-top:0.6rem;">0%</div>
+        </div>
+    </div>
+
     <main class="min-h-screen">
         
         <!-- Hero Section -->
         <section id="hero" class="relative min-h-screen flex items-center overflow-hidden pt-20 pb-8 md:pb-12 hero-bg" style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.98)), url('https://picsum.photos/seed/arena-bg/1920/1080'); background-size: cover; background-position: center; background-attachment: fixed;">
             <div class="absolute inset-0 bg-primary/5 mix-blend-overlay pointer-events-none"></div>
             <div class="scanline"></div>
+            <canvas id="heroCanvas"></canvas>
             
             <div class="max-w-7xl mx-auto px-4 sm:px-6 w-full grid lg:grid-cols-12 gap-6 lg:gap-12 items-center relative z-10">
                 
@@ -184,9 +199,9 @@
 
                         <div class="relative">
                             <h1 class="text-[clamp(3.5rem,8vw,8rem)] font-black leading-[0.85] tracking-tight uppercase italic font-headline">
-                                CODE.<br>
-                                COMPETE.<br>
-                                CONQUER.<br>
+                                <span class="hero-glitch" data-text="CODE.">CODE.</span><br>
+                                <span class="hero-glitch" data-text="COMPETE.">COMPETE.</span><br>
+                                <span class="hero-glitch" data-text="CONQUER.">CONQUER.</span><br>
                                 <span class="glitch-title not-italic" data-text="REPEAT.">REPEAT.</span>
                             </h1>
                         </div>
@@ -269,7 +284,7 @@
                             <div class="grid grid-cols-2 gap-6">
                                 <div class="p-5 bg-white/5 border border-white/10 hover:border-azure hover:bg-azure/5 hover:-translate-y-2 transition-all duration-300 group/stat cursor-crosshair relative overflow-hidden">
                                     <div class="absolute top-0 left-0 w-full h-px bg-azure/40 animate-pulse"></div>
-                                    <i data-lucide="zap" class="w-6 h-6 text-azure mb-4 group-hover/stat:scale-125 transition-all duration-500 text-glow"></i>
+                                    <i data-lucide="shield" class="w-6 h-6 text-azure mb-4 group-hover/stat:scale-125 transition-all duration-500 text-glow"></i>
                                     <span class="text-sm font-black uppercase tracking-tight block transition-colors group-hover/stat:text-azure">CodeSprint</span>
                                     <span class="text-[9px] font-black text-azure tracking-widest uppercase opacity-95">SOLO_MODS</span>
                                     <div class="absolute bottom-0 left-0 h-0.5 w-0 bg-azure group-hover/stat:w-full transition-all duration-500"></div>
@@ -442,7 +457,7 @@
                 <div class="flex justify-center">
                     <div class="bg-card/60 backdrop-blur-xl p-8 md:p-10 border-2 border-primary/20 hover:border-primary/60 focus-within:ring-2 focus-within:ring-primary transition-all group flex flex-col items-center max-w-sm w-full shadow-[0_0_50px_rgba(220,38,38,0.1)]">
                         <div class="relative h-24 w-full grayscale group-hover:grayscale-0 transition-all duration-700 mb-6 scale-90 group-hover:scale-100">
-                            <img src="data:image/jpeg;base64,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" alt="WorqHat" class="w-full h-full object-contain">
+                            <img src="./radhya-tech.png" alt="WorqHat" class="w-full h-full object-contain">
                         </div>
                         <div class="flex flex-col items-center gap-2">
                             <span class="text-[10px] font-black text-primary tracking-[0.4em] uppercase">TITLE_PARTNER</span>
@@ -482,14 +497,14 @@
                     <div class="h-px flex-1 bg-white/10 hidden sm:block"></div>
                 </div>
 
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-6">
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-6 stagger-children">
                     <div class="flex flex-col items-center text-center group">
                         <div class="relative mb-6 md:mb-10">
                             <div class="absolute -inset-6 blur-3xl rounded-full opacity-0 group-hover:opacity-20 bg-azure transition-opacity"></div>
                             <i data-lucide="users" class="w-8 h-8 md:w-10 md:h-10 text-azure group-hover:scale-125 transition-all duration-500 relative z-10"></i>
                         </div>
                         <div class="text-[11px] font-black text-white/80 tracking-[0.5em] uppercase mb-3">PARTICIPANTS</div>
-                        <div class="text-3xl md:text-4xl lg:text-5xl font-black text-white tracking-tighter font-mono mb-3">200+</div>
+                        <div class="text-3xl md:text-4xl lg:text-5xl font-black text-white tracking-tighter font-mono mb-3" data-count="200" data-suffix="+">200+</div>
                         <div class="text-[10px] md:text-xs font-black uppercase tracking-[0.4em] px-4 py-1 border border-azure bg-black/40 text-azure">Competitors</div>
                     </div>
 
@@ -499,7 +514,7 @@
                             <i data-lucide="trophy" class="w-8 h-8 md:w-10 md:h-10 text-accent group-hover:scale-125 transition-all duration-500 relative z-10"></i>
                         </div>
                         <div class="text-[11px] font-black text-white/80 tracking-[0.5em] uppercase mb-3">TOTAL_PRIZES</div>
-                        <div class="text-3xl md:text-4xl lg:text-5xl font-black text-white tracking-tighter font-mono mb-3">₹35K+</div>
+                        <div class="text-3xl md:text-4xl lg:text-5xl font-black text-white tracking-tighter font-mono mb-3" data-count="35" data-prefix="₹" data-suffix="K+">₹35K+</div>
                         <div class="text-[10px] md:text-xs font-black uppercase tracking-[0.4em] px-4 py-1 border border-accent bg-black/40 text-accent">Prize Pool</div>
                     </div>
 
@@ -519,7 +534,7 @@
                             <i data-lucide="target" class="w-8 h-8 md:w-10 md:h-10 text-magenta group-hover:scale-125 transition-all duration-500 relative z-10"></i>
                         </div>
                         <div class="text-[11px] font-black text-white/80 tracking-[0.5em] uppercase mb-3">OPPORTUNITIES</div>
-                        <div class="text-3xl md:text-4xl lg:text-5xl font-black text-white tracking-tighter font-mono mb-3">₹25,000+</div>
+                        <div class="text-3xl md:text-4xl lg:text-5xl font-black text-white tracking-tighter font-mono mb-3" data-count="25000" data-prefix="₹" data-suffix="+">₹25,000+</div>
                         <div class="text-[10px] md:text-xs font-black uppercase tracking-[0.4em] px-3 py-1 border border-magenta bg-black/40 text-magenta text-center leading-snug">Internship<br class="md:hidden"> Opportunities</div>
                     </div>
                 </div>
@@ -542,7 +557,7 @@
                     </p>
                 </div>
                 
-                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 stagger-children">
                     <div class="p-6 md:p-8 bg-card border-2 border-white/5 hover:border-primary/40 focus-within:ring-2 focus-within:ring-primary transition-all group relative overflow-hidden">
                         <div class="absolute top-0 right-0 p-4 opacity-[0.03] group-hover:opacity-10 transition-opacity">
                             <i data-lucide="trophy" class="w-24 h-24 text-azure"></i>
@@ -617,7 +632,7 @@
                     </h2>
                 </div>
 
-                <div class="grid lg:grid-cols-2 gap-4 md:gap-8 items-stretch">
+                <div class="grid lg:grid-cols-2 gap-4 md:gap-8 items-stretch stagger-children">
                     <!-- CodeSprint -->
                     <div class="relative bg-card p-6 md:p-8 group hover:bg-azure/5 focus-within:ring-2 focus-within:ring-azure/60 transition-all duration-700 overflow-hidden border-2 border-white/10 flex flex-col h-full">
                         <div class="tactical-border"></div>
@@ -660,7 +675,7 @@
                                     <span class="text-[8px] md:text-[11px] font-black tracking-normal md:tracking-[0.1em] text-white uppercase">OFFLINE</span>
                                 </div>
                             </div>
-                            <a href="https://forms.gle/Rj7e8BTZkW56BFi36" target="_blank" rel="noopener" class="w-full h-12 md:h-14 bg-white/5 border-2 border-white/20 hover:bg-white hover:text-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary transition-all duration-700 font-black uppercase text-[10px] sm:text-xs md:text-base tracking-[0.05em] sm:tracking-[0.1em] md:tracking-[0.3em] relative z-10 group/btn overflow-hidden flex items-center justify-between px-3 md:px-8">
+                            <a href="https://forms.gle/Rj7e8BTZkW56BFi36" target="_blank" rel="noopener" class="magnetic w-full h-12 md:h-14 bg-white/5 border-2 border-white/20 hover:bg-white hover:text-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary transition-all duration-700 font-black uppercase text-[10px] sm:text-xs md:text-base tracking-[0.05em] sm:tracking-[0.1em] md:tracking-[0.3em] relative z-10 group/btn overflow-hidden flex items-center justify-between px-3 md:px-8">
                                 <span class="truncate">REGISTER_CODESPRINT</span>
                                 <i data-lucide="external-link" class="w-4 h-4 md:w-6 md:h-6 group-hover/btn:translate-x-2 transition-transform shrink-0 ml-2"></i>
                             </a>
@@ -709,7 +724,7 @@
                                     <span class="text-[8px] md:text-[11px] font-black tracking-normal md:tracking-[0.1em] text-white uppercase">OFFLINE</span>
                                 </div>
                             </div>
-                            <a href="https://forms.gle/JYt6CrrSzN9QHysw5" target="_blank" rel="noopener" class="w-full h-12 md:h-14 bg-white/5 border-2 border-white/20 hover:bg-white hover:text-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary transition-all duration-700 font-black uppercase text-[10px] sm:text-xs md:text-base tracking-[0.05em] sm:tracking-[0.1em] md:tracking-[0.3em] relative z-10 group/btn overflow-hidden flex items-center justify-between px-3 md:px-8">
+                            <a href="https://forms.gle/JYt6CrrSzN9QHysw5" target="_blank" rel="noopener" class="magnetic w-full h-12 md:h-14 bg-white/5 border-2 border-white/20 hover:bg-white hover:text-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary transition-all duration-700 font-black uppercase text-[10px] sm:text-xs md:text-base tracking-[0.05em] sm:tracking-[0.1em] md:tracking-[0.3em] relative z-10 group/btn overflow-hidden flex items-center justify-between px-3 md:px-8">
                                 <span class="truncate">REGISTER_PAIR_PROG</span>
                                 <i data-lucide="external-link" class="w-4 h-4 md:w-6 md:h-6 group-hover/btn:translate-x-2 transition-transform shrink-0 ml-2"></i>
                             </a>
@@ -752,7 +767,7 @@
                         </h2>
                     </div>
                     <div class="md:text-right border-t-4 border-primary pt-4 md:pt-6">
-                        <p class="text-[10px] md:text-[11px] font-black tracking-[0.4em] md:tracking-[0.6em] text-white uppercase opacity-95">v2026_SCHEDULE_FINAL</p>
+                        <p class="text-[10px] md:text-[11px] font-black tracking-[0.4em] md:tracking-[0.6em] text-white uppercase opacity-95">v2026_SCHEDULE_PENDING</p>
                         <div class="flex items-center gap-3 mt-2 md:mt-3 justify-start md:justify-end">
                             <div class="h-2 w-2 bg-lime rounded-full animate-pulse shadow-[0_0_10px_lime]"></div>
                             <span class="text-[9px] md:text-[10px] font-mono text-lime tracking-[0.2em] md:tracking-[0.3em] font-black opacity-95">SYNC_READY</span>
@@ -773,32 +788,24 @@
                             <div class="text-xl sm:text-2xl md:text-4xl font-black text-white/20 font-mono tracking-tighter transition-all group-hover/card:text-white/40 group-hover/card:scale-110 shrink-0">OP_01</div>
                         </div>
 
-                        <div class="space-y-4 md:space-y-10 relative z-10">
-                            <div class="flex items-center gap-3 sm:gap-6 group">
-                                <div class="text-[10px] sm:text-sm font-black border-b-2 border-azure/30 text-azure transition-all px-2 font-mono whitespace-nowrap group-hover:bg-white group-hover:text-black group-hover:border-white">09:00 AM</div>
-                                <div class="h-[1px] flex-1 bg-white/10 group-hover:bg-white/40 transition-all"></div>
-                                <div class="text-[10px] sm:text-xs md:text-sm lg:text-base font-black uppercase tracking-tight text-white/95 group-hover:text-white group-hover:translate-x-2 transition-all duration-500 text-right">Check-in & Setup</div>
+                        <div class="relative z-10 flex flex-col items-center justify-center py-8 md:py-12 gap-6">
+                            <div class="flex items-center justify-center w-16 h-16 border-2 border-azure/40 bg-azure/5">
+                                <i data-lucide="clock" class="w-7 h-7 text-azure animate-pulse"></i>
                             </div>
-                            <div class="flex items-center gap-3 sm:gap-6 group">
-                                <div class="text-[10px] sm:text-sm font-black border-b-2 border-azure/30 text-azure transition-all px-2 font-mono whitespace-nowrap group-hover:bg-white group-hover:text-black group-hover:border-white">10:00 AM</div>
-                                <div class="h-[1px] flex-1 bg-white/10 group-hover:bg-white/40 transition-all"></div>
-                                <div class="text-[10px] sm:text-xs md:text-sm lg:text-base font-black uppercase tracking-tight text-white/95 group-hover:text-white group-hover:translate-x-2 transition-all duration-500 text-right">DSA & Problem Solving (2hrs)</div>
+                            <div class="text-center">
+                                <p class="text-[9px] font-black tracking-[0.5em] text-azure uppercase mb-3">TIMING_STATUS</p>
+                                <p class="text-xl md:text-2xl font-black uppercase tracking-tighter text-white mb-2">YET TO BE<br>ANNOUNCED</p>
+                                <p class="text-[10px] font-black tracking-[0.3em] text-white/40 uppercase">DETAILS_WILL_BE_SHARED_SOON</p>
                             </div>
-                            <div class="flex items-center gap-3 sm:gap-6 group">
-                                <div class="text-[10px] sm:text-sm font-black border-b-2 border-azure/30 text-azure transition-all px-2 font-mono whitespace-nowrap group-hover:bg-white group-hover:text-black group-hover:border-white">12:00 PM</div>
-                                <div class="h-[1px] flex-1 bg-white/10 group-hover:bg-white/40 transition-all"></div>
-                                <div class="text-[10px] sm:text-xs md:text-sm lg:text-base font-black uppercase tracking-tight text-white/95 group-hover:text-white group-hover:translate-x-2 transition-all duration-500 text-right">Event Ends</div>
-                            </div>
-                            <div class="flex items-center gap-3 sm:gap-6 group">
-                                <div class="text-[10px] sm:text-sm font-black border-b-2 border-azure/30 text-azure transition-all px-2 font-mono whitespace-nowrap group-hover:bg-white group-hover:text-black group-hover:border-white">02:00 PM</div>
-                                <div class="h-[1px] flex-1 bg-white/10 group-hover:bg-white/40 transition-all"></div>
-                                <div class="text-[10px] sm:text-xs md:text-sm lg:text-base font-black uppercase tracking-tight text-white/95 group-hover:text-white group-hover:translate-x-2 transition-all duration-500 text-right">Prize Distribution & Closing</div>
+                            <div class="w-full border border-dashed border-azure/20 px-6 py-4 flex items-center gap-4">
+                                <div class="h-2 w-2 bg-azure rounded-full animate-pulse shrink-0"></div>
+                                <span class="text-[10px] font-black tracking-[0.2em] text-white/60 uppercase">DURATION :: 120 MINS TOTAL</span>
                             </div>
                         </div>
                         
                         <div class="mt-8 md:mt-16 pt-4 md:pt-8 border-t border-white/10 flex justify-between items-center">
                             <span class="text-[8px] md:text-[10px] font-mono tracking-[0.3em] md:tracking-[0.5em] text-white/80 font-black uppercase">DAY_01</span>
-                            <span class="text-[8px] md:text-[10px] font-mono text-white/80 font-black tracking-widest uppercase">27_FEB</span>
+                            <span class="text-[8px] md:text-[10px] font-mono text-white/80 font-black tracking-widest uppercase">07_MAR</span>
                         </div>
                     </div>
 
@@ -814,32 +821,24 @@
                             <div class="text-xl sm:text-2xl md:text-4xl font-black text-white/20 font-mono tracking-tighter transition-all group-hover/card:text-white/40 group-hover/card:scale-110 shrink-0">OP_02</div>
                         </div>
 
-                        <div class="space-y-4 md:space-y-10 relative z-10">
-                            <div class="flex items-center gap-3 sm:gap-6 group">
-                                <div class="text-[10px] sm:text-sm font-black border-b-2 border-magenta/30 text-magenta transition-all px-2 font-mono whitespace-nowrap group-hover:bg-white group-hover:text-black group-hover:border-white">09:00 AM</div>
-                                <div class="h-[1px] flex-1 bg-white/10 group-hover:bg-white/40 transition-all"></div>
-                                <div class="text-[10px] sm:text-xs md:text-sm lg:text-base font-black uppercase tracking-tight text-white/95 group-hover:text-white group-hover:translate-x-2 transition-all duration-500 text-right">Team Check-in & Setup</div>
+                        <div class="relative z-10 flex flex-col items-center justify-center py-8 md:py-12 gap-6">
+                            <div class="flex items-center justify-center w-16 h-16 border-2 border-magenta/40 bg-magenta/5">
+                                <i data-lucide="clock" class="w-7 h-7 text-magenta animate-pulse"></i>
                             </div>
-                            <div class="flex items-center gap-3 sm:gap-6 group">
-                                <div class="text-[10px] sm:text-sm font-black border-b-2 border-magenta/30 text-magenta transition-all px-2 font-mono whitespace-nowrap group-hover:bg-white group-hover:text-black group-hover:border-white">10:00 AM</div>
-                                <div class="h-[1px] flex-1 bg-white/10 group-hover:bg-white/40 transition-all"></div>
-                                <div class="text-[10px] sm:text-xs md:text-sm lg:text-base font-black uppercase tracking-tight text-white/95 group-hover:text-white group-hover:translate-x-2 transition-all duration-500 text-right">Collaborative DSA (3hrs)</div>
+                            <div class="text-center">
+                                <p class="text-[9px] font-black tracking-[0.5em] text-magenta uppercase mb-3">TIMING_STATUS</p>
+                                <p class="text-xl md:text-2xl font-black uppercase tracking-tighter text-white mb-2">YET TO BE<br>ANNOUNCED</p>
+                                <p class="text-[10px] font-black tracking-[0.3em] text-white/40 uppercase">DETAILS_WILL_BE_SHARED_SOON</p>
                             </div>
-                            <div class="flex items-center gap-3 sm:gap-6 group">
-                                <div class="text-[10px] sm:text-sm font-black border-b-2 border-magenta/30 text-magenta transition-all px-2 font-mono whitespace-nowrap group-hover:bg-white group-hover:text-black group-hover:border-white">01:00 PM</div>
-                                <div class="h-[1px] flex-1 bg-white/10 group-hover:bg-white/40 transition-all"></div>
-                                <div class="text-[10px] sm:text-xs md:text-sm lg:text-base font-black uppercase tracking-tight text-white/95 group-hover:text-white group-hover:translate-x-2 transition-all duration-500 text-right">Event Ends</div>
-                            </div>
-                            <div class="flex items-center gap-3 sm:gap-6 group">
-                                <div class="text-[10px] sm:text-sm font-black border-b-2 border-magenta/30 text-magenta transition-all px-2 font-mono whitespace-nowrap group-hover:bg-white group-hover:text-black group-hover:border-white">02:00 PM</div>
-                                <div class="h-[1px] flex-1 bg-white/10 group-hover:bg-white/40 transition-all"></div>
-                                <div class="text-[10px] sm:text-xs md:text-sm lg:text-base font-black uppercase tracking-tight text-white/95 group-hover:text-white group-hover:translate-x-2 transition-all duration-500 text-right">Prize Distribution & Closing</div>
+                            <div class="w-full border border-dashed border-magenta/20 px-6 py-4 flex items-center gap-4">
+                                <div class="h-2 w-2 bg-magenta rounded-full animate-pulse shrink-0"></div>
+                                <span class="text-[10px] font-black tracking-[0.2em] text-white/60 uppercase">DURATION :: 180 MINS TOTAL</span>
                             </div>
                         </div>
                         
                         <div class="mt-8 md:mt-16 pt-4 md:pt-8 border-t border-white/10 flex justify-between items-center">
-                            <span class="text-[8px] md:text-[10px] font-mono tracking-[0.3em] md:tracking-[0.5em] text-white/80 font-black uppercase">DAY_02</span>
-                            <span class="text-[8px] md:text-[10px] font-mono text-white/80 font-black tracking-widest uppercase">28_FEB</span>
+                            <span class="text-[8px] md:text-[10px] font-mono tracking-[0.3em] md:tracking-[0.5em] text-white/80 font-black uppercase">DAY_01</span>
+                            <span class="text-[8px] md:text-[10px] font-mono text-white/80 font-black tracking-widest uppercase">07_MAR</span>
                         </div>
                     </div>
                 </div>
@@ -896,10 +895,10 @@
                     
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8 mb-8 md:mb-12 text-left relative z-10">
                         <div class="border-b-2 md:border-b-0 md:border-r-2 border-white/10 pb-8 md:pb-0 md:pr-10 relative flex flex-col h-full">
-                            <i data-lucide="database" class="absolute -top-4 -right-4 w-12 h-12 text-azure opacity-20"></i>
+                            <i data-lucide="shield" class="absolute -top-4 -right-4 w-12 h-12 text-azure opacity-20"></i>
                             <div>
                                 <h4 class="text-lg md:text-2xl font-black mb-3 md:mb-6 text-azure uppercase tracking-widest flex items-center gap-3 font-headline">
-                                    <i data-lucide="user-check" class="w-5 h-5"></i>
+                                    <i data-lucide="shield" class="w-5 h-5"></i>
                                     CodeSprint
                                 </h4>
                                 <p class="text-white text-[10px] md:text-[12px] uppercase tracking-wider leading-relaxed md:leading-loose mb-6 md:mb-8 font-black opacity-95">
@@ -1222,9 +1221,25 @@
     </main>
 
     <!-- Scroll to Top Button -->
-    <button id="scrollToTop" class="scroll-to-top fixed bottom-8 right-8 w-14 h-14 bg-primary border-2 border-primary text-white flex flex-col items-center justify-center z-50 opacity-0 invisible translate-y-4 transition-all duration-300 hover:bg-white hover:text-primary group" aria-label="Scroll to Top">
-        <i data-lucide="chevron-up" class="w-6 h-6"></i>
-        <span class="scroll-text absolute -top-8 text-[9px] font-black tracking-widest uppercase text-primary opacity-0 transition-opacity duration-300 whitespace-nowrap">return()</span>
+    <button id="scrollToTop" aria-label="Scroll to Top" class="scroll-to-top fixed bottom-8 right-8 z-50 group">
+        <!-- SVG Square Progress Border -->
+        <svg class="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 56 56">
+            <rect x="2" y="2" width="52" height="52" fill="none" stroke="rgba(220,38,38,0.15)" stroke-width="2"/>
+            <rect id="progressRingFill" x="2" y="2" width="52" height="52" fill="none" stroke="#dc2626" stroke-width="2"
+                stroke-dasharray="208"
+                stroke-dashoffset="208"
+                style="transform-origin:center;transform:rotate(-90deg)"/>
+        </svg>
+        <!-- Inner core -->
+        <div class="scroll-btn-inner relative w-10 h-10 bg-primary flex flex-col items-center justify-center gap-0.5 transition-all duration-300 group-hover:bg-white">
+            <i data-lucide="chevron-up" class="w-4 h-4 text-white group-hover:text-primary transition-all duration-300 group-hover:-translate-y-0.5"></i>
+            <span class="text-[7px] font-black tracking-[0.25em] uppercase text-white/60 group-hover:text-primary/60 transition-colors duration-300 leading-none">TOP</span>
+        </div>
+        <!-- Corner brackets -->
+        <span class="absolute top-0.5 left-0.5 w-2.5 h-2.5 border-t-2 border-l-2 border-transparent group-hover:border-white transition-all duration-500"></span>
+        <span class="absolute top-0.5 right-0.5 w-2.5 h-2.5 border-t-2 border-r-2 border-transparent group-hover:border-white transition-all duration-500"></span>
+        <span class="absolute bottom-0.5 left-0.5 w-2.5 h-2.5 border-b-2 border-l-2 border-transparent group-hover:border-white transition-all duration-500"></span>
+        <span class="absolute bottom-0.5 right-0.5 w-2.5 h-2.5 border-b-2 border-r-2 border-transparent group-hover:border-white transition-all duration-500"></span>
     </button>
 
     <!-- Registration Modal -->
@@ -1266,6 +1281,8 @@
         </div>
     </div>
 
+    <div id="cursor-dot"></div>
+    <div id="cursor-ring"></div>
     <script src="script.js"></script>
     <script>
         // Initialize Lucide icons
