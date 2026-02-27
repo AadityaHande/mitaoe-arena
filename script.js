@@ -68,7 +68,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // ===== COUNTDOWN =====
-    const targetDate = new Date('2026-02-27T10:00:00').getTime();
+    const targetDate = new Date('2026-03-07T10:00:00').getTime();
     const countdownEl = document.getElementById('countdown');
     const countdownLoader = document.getElementById('countdownLoader');
     
