@@ -2,7 +2,7 @@
 document.addEventListener('DOMContentLoaded', function() {
     lucide.createIcons();
     
-    // ===== NAVBAR SCROLL EFFECT =====
+    //  NAVBAR SCROLL EFFECT 
     const navbar = document.getElementById('navbar');
     const scrollProgress = document.querySelector('.scroll-progress');
     
@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // ===== MOBILE MENU =====
+    //  MOBILE MENU 
     const mobileMenuToggle = document.getElementById('mobileMenuToggle');
     const mobileMenu = document.getElementById('mobileMenu');
     const mobileMenuClose = document.getElementById('mobileMenuClose');
@@ -67,7 +67,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // ===== COUNTDOWN =====
+    //  COUNTDOWN 
     const targetDate = new Date('2026-03-07T10:00:00').getTime();
     const countdownEl = document.getElementById('countdown');
     const countdownLoader = document.getElementById('countdownLoader');
@@ -76,7 +76,7 @@ document.addEventListener('DOMContentLoaded', function() {
     setTimeout(function() {
         if (countdownLoader) countdownLoader.style.display = 'none';
         if (countdownEl) countdownEl.style.display = 'grid';
-    }, 800);
+    }, 300);
     
     function updateCountdown() {
         const now = new Date().getTime();
@@ -118,7 +118,7 @@ document.addEventListener('DOMContentLoaded', function() {
     updateCountdown();
     setInterval(updateCountdown, 1000);
 
-    // ===== SYSTEM LOG ROTATION =====
+    //  SYSTEM LOG ROTATION 
     const logs = [
         "SYS_BOOT::ACTIVE",
         "ENROLLMENT_SYNC::OK",
@@ -138,7 +138,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }, 2000);
 
-    // ===== ENROLLMENT ANIMATION =====
+    //  ENROLLMENT ANIMATION 
     let enrollment = 84.2;
     let activeUsers = 142;
     const enrollmentFill = document.getElementById('enrollmentFill');
@@ -165,7 +165,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }, 2000);
 
-    // ===== SCROLL REVEAL =====
+    //  SCROLL REVEAL 
     const revealElements = document.querySelectorAll('.reveal-sector');
     
     const observerOptions = {
@@ -186,7 +186,7 @@ document.addEventListener('DOMContentLoaded', function() {
         observer.observe(el);
     });
 
-    // ===== FAQ ACCORDION =====
+    //  FAQ ACCORDION 
     const faqItems = document.querySelectorAll('.faq-item');
     
     faqItems.forEach(function(item) {
@@ -205,7 +205,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // ===== SCROLL TO TOP =====
+    //  SCROLL TO TOP 
     const scrollToTopBtn = document.getElementById('scrollToTop');
     const progressRingFill = document.getElementById('progressRingFill');
     const ringCircumference = 208; // square perimeter: 52×4
@@ -232,7 +232,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // ===== SMOOTH SCROLL FOR ANCHOR LINKS =====
+    //  SMOOTH SCROLL FOR ANCHOR LINKS 
     document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
         anchor.addEventListener('click', function(e) {
             e.preventDefault();
@@ -244,7 +244,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // ===== REGISTRATION MODAL =====
+    //  REGISTRATION MODAL 
     const registrationModal = document.getElementById('registrationModal');
     const openModalBtn = document.getElementById('openRegistrationModal');
     const closeModalBtn = document.getElementById('closeModal');
@@ -278,7 +278,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // ===== BOOT SCREEN =====
+    //  BOOT SCREEN 
     var bootScreen = document.getElementById('bootScreen');
     var bootProgressFill = document.getElementById('bootProgressFill');
     var bootLines = document.getElementById('bootLines');
@@ -321,13 +321,13 @@ document.addEventListener('DOMContentLoaded', function() {
                 clearInterval(bInterval);
                 setTimeout(function() {
                     bootScreen.classList.add('fade-out');
-                    setTimeout(function() { bootScreen.style.display = 'none'; }, 750);
+                    setTimeout(function() { bootScreen.style.display = 'none'; }, 400);
                 }, 450);
             }
         }, 20);
     }
 
-    // ===== CUSTOM CURSOR =====
+    //  CUSTOM CURSOR 
     var cursorDot  = document.getElementById('cursor-dot');
     var cursorRing = document.getElementById('cursor-ring');
     var dotX = 0, dotY = 0, ringX = 0, ringY = 0;
@@ -352,7 +352,7 @@ document.addEventListener('DOMContentLoaded', function() {
         el.addEventListener('mouseleave', function() { document.body.classList.remove('cursor-link'); });
     });
 
-    // ===== PARTICLE CANVAS =====
+    //  PARTICLE CANVAS 
     var canvas = document.getElementById('heroCanvas');
     if (canvas) {
         var ctx = canvas.getContext('2d');
@@ -405,7 +405,7 @@ document.addEventListener('DOMContentLoaded', function() {
         })();
     }
 
-    // ===== STAGGER CHILDREN OBSERVER =====
+    //  STAGGER CHILDREN OBSERVER 
     var staggerObserver = new IntersectionObserver(function(entries) {
         entries.forEach(function(entry) {
             if (entry.isIntersecting) {
@@ -418,7 +418,7 @@ document.addEventListener('DOMContentLoaded', function() {
         staggerObserver.observe(el);
     });
 
-    // ===== STATS COUNTER =====
+    //  STATS COUNTER 
     var counterObserver = new IntersectionObserver(function(entries) {
         entries.forEach(function(entry) {
             if (entry.isIntersecting) {
@@ -444,7 +444,7 @@ document.addEventListener('DOMContentLoaded', function() {
         counterObserver.observe(el);
     });
 
-    // ===== MAGNETIC BUTTONS =====
+    //  MAGNETIC BUTTONS 
     document.querySelectorAll('.magnetic').forEach(function(btn) {
         btn.addEventListener('mousemove', function(e) {
             var rect = btn.getBoundingClientRect();
