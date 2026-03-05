@@ -7,15 +7,23 @@ body {
     font-family: 'Inter', sans-serif;
     position: relative;
 }
+/* Animated dual-layer moving background grid — VISIBLE version */
+@keyframes bg-grid-drift {
+    from { background-position: 0 0, 0 0, 0 0, 0 0, 0 0; }
+    to   { background-position: 0 0, 80px 80px, 80px 80px, 20px 20px, 20px 20px; }
+}
 body::before {
     content: "";
     position: fixed;
     inset: 0;
-    background-image: 
-        radial-gradient(circle at 50% 50%, rgba(220, 38, 38, 0.03) 0%, transparent 70%),
-        linear-gradient(to right, rgba(255, 255, 255, 0.01) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(255, 255, 255, 0.01) 1px, transparent 1px);
-    background-size: 100% 100%, 40px 40px, 40px 40px;
+    background-image:
+        radial-gradient(circle at 50% 0%, rgba(220, 38, 38, 0.08) 0%, transparent 65%),
+        linear-gradient(to right,  rgba(220, 38, 38, 0.14) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(220, 38, 38, 0.14) 1px, transparent 1px),
+        linear-gradient(to right,  rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    background-size: 100% 100%, 80px 80px, 80px 80px, 20px 20px, 20px 20px;
+    animation: bg-grid-drift 30s linear infinite;
     z-index: -1;
     pointer-events: none;
 }
@@ -24,12 +32,52 @@ h1, h2, h3, h4, h5, h6 { font-family: 'Sora', sans-serif; }
 /* Reveal Animation */
 .reveal-sector {
     opacity: 0;
-    transform: translateY(24px);
-    transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+    transform: translateY(28px);
+    transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1), transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .reveal-sector.is-visible {
     opacity: 1;
     transform: translateY(0);
+}
+
+/* ── Directional reveal variants (assigned via JS) ─────── */
+.reveal-left {
+    opacity: 0;
+    transform: translateX(-44px);
+    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal-right {
+    opacity: 0;
+    transform: translateX(44px);
+    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal-scale {
+    opacity: 0;
+    transform: scale(0.9) translateY(18px);
+    transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal-left.is-visible,
+.reveal-right.is-visible,
+.reveal-scale.is-visible  { opacity: 1; transform: none; }
+
+/* ── Heading line-clip reveal ──────────────────────────── */
+.reveal-heading {
+    overflow: hidden;
+    display: block;
+}
+.reveal-heading-inner {
+    display: block;
+    transform: translateY(108%);
+    opacity: 0;
+    transition: transform 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+                opacity   0.3s ease;
+}
+.reveal-heading.is-visible .reveal-heading-inner {
+    transform: translateY(0);
+    opacity: 1;
 }
 
 /* Tactical Border */
@@ -93,7 +141,12 @@ h1, h2, h3, h4, h5, h6 { font-family: 'Sora', sans-serif; }
 }
 
 /* Text Glow */
-.text-glow { text-shadow: 0 0 10px rgba(220, 38, 38, 0.5); }
+.text-glow {
+    text-shadow:
+        0 0 20px rgba(220, 38, 38, 0.9),
+        0 0 50px rgba(220, 38, 38, 0.55),
+        0 0 100px rgba(220, 38, 38, 0.25);
+}
 
 /* Brutalist Shadow */
 .brutalist-shadow { box-shadow: 4px 4px 0px 0px rgba(220, 38, 38, 0.4); }
@@ -420,20 +473,417 @@ body::after {
 /*  STAGGER CHILDREN  */
 .stagger-children > * {
     opacity: 0;
-    transform: translateY(24px);
-    transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1),
-                transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+    transform: translateY(28px) scale(0.97);
+    transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
-.stagger-children.in-view > *:nth-child(1) { opacity:1; transform:none; transition-delay:0.04s; }
-.stagger-children.in-view > *:nth-child(2) { opacity:1; transform:none; transition-delay:0.12s; }
-.stagger-children.in-view > *:nth-child(3) { opacity:1; transform:none; transition-delay:0.20s; }
-.stagger-children.in-view > *:nth-child(4) { opacity:1; transform:none; transition-delay:0.28s; }
-.stagger-children.in-view > *:nth-child(5) { opacity:1; transform:none; transition-delay:0.36s; }
-.stagger-children.in-view > *:nth-child(6) { opacity:1; transform:none; transition-delay:0.44s; }
-.stagger-children.in-view > *:nth-child(7) { opacity:1; transform:none; transition-delay:0.52s; }
-.stagger-children.in-view > *:nth-child(8) { opacity:1; transform:none; transition-delay:0.60s; }
+/* odd children slide from left, even from right on wider screens */
+@media (min-width: 640px) {
+    .stagger-children > *:nth-child(odd)  { transform: translateY(28px) translateX(-18px) scale(0.97); }
+    .stagger-children > *:nth-child(even) { transform: translateY(28px) translateX(18px)  scale(0.97); }
+}
+.stagger-children.in-view > *:nth-child(1) { opacity:1; transform:none; transition-delay:0.05s; }
+.stagger-children.in-view > *:nth-child(2) { opacity:1; transform:none; transition-delay:0.13s; }
+.stagger-children.in-view > *:nth-child(3) { opacity:1; transform:none; transition-delay:0.21s; }
+.stagger-children.in-view > *:nth-child(4) { opacity:1; transform:none; transition-delay:0.29s; }
+.stagger-children.in-view > *:nth-child(5) { opacity:1; transform:none; transition-delay:0.37s; }
+.stagger-children.in-view > *:nth-child(6) { opacity:1; transform:none; transition-delay:0.45s; }
+.stagger-children.in-view > *:nth-child(7) { opacity:1; transform:none; transition-delay:0.53s; }
+.stagger-children.in-view > *:nth-child(8) { opacity:1; transform:none; transition-delay:0.61s; }
 
 /*  MAGNETIC BUTTON  */
 .magnetic {
     transition: transform 0.35s cubic-bezier(0.23, 1, 0.32, 1) !important;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   INSPIRE-DERIVED UI ENHANCEMENTS (UI inspiration only)
+   ═══════════════════════════════════════════════════════════ */
+
+/* ── Stat Counter Numbers — Persistent Neon Glow ─────────── */
+#stats [data-count] {
+    text-shadow:
+        0 0 20px rgba(255, 255, 255, 0.55),
+        0 0 50px rgba(220, 38, 38, 0.25);
+    transition: text-shadow 0.4s ease;
+}
+#stats .group:hover [data-count] {
+    text-shadow:
+        0 0 12px rgba(255, 255, 255, 0.9),
+        0 0 40px rgba(220, 38, 38, 0.6),
+        0 0 80px rgba(220, 38, 38, 0.25);
+}
+
+/* ── Arena Event Cards — Persistent + Hover Colored Neon Glow ─ */
+#arena .stagger-children > div:nth-child(1) {
+    box-shadow: 0 8px 60px rgba(0, 191, 255, 0.1), inset 0 0 80px rgba(0, 191, 255, 0.02);
+    transition: box-shadow 0.55s ease, border-color 0.55s ease,
+                transform 0.7s ease, background 0.7s ease !important;
+}
+#arena .stagger-children > div:nth-child(1):hover {
+    box-shadow:
+        0 0 0 1px rgba(0, 191, 255, 0.4),
+        0 0 70px rgba(0, 191, 255, 0.18),
+        0 20px 80px rgba(0, 0, 0, 0.6),
+        inset 0 0 80px rgba(0, 191, 255, 0.05) !important;
+    border-color: rgba(0, 191, 255, 0.5) !important;
+}
+#arena .stagger-children > div:nth-child(2) {
+    box-shadow: 0 8px 60px rgba(255, 0, 255, 0.1), inset 0 0 80px rgba(255, 0, 255, 0.02);
+    transition: box-shadow 0.55s ease, border-color 0.55s ease,
+                transform 0.7s ease, background 0.7s ease !important;
+}
+#arena .stagger-children > div:nth-child(2):hover {
+    box-shadow:
+        0 0 0 1px rgba(255, 0, 255, 0.4),
+        0 0 70px rgba(255, 0, 255, 0.18),
+        0 20px 80px rgba(0, 0, 0, 0.6),
+        inset 0 0 80px rgba(255, 0, 255, 0.05) !important;
+    border-color: rgba(255, 0, 255, 0.5) !important;
+}
+
+/* ── Value / Feature Cards — Red Neon Hover Glow ─────────── */
+#value .stagger-children > div {
+    transition: box-shadow 0.5s ease, border-color 0.5s ease,
+                transform 0.5s ease, background 0.5s ease !important;
+}
+#value .stagger-children > div:hover {
+    box-shadow:
+        0 0 0 1px rgba(220, 38, 38, 0.22),
+        0 0 40px rgba(220, 38, 38, 0.1),
+        0 12px 48px rgba(0, 0, 0, 0.6) !important;
+}
+
+/* ── Schedule Day Cards — Colored Neon Hover Glow ─────────── */
+#schedule .grid > div:first-child:hover {
+    box-shadow:
+        0 0 0 1px rgba(0, 191, 255, 0.3),
+        0 0 45px rgba(0, 191, 255, 0.1),
+        inset 0 0 60px rgba(0, 191, 255, 0.03) !important;
+}
+#schedule .grid > div:last-child:hover {
+    box-shadow:
+        0 0 0 1px rgba(255, 0, 255, 0.3),
+        0 0 45px rgba(255, 0, 255, 0.1),
+        inset 0 0 60px rgba(255, 0, 255, 0.03) !important;
+}
+
+/* ── Registration / CTA Primary Buttons — Pulsing Neon ────── */
+@keyframes cta-red-pulse {
+    0%,  100% { box-shadow: 0 0 25px rgba(220, 38, 38, 0.55), 0 0 70px rgba(220, 38, 38, 0.2), 4px 4px 0 0 rgba(220,38,38,0.4); }
+    50%        { box-shadow: 0 0 45px rgba(220, 38, 38, 0.85), 0 0 110px rgba(220, 38, 38, 0.35), 4px 4px 0 0 rgba(220,38,38,0.4); }
+}
+.cta-neon-pulse {
+    animation: cta-red-pulse 2.2s ease-in-out infinite;
+}
+
+/* ── Nav Links — Neon Text-Shadow on Hover (desktop) ─────── */
+#navbar a.group:hover span {
+    text-shadow: 0 0 10px rgba(220, 38, 38, 0.55);
+}
+
+/* ── Section H2 Primary Spans — Stronger Glow Accent ─────── */
+#arena h2 .text-primary,
+#schedule h2 .text-primary,
+#register h2 .text-primary,
+#faq h2 .text-primary {
+    text-shadow:
+        0 0 25px rgba(220, 38, 38, 0.9),
+        0 0 60px rgba(220, 38, 38, 0.45),
+        0 0 120px rgba(220, 38, 38, 0.15);
+}
+
+/* ── Sponsors section + ticker — glow refinement ─────────── */
+#sponsors .animate-ticker {
+    filter: drop-shadow(0 0 8px rgba(220, 38, 38, 0.08));
+}
+
+/* ── FAQ Items — Left neon accent bar + slide-in ──────────── */
+.faq-item {
+    border-left: 3px solid transparent;
+    transition: border-left-color 0.4s ease !important;
+}
+.faq-item:hover {
+    border-left-color: rgba(220, 38, 38, 0.6) !important;
+}
+.faq-item.open {
+    border-left-color: #dc2626 !important;
+}
+.faq-item.will-animate {
+    opacity: 0;
+    transform: translateX(-22px);
+}
+.faq-item.faq-visible {
+    opacity: 1 !important;
+    transform: translateX(0) !important;
+    transition: opacity 0.55s ease-out, transform 0.55s ease-out,
+                border-color 0.4s ease, background 0.4s ease,
+                border-left-color 0.4s ease !important;
+}
+
+/* ── Decorative section line accent — VISIBLE neon bar ────── */
+.neon-divider {
+    display: block;
+    width: 64px;
+    height: 3px;
+    background: #dc2626;
+    margin: 16px auto 0;
+    box-shadow:
+        0 0 16px rgba(220, 38, 38, 0.9),
+        0 0 40px rgba(220, 38, 38, 0.5),
+        0 0 80px rgba(220, 38, 38, 0.2);
+}
+
+/* ── Sponsor cards — inner glow on hover ─────────────────── */
+#sponsors .bg-card\/60:hover {
+    box-shadow:
+        0 0 60px rgba(220, 38, 38, 0.12),
+        0 0 120px rgba(220, 38, 38, 0.06) !important;
+}
+
+/* ── OP number tags in arena cards — mono glow ───────────── */
+#arena .font-mono.text-white\/20 {
+    text-shadow: 0 0 12px rgba(255, 255, 255, 0.2);
+    transition: text-shadow 0.4s ease, color 0.4s ease;
+}
+#arena .group:hover .font-mono.text-white\/20 {
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+}
+
+/* ── Hero section heading — strong persistent glow ────────── */
+#hero h1,
+#hero .font-headline {
+    text-shadow:
+        0 0 30px rgba(255, 255, 255, 0.18),
+        0 0 60px rgba(220, 38, 38, 0.12);
+}
+
+/* ── Arena cards — glowing top accent stripe ──────────────── */
+#arena .stagger-children > div::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    pointer-events: none;
+    z-index: 20;
+}
+#arena .stagger-children > div:nth-child(1)::before {
+    background: linear-gradient(to right, transparent, rgba(0,191,255,0.7) 40%, rgba(0,191,255,0.7) 60%, transparent);
+    box-shadow: 0 0 14px 2px rgba(0,191,255,0.4);
+}
+#arena .stagger-children > div:nth-child(2)::before {
+    background: linear-gradient(to right, transparent, rgba(255,0,255,0.7) 40%, rgba(255,0,255,0.7) 60%, transparent);
+    box-shadow: 0 0 14px 2px rgba(255,0,255,0.4);
+}
+
+/* ── Schedule day cards — persistent ambient glow ─────────── */
+#schedule .grid > div:first-child {
+    box-shadow: 0 4px 50px rgba(0, 191, 255, 0.08), inset 0 1px 0 rgba(0,191,255,0.2);
+}
+#schedule .grid > div:last-child {
+    box-shadow: 0 4px 50px rgba(255, 0, 255, 0.08), inset 0 1px 0 rgba(255,0,255,0.2);
+}
+#schedule .grid > div:first-child:hover {
+    box-shadow:
+        0 0 0 1px rgba(0, 191, 255, 0.4),
+        0 0 55px rgba(0, 191, 255, 0.18),
+        inset 0 1px 0 rgba(0,191,255,0.4) !important;
+}
+#schedule .grid > div:last-child:hover {
+    box-shadow:
+        0 0 0 1px rgba(255, 0, 255, 0.4),
+        0 0 55px rgba(255, 0, 255, 0.18),
+        inset 0 1px 0 rgba(255,0,255,0.4) !important;
+}
+
+/* ── Stats section — glowing border bottom on stat blocks ─── */
+#stats .stagger-children > div {
+    position: relative;
+    padding-bottom: 16px;
+}
+#stats .stagger-children > div::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 32px;
+    height: 2px;
+    background: rgba(220, 38, 38, 0.5);
+    box-shadow: 0 0 10px rgba(220, 38, 38, 0.4);
+    transition: width 0.4s ease, box-shadow 0.4s ease;
+}
+#stats .stagger-children > div:hover::after {
+    width: 64px;
+    background: #dc2626;
+    box-shadow: 0 0 20px rgba(220, 38, 38, 0.8), 0 0 40px rgba(220, 38, 38, 0.3);
+}
+
+/* ── Sponsor cards — persistent ambient red glow ──────────── */
+#sponsors .bg-card\/60 {
+    box-shadow: 0 0 40px rgba(220, 38, 38, 0.08) !important;
+    transition: box-shadow 0.5s ease, border-color 0.5s ease !important;
+}
+#sponsors .bg-card\/60:hover {
+    box-shadow:
+        0 0 60px rgba(220, 38, 38, 0.2),
+        0 0 120px rgba(220, 38, 38, 0.08) !important;
+}
+
+/* ── Value cards — visible left accent border ─────────────── */
+#value .stagger-children > div {
+    border-left: 2px solid rgba(220, 38, 38, 0.15) !important;
+    transition: box-shadow 0.5s ease, border-color 0.5s ease,
+                border-left-color 0.5s ease, transform 0.5s ease,
+                background 0.5s ease !important;
+}
+#value .stagger-children > div:hover {
+    border-left-color: rgba(220, 38, 38, 0.7) !important;
+    box-shadow:
+        0 0 0 1px rgba(220, 38, 38, 0.15),
+        0 0 50px rgba(220, 38, 38, 0.12),
+        0 12px 48px rgba(0, 0, 0, 0.6) !important;
+}
+
+/* ── Tilt card base ───────────────────────────────────────── */
+.tilt-card { backface-visibility: hidden; }
+
+/* ═══════════════════════════════════════════════════════════
+   TOUCH / MOBILE  —  (hover: none) = touch-primary devices
+   Convert all hover-only effects into persistent / :active
+   ════════════════════════════════════════════════════════ */
+@media (hover: none) {
+    /* ─ Value cards left border always on */
+    #value .stagger-children > div {
+        border-left-color: rgba(220, 38, 38, 0.45) !important;
+    }
+    /* ─ Arena card icon always slightly visible */
+    #arena .stagger-children > div .absolute.opacity-\[0\.03\] {
+        opacity: 0.08 !important;
+    }
+    /* ─ Arena card top stripe always visible */
+    #arena .stagger-children > div::before {
+        opacity: 0.55;
+    }
+    /* ─ FAQ left border always on */
+    .faq-item {
+        border-left-color: rgba(220, 38, 38, 0.35);
+        opacity: 1;
+        transform: translateX(0);
+    }
+    /* ─ Tilt cards: scale-down tap instead of 3D tilt */
+    .tilt-card:active {
+        transform: scale(0.97) !important;
+        transition: transform 0.12s ease !important;
+        box-shadow: 0 0 0 2px rgba(220, 38, 38, 0.5) !important;
+    }
+    /* ─ CTA buttons tap state */
+    .cta-neon-pulse:active {
+        transform: scale(0.97);
+        box-shadow: 0 0 50px rgba(220, 38, 38, 0.95) !important;
+    }
+    /* ─ Magnetic / register buttons tap state */
+    .magnetic:active {
+        transform: scale(0.97) !important;
+        background: white !important;
+        color: black !important;
+    }
+    /* ─ Nav links — show underline on :focus-visible (keyboard/tap) */
+    nav a:focus-visible,
+    nav button:focus-visible {
+        color: white;
+        text-shadow: 0 0 16px rgba(220, 38, 38, 0.9), 0 0 40px rgba(220, 38, 38, 0.5);
+    }
+    /* ─ Schedule cards always show subtle glow */
+    #schedule .grid > div {
+        box-shadow:
+            0 4px 40px rgba(0, 191, 255, 0.07),
+            inset 0 1px 0 rgba(0, 191, 255, 0.15);
+    }
+    /* ─ Sponsors: always-on glow */
+    #sponsors .bg-card\/60 {
+        box-shadow: 0 0 40px rgba(220, 38, 38, 0.08);
+    }
+    /* ─ Sponsor logo: colourful when scrolled into view (JS adds class) */
+    .sponsor-logo-wrap.sponsor-colour {
+        filter: grayscale(0) !important;
+        transform: scale(1) !important;
+    }
+    /* ─ Mobile: card highlighted when in center of viewport */
+    .tilt-card.scroll-active {
+        border-color: rgba(220, 38, 38, 0.55) !important;
+        box-shadow:
+            0 0 0 1px rgba(220, 38, 38, 0.2),
+            0 8px 48px rgba(220, 38, 38, 0.2),
+            0 2px 16px rgba(0, 0, 0, 0.5) !important;
+        transform: translateY(-4px) !important;
+        transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    }
+    .tilt-card.scroll-active .tactical-border::after {
+        transform: rotate(450deg);
+        box-shadow: 0 0 15px #dc2626;
+    }
+    /* ─ Stat cards: underline always expanded */
+    #stats .stagger-children > div::after {
+        width: 48px;
+        background: rgba(220, 38, 38, 0.7);
+    }
+    /* ─ No custom cursor on touch */
+    #cursor-dot, #cursor-ring { display: none; }
+    body { cursor: auto !important; }
+}
+
+/* ─ Touch ripple animation (applied via JS) ─────────────── */
+@keyframes touch-ripple {
+    0%   { transform: scale(0); opacity: 0.55; }
+    100% { transform: scale(4); opacity: 0; }
+}
+.touch-ripple-el {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    margin: -30px 0 0 -30px;
+    border-radius: 50%;
+    background: rgba(220, 38, 38, 0.3);
+    pointer-events: none;
+    animation: touch-ripple 0.55s ease-out forwards;
+    z-index: 50;
+}
+
+/* ── @media  performance — disable grid anim on low-end mobile ─ */
+@media (prefers-reduced-motion: reduce) {
+    body::before { animation: none; }
+    .cta-neon-pulse { animation: none; }
+    .reveal-left, .reveal-right, .reveal-scale,
+    .reveal-sector, .stagger-children > * { transition-duration: 0.01ms !important; }
+}
+
+/* ── Section nav dots (right side, desktop + tablet) ────────── */
+#section-dots {
+    position: fixed;
+    right: 1.25rem;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 90;
+}
+@media (max-width: 768px) { #section-dots { display: none; } }
+.section-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.2);
+    border: 1px solid rgba(255,255,255,0.15);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+.section-dot.active {
+    background: #dc2626;
+    border-color: #dc2626;
+    box-shadow: 0 0 10px rgba(220,38,38,0.7), 0 0 20px rgba(220,38,38,0.35);
+    transform: scale(1.4);
 }
