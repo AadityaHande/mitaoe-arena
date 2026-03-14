@@ -67,65 +67,29 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    //  COUNTDOWN 
-    const targetDate = new Date('2026-03-07T10:00:00').getTime();
+    //  EVENT STATUS 
     const countdownEl = document.getElementById('countdown');
     const countdownLoader = document.getElementById('countdownLoader');
-    
-    // Show countdown after brief loading delay
+
     setTimeout(function() {
         if (countdownLoader) countdownLoader.style.display = 'none';
-        if (countdownEl) countdownEl.style.display = 'grid';
-    }, 300);
-    
-    function updateCountdown() {
-        const now = new Date().getTime();
-        const distance = targetDate - now;
-        
-        if (distance <= 0) {
-            if (countdownEl) {
-                countdownEl.innerHTML = '<div class="text-primary font-black animate-pulse tracking-widest uppercase text-lg py-4">ARENA_IS_LIVE</div>';
-            }
-            return;
-        }
-        
-        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-        
-        const units = [
-            { label: 'DD', value: days },
-            { label: 'HH', value: hours },
-            { label: 'MM', value: minutes },
-            { label: 'SS', value: seconds }
-        ];
-        
         if (countdownEl) {
-            countdownEl.innerHTML = units.map(function(item) {
-                return '<div class="flex flex-col items-center">' +
-                    '<div class="text-3xl md:text-5xl font-black font-mono text-white tracking-tighter leading-none mb-2">' + 
-                    String(item.value).padStart(2, '0') + 
-                    '</div>' +
-                    '<div class="text-[9px] font-black text-primary tracking-widest uppercase">' + 
-                    item.label + 
-                    '</div>' +
-                '</div>';
-            }).join('');
+            countdownEl.style.display = 'grid';
+            countdownEl.innerHTML = '<div class="col-span-4 text-center">' +
+                '<div class="text-primary font-black animate-pulse tracking-widest uppercase text-lg py-2">EVENT_COMPLETED</div>' +
+                '<div class="text-white/80 font-black tracking-[0.18em] uppercase text-[10px]">WINNERS_PUBLISHED</div>' +
+            '</div>';
         }
-    }
-    
-    updateCountdown();
-    setInterval(updateCountdown, 1000);
+    }, 300);
 
     //  SYSTEM LOG ROTATION 
     const logs = [
         "SYS_BOOT::ACTIVE",
-        "ENROLLMENT_SYNC::OK",
-        "CORE_STABLE::99.9%",
-        "TRAFFIC_REROUTING...",
-        "ARENA_STATUS::READY",
-        "LATENCY::12MS",
+        "EVENT_STATUS::COMPLETED",
+        "RESULT_SYNC::OK",
+        "ARCHIVE_LOCK::CONFIRMED",
+        "WINNER_BOARD::LIVE",
+        "DATA_INTEGRITY::100%",
         "ENCRYPTION::STABLE"
     ];
     let logIndex = 0;
@@ -138,32 +102,20 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }, 2000);
 
-    //  ENROLLMENT ANIMATION 
-    let enrollment = 84.2;
-    let activeUsers = 142;
+    //  RESULT ARCHIVE STATUS 
     const enrollmentFill = document.getElementById('enrollmentFill');
     const enrollmentPercent = document.getElementById('enrollmentPercent');
     const activeNodesEl = document.getElementById('activeNodes');
-    
-    setInterval(function() {
-        enrollment += Math.random() * 0.05;
-        if (enrollment > 99.8) enrollment = 99.8;
-        
-        const drift = Math.floor(Math.random() * 5) - 2;
-        activeUsers += drift;
-        if (activeUsers < 120) activeUsers = 120;
-        if (activeUsers > 250) activeUsers = 250;
-        
-        if (enrollmentFill) {
-            enrollmentFill.style.width = enrollment + '%';
-        }
-        if (enrollmentPercent) {
-            enrollmentPercent.textContent = enrollment.toFixed(1) + '%_CAPACITY';
-        }
-        if (activeNodesEl) {
-            activeNodesEl.textContent = '[' + activeUsers + ' ACTIVE_NODES]';
-        }
-    }, 2000);
+
+    if (enrollmentFill) {
+        enrollmentFill.style.width = '100%';
+    }
+    if (enrollmentPercent) {
+        enrollmentPercent.textContent = 'RESULTS_PUBLISHED';
+    }
+    if (activeNodesEl) {
+        activeNodesEl.textContent = '[FINALIZED_RECORDS]';
+    }
 
     //  SCROLL REVEAL 
     const revealElements = document.querySelectorAll('.reveal-sector');
@@ -836,9 +788,9 @@ document.addEventListener('DOMContentLoaded', function() {
     var typingTarget = document.getElementById('heroTyping');
     if (typingTarget) {
         var lines = [
-            'THE ULTIMATE CAMPUS CODING BATTLEFIELD.',
-            'SOLO + DUO EVENTS. TWO GROUPS. MAX PRIZES.',
-            'BEGINNER FRIENDLY. PRO LEVEL REWARDS.'
+            'CODING ARENA 2026 HAS CONCLUDED.',
+            'OFFICIAL WINNERS ARE NOW LIVE.',
+            'THANK YOU FOR AN INCREDIBLE COMPETITION.'
         ];
         var lineIdx = 0, charIdx = 0, isDeleting = false, typePause = false;
         function typeStep() {
