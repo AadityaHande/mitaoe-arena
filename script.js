@@ -427,25 +427,114 @@ document.addEventListener('DOMContentLoaded', function() {
     var cursorDot  = document.getElementById('cursor-dot');
     var cursorRing = document.getElementById('cursor-ring');
     var dotX = 0, dotY = 0, ringX = 0, ringY = 0;
+    var cursorButtonTarget = null;
+
+    function updateButtonCursorTarget() {
+        if (!cursorButtonTarget) return;
+        var rect = cursorButtonTarget.getBoundingClientRect();
+        document.body.style.setProperty('--cursor-target-w', rect.width + 'px');
+        document.body.style.setProperty('--cursor-target-h', rect.height + 'px');
+        document.body.style.setProperty('--cursor-target-r', getComputedStyle(cursorButtonTarget).borderRadius || '999px');
+        dotX = rect.left + rect.width / 2;
+        dotY = rect.top + rect.height / 2;
+    }
+
+    function activateButtonCursor(target) {
+        var morphTarget = target && target.closest ? (target.closest('.faq-item') || target) : target;
+        cursorButtonTarget = morphTarget;
+        updateButtonCursorTarget();
+        document.body.classList.add('cursor-button');
+        document.body.classList.remove('cursor-link');
+    }
+
+    function deactivateButtonCursor(target) {
+        if (target && cursorButtonTarget !== target) return;
+        cursorButtonTarget = null;
+        document.body.classList.remove('cursor-button');
+    }
+
+    function isCursorEffectDisabled(target) {
+        return !!(target && target.matches && target.matches('#navbar a[href="#register"]'));
+    }
+
     document.addEventListener('mousemove', function(e) {
-        dotX = e.clientX; dotY = e.clientY;
+        if (!cursorButtonTarget) {
+            dotX = e.clientX;
+            dotY = e.clientY;
+        }
         if (cursorDot) {
             cursorDot.style.left = dotX + 'px';
             cursorDot.style.top  = dotY + 'px';
         }
     });
+
+    window.addEventListener('scroll', function() {
+        updateButtonCursorTarget();
+    }, { passive: true });
+    window.addEventListener('resize', updateButtonCursorTarget);
+
     (function animateRing() {
-        ringX += (dotX - ringX) * 0.12;
-        ringY += (dotY - ringY) * 0.12;
+        if (cursorButtonTarget) {
+            updateButtonCursorTarget();
+            ringX += (dotX - ringX) * 0.22;
+            ringY += (dotY - ringY) * 0.22;
+        } else {
+            ringX += (dotX - ringX) * 0.12;
+            ringY += (dotY - ringY) * 0.12;
+        }
         if (cursorRing) {
             cursorRing.style.left = ringX + 'px';
             cursorRing.style.top  = ringY + 'px';
         }
         requestAnimationFrame(animateRing);
     })();
-    document.querySelectorAll('a, button, [role="button"]').forEach(function(el) {
-        el.addEventListener('mouseenter', function() { document.body.classList.add('cursor-link'); });
-        el.addEventListener('mouseleave', function() { document.body.classList.remove('cursor-link'); });
+
+    var cursorMorphSelector = [
+        'button',
+        'input[type="button"]',
+        'input[type="submit"]',
+        'input[type="reset"]',
+        'a[href="#register"]',
+        'a[href*="forms.gle"]',
+        '#sponsors .flex.flex-wrap.justify-center.gap-6 > div',
+        '#value .stagger-children > div',
+        '#schedule .grid.grid-cols-1.sm\\:grid-cols-2.md\\:grid-cols-3 > div',
+        '#faq .faq-item'
+    ].join(', ');
+
+    document.querySelectorAll(cursorMorphSelector).forEach(function(el) {
+        el.addEventListener('mouseenter', function() {
+            if (isCursorEffectDisabled(el)) {
+                document.body.classList.remove('cursor-link');
+                deactivateButtonCursor();
+                return;
+            }
+            activateButtonCursor(el);
+        });
+        el.addEventListener('mouseleave', function() {
+            deactivateButtonCursor(el);
+        });
+    });
+
+    document.querySelectorAll('a, [role="button"]').forEach(function(el) {
+        el.addEventListener('mouseenter', function() {
+            if (isCursorEffectDisabled(el)) {
+                document.body.classList.remove('cursor-link');
+                deactivateButtonCursor();
+                return;
+            }
+            if (!cursorButtonTarget) {
+                document.body.classList.add('cursor-link');
+            }
+        });
+        el.addEventListener('mouseleave', function() {
+            document.body.classList.remove('cursor-link');
+        });
+    });
+
+    document.addEventListener('mouseleave', function() {
+        document.body.classList.remove('cursor-link');
+        deactivateButtonCursor();
     });
 
     //  PARTICLE CANVAS  (mouse-reactive: particles flee cursor)
